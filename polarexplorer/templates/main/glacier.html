@@ -8,26 +8,26 @@
             });
             jQuery("#sadowl").swipeleft(function() {
                 jQuery("#header").html("swipe left");
-                jQuery("#sadowl").animate({left: 90}, 200, function() {
-                    jQuery("#sadowl").css({left: 90});
+                jQuery("#sadowl").animate({left: 50}, 200, function() {
+                    jQuery("#sadowl").css({left: 50});
                 });
             });
             jQuery("#sadowl").swiperight(function() {
                 jQuery("#header").html("swipe right");
-                jQuery("#sadowl").animate({left: 110}, 200, function() {
-                    jQuery("#sadowl").css({left: 110});
+                jQuery("#sadowl").animate({left: 150}, 200, function() {
+                    jQuery("#sadowl").css({left: 150});
                 });
             });
             jQuery("#sadowl").bind('swipeup', function() {
                 jQuery("#header").html("swipe up");
-                jQuery("#sadowl").animate({top: 90}, 200, function() {
-                    jQuery("#sadowl").css({top: 90});
+                jQuery("#sadowl").animate({top: 50}, 200, function() {
+                    jQuery("#sadowl").css({top: 50});
                 });
             });
             jQuery("#sadowl").bind('swipedown', function() {
                 jQuery("#header").html("swipe down");
-                jQuery("#sadowl").animate({top: 120}, 200, function() {
-                    jQuery("#sadowl").css({top: 120});
+                jQuery("#sadowl").animate({top: 150}, 200, function() {
+                    jQuery("#sadowl").css({top: 150});
                 });
             });
         });
@@ -42,6 +42,6 @@
     Glaciers
     <div class="interactive" style="height: 300px;"">
         <img id="sadowl" src="/site_media/img/sadowl.jpg"
-            style="position: absolute; left: 100; top: 100; width: 100px; height: 120px"></img>
+            style="position: absolute; left: 100px; top: 100px; width: 100px; height: 120px"></img>
     </div>
 {% endblock %}
