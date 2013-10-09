@@ -2,30 +2,35 @@
 
 {% block js %}
     <script type="text/javascript">
-    
-    // run the currently selected effect
-    function runEffect(selectedEffect) {
-      // most effect types need no options passed by default
-      var options = {};
-      // run the effect
-      jQuery("#sadowl").effect( selectedEffect, options, 500, callback );
-    };
-    
-    // callback function to bring a hidden box back
-    function callback() {
-      setTimeout(function() {
-        jQuery( "#sadowl" ).removeAttr( "style" ).hide().fadeIn();
-      }, 1000 );
-    };
-    
-    jQuery(document).on("pageinit", function( event ) {
-        jQuery("#sadowl").tap(function() {
-           runEffect("shake")
+        jQuery(document).on("pageinit", function (event) {
+            jQuery("#sadowl").tap(function() {
+               jQuery("#header").html("tap");
+            });
+            jQuery("#sadowl").swipeleft(function() {
+                jQuery("#header").html("swipe left");
+                jQuery("#sadowl").animate({left: 90}, 200, function() {
+                    jQuery("#sadowl").css({left: 90});
+                });
+            });
+            jQuery("#sadowl").swiperight(function() {
+                jQuery("#header").html("swipe right");
+                jQuery("#sadowl").animate({left: 110}, 200, function() {
+                    jQuery("#sadowl").css({left: 110});
+                });
+            });
+            jQuery("#sadowl").bind('swipeup', function() {
+                jQuery("#header").html("swipe up");
+                jQuery("#sadowl").animate({top: 90}, 200, function() {
+                    jQuery("#sadowl").css({top: 90});
+                });
+            });
+            jQuery("#sadowl").bind('swipedown', function() {
+                jQuery("#header").html("swipe down");
+                jQuery("#sadowl").animate({top: 120}, 200, function() {
+                    jQuery("#sadowl").css({top: 120});
+                });
+            });
         });
-        jQuery("#sadowl").swipe(function() {
-            runEffect("slide") 
-         });
-    });
     </script>
 {% endblock %}
 
@@ -35,7 +40,8 @@
 
 {% block content %}
     Glaciers
-    <div class="interactive">
-        <img id="sadowl" src="/site_media/img/sadowl.jpg"></img>
+    <div class="interactive" style="height: 300px;"">
+        <img id="sadowl" src="/site_media/img/sadowl.jpg"
+            style="position: absolute; left: 100; top: 100; width: 100px; height: 120px"></img>
     </div>
 {% endblock %}
