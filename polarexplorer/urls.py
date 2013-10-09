@@ -26,6 +26,8 @@ urlpatterns = patterns(
     auth_urls,
     logout_page,
     (r'^$', 'polarexplorer.main.views.index'),
+    (r'^glacier/$', 'polarexplorer.main.views.glacier'),
+    (r'^water/$', 'polarexplorer.main.views.water'),
     (r'^admin/', include(admin.site.urls)),
     url(r'^_impersonate/', include('impersonate.urls')),
     (r'^munin/', include('munin.urls')),

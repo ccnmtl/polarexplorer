@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block js %}
+    <script type="text/javascript">
+    
+    // run the currently selected effect
+    function runEffect(selectedEffect) {
+      // most effect types need no options passed by default
+      var options = {};
+      // run the effect
+      jQuery("#sadowl").effect( selectedEffect, options, 500, callback );
+    };
+    
+    // callback function to bring a hidden box back
+    function callback() {
+      setTimeout(function() {
+        jQuery( "#sadowl" ).removeAttr( "style" ).hide().fadeIn();
+      }, 1000 );
+    };
+    
+    jQuery(document).on("pageinit", function( event ) {
+        jQuery("#sadowl").tap(function() {
+           runEffect("shake")
+        });
+        jQuery("#sadowl").swipe(function() {
+            runEffect("slide") 
+         });
+    });
+    </script>
+{% endblock %}
+
+{% block header %}
+    <h1 id="header">Calving Glacier</h1>
+{% endblock %}
+
+{% block content %}
+    Glaciers
+    <div class="interactive">
+        <img id="sadowl" src="/site_media/img/sadowl.jpg"></img>
+    </div>
+{% endblock %}

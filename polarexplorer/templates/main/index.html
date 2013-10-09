@@ -1,8 +1,12 @@
 {% extends 'base.html' %}
 
+{% block header %}
+    <h1>Polar Explorer Activities</h1>
+{% endblock %}
+
 {% block content %}
-<div class="hero-unit">
-<h1>It works</h1>
-<p>Congratulations! Now start coding.</p>
-</div>
+    <ul data-role="listview" data-inset="true">
+        <li><a href="/water/">Rising Water Levels</a></li>
+        <li><a href="/glacier/">Calving Glacier</a></li>
+    </ul>
 {% endblock %}
