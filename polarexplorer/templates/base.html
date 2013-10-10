@@ -6,11 +6,8 @@
     	<meta charset="utf-8" />
     	<title>polarexplorer: {% block title %}{% endblock %}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="polarexplorer">
+        <meta name="description" content="Polar Explorer">
         <meta name="author" content="CCNMTL">
-        
-        <!-- viewport -->
-        <meta name="viewport" content="width=device-width">
         
         <!-- Mobile IE allows us to activate ClearType technology for smoothing fonts for easy reading -->
         <meta http-equiv="cleartype" content="on">
@@ -28,21 +25,13 @@
     	
         {% block css %}{% endblock %}
         
-        <script src="/site_media/js/jquery-1.8.3.min.js"></script>
-        <script src="/site_media/jquery.mobile/jquery.mobile-1.3.2.min.js"></script>
-        <script src="/site_media/js/jquerymobile-swipeupdown.js"></script>
-    
-        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-        <!--[if lt IE 9]>
-            <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
     </head>
     <body>
         <div data-role="page">
-            <header data-role="header">
+            <header data-role="header" id="base-header">
                 {% block header %}
-                    <h1>Ubelly</h1>
                 {% endblock %}
+                <a href="#info-panel" data-role="button" data-icon="info" class="ui-btn-right">Info</a>
             </header>
     
             <div data-role="content">
@@ -50,12 +39,34 @@
                 {% endblock %}
             </div>
     
-            <footer data-role="footer" data-theme="b">
+            <footer data-role="footer">
+                {% block footer %}
+                {% endblock %}
             </footer>
-    
+            
+            <div data-role="panel" id="info-panel" data-position="right" data-display="overlay">
+                <a href="#base-header" data-role="button" data-rel="close" data-icon="delete" data-iconpos="right">
+                    Close info
+                </a>
+                {% block info %}
+                {% endblock %}                
+            </div>
+            
         </div>
+        
+        
     
-        {% compress js %}{% endcompress %}
+        <script src="/site_media/js/jquery-1.8.3.min.js"></script>
+        <script src="/site_media/jquery.mobile/jquery.mobile-1.3.2.min.js"></script>
+        
+        {% compress js %}
+            <script src="/site_media/js/jquerymobile-swipeupdown.js"></script>
+        
+            <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+            <!--[if lt IE 9]>
+                <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+            <![endif]-->        
+        {% endcompress %}
         
         {% block js %}{% endblock %}
         
