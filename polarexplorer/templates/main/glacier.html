@@ -2,6 +2,7 @@
 
 {% block js %}
     <script type="text/javascript">
+        var dragging = false;
         jQuery(document).on("pageinit", function (event) {
             jQuery("#sadowl").tap(function() {
                jQuery("#header").html("tap");
@@ -29,6 +30,20 @@
                 jQuery("#sadowl").animate({top: 150}, 200, function() {
                     jQuery("#sadowl").css({top: 150});
                 });
+            });
+            jQuery("#sadowl").bind('vmousedown', function() {
+                dragging = true;
+            });
+            jQuery("#sadowl").bind('vmouseup', function() {
+                dragging = false;
+            });
+            jQuery("#sadowl").bind('vmousemove', function(event) {
+                if (dragging) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    jQuery("#sadowl").css({top: event.pageY});
+                    return false;
+                }
             });
         });
     </script>
