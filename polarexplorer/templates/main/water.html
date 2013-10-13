@@ -1,9 +1,60 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
 {% block header %}
-    <h1>Rising Water Levels</h1>
+    Rising water levels
 {% endblock %}
 
 {% block content %}
-    Water Levels
+    <div data-role="page">
+        <div data-role="header" id="base-header">
+            <a href="#about" data-role="button" data-rel="dialog" data-icon="info">About</a>
+            <h1 id="header">Rising Water Levels</h1>
+            <a id="reset" href="#" data-role="button" data-icon="refresh">Reset</a>
+        </div>
+
+        <div data-role="content">
+            <div class="ui-grid-solo">
+                <div class="ui-block-a macroview" style="text-align: center;">
+                    Macroview
+                </div>
+            </div><!-- /grid-b -->
+            <div class="ui-grid-solo">
+                <div class="ui-block-a microview">
+                    <input type="vrange" name="water" id="water"
+                        data-highlight="true"
+                        value="60" min="0" max="100" style="display: none;" />
+                </div>
+            </div>
+        </div>
+        
+        <div data-role="footer"></div>
+    </div>
+    
 {% endblock %}
+
+{% block js %}    
+    <script type="text/javascript">
+        jQuery(document).on("pageinit", function (event) {
+            var defaultWaterLevel = 60;
+            var waterLevel = 60;
+            jQuery("#water").verticalslider();
+            jQuery(".ui-slider-vertical-track");
+            
+            jQuery(".macroview").swipeleft(function() {
+               waterLevel += 10;
+               if (waterLevel === 110) {
+                   waterLevel = 0;
+               }
+               jQuery("#water").attr("value", waterLevel);
+               jQuery("#water").trigger("change");               
+            });
+            
+            jQuery("#reset").click(function() {
+                jQuery("#water").attr("value", defaultWaterLevel);
+                jQuery("#water").trigger("change");
+            });
+        });
+    </script>
+{% endblock %}
+
+

@@ -1,54 +1,68 @@
-header#masthead
-{
-	 height: 150px;
-   background-color: #9af;
+html, body {
+    height: 100%;
 }
 
-header h1 {
-	display: none;
+.ui-content {
+    padding: 0px;
 }
 
-header h4 {
-	display: none;
+div#about a.ui-shadow {
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
 }
 
-html {
-	height: 100%;
+.macroview {
+    background-color: black;
+    width: 60%;
+    margin: 0 auto;
 }
 
-body {
-  background-color: #eee;
-  height: 100%;
+.microview {
+    margin-top: 25px;
 }
 
-body > .container {
-  background-color: #fff;
-  min-height: 100%;
+/* iPhone non-retina 320x480 */
+
+/* iPhone retina 640x960 pixels */
+@media all and (min-width: 20em) {
+    .macroview.portrait {
+        height: 8em;
+        background-color: red;
+    }
+    
+    .microview.portrait {
+        height: 16.5em;
+    }
+    
+    .macroview.landscape {
+        height: 5em;
+        background-color: red;
+    }
+    
+    .microview.landscape {
+        height: 10em;
+    }
 }
 
-#content {
-  min-height: 100%;
+/* iPad non-retina & retina */
+@media all and (min-width: 40em) {
+    .macroview.portrait {
+        height: 20em;
+        background-color: green;
+    }
+    
+    .microview.portrait {
+        height: 35em;
+    }
+    
+    .macroview.landscape {
+        height: 12em;
+        background-color: green;
+    }
+    
+    .microview.landscape {
+        height: 26em;
+    }
 }
 
-.navbar-top {
-  margin-bottom: 0px;
-}
-
-#primarynav .navbar-inner {
-	background-color: blue;
-	background-image: none;
-}
-
-#primarynav li.active a {
-	background-color: #8ae;
-	color: black;
-}
-
-#primarynav a {
-  color: white;
-	background-color: #679;
-}
-
-#primarynav a:hover {
-  color: blue;
-}

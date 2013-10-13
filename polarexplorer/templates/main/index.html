@@ -1,12 +1,19 @@
-{% extends 'base.html' %}
-
-{% block header %}
-    <h1>Polar Explorer Activities</h1>
-{% endblock %}
+{% extends "base.html" %}
 
 {% block content %}
-    <ul data-role="listview" data-inset="true">
-        <li><a href="/water/">Rising Water Levels</a></li>
-        <li><a href="/glacier/">Calving Glacier</a></li>
-    </ul>
+   <div data-role="page" data-url="portrait" id="portrait">
+        <div data-role="header" id="base-header">
+            <a href="#about" data-role="button" data-rel="dialog" data-icon="info">About</a>
+            <h1 id="header">Polar Explorer Interactives</h1>
+        </div>
+
+        <div data-role="content">
+            <ul data-role="listview" data-inset="true">
+                <li><a href="/water/" data-ajax="false">Rising Water Levels</a></li>
+                <li><a href="/glacier/" data-ajax="false">Calving Glacier</a></li>
+            </ul>
+        </div>
+        
+        <div data-role="footer"></div>
+    </div>
 {% endblock %}

@@ -1,62 +1,46 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
+
+{% block header %}
+    Calving Glacier
+{% endblock %}
+
+{% block portrait %}
+    Glaciers Portrait
+    <div class="interactive" style="height: 300px;">
+        <img class="sadowl" src="/site_media/img/sadowl.jpg"
+            style="position: absolute; left: 100px; top: 100px; width: 100px; height: 120px"></img>
+    </div>
+{% endblock %}
+
+{% block landscape %} 
+    Glaciers Landscape
+    <div class="interactive" style="height: 300px;">
+        <img class="sadowl" src="/site_media/img/sadowl.jpg"
+            style="position: absolute; left: 100px; top: 100px; width: 100px; height: 120px"></img>
+    </div>    
+{% endblock %}
 
 {% block js %}
     <script type="text/javascript">
-        var dragging = false;
         jQuery(document).on("pageinit", function (event) {
-            jQuery("#sadowl").tap(function() {
+            console.log("pageinit");
+            jQuery(".sadowl").tap(function() {
+                console.log("tap");
                jQuery("#header").html("tap");
             });
-            jQuery("#sadowl").swipeleft(function() {
+            jQuery(".sadowl").swipeleft(function() {
                 jQuery("#header").html("swipe left");
-                jQuery("#sadowl").animate({left: 50}, 200, function() {
-                    jQuery("#sadowl").css({left: 50});
+                jQuery(".sadowl").animate({left: 50}, 200, function() {
+                    jQuery(".sadowl").css({left: 50});
                 });
             });
-            jQuery("#sadowl").swiperight(function() {
+            jQuery(".sadowl").swiperight(function() {
                 jQuery("#header").html("swipe right");
-                jQuery("#sadowl").animate({left: 150}, 200, function() {
-                    jQuery("#sadowl").css({left: 150});
+                jQuery(".sadowl").animate({left: 150}, 200, function() {
+                    jQuery(".sadowl").css({left: 150});
                 });
-            });
-            jQuery("#sadowl").bind('swipeup', function() {
-                jQuery("#header").html("swipe up");
-                jQuery("#sadowl").animate({top: 50}, 200, function() {
-                    jQuery("#sadowl").css({top: 50});
-                });
-            });
-            jQuery("#sadowl").bind('swipedown', function() {
-                jQuery("#header").html("swipe down");
-                jQuery("#sadowl").animate({top: 150}, 200, function() {
-                    jQuery("#sadowl").css({top: 150});
-                });
-            });
-            jQuery("#sadowl").bind('vmousedown', function() {
-                dragging = true;
-            });
-            jQuery("#sadowl").bind('vmouseup', function() {
-                dragging = false;
-            });
-            jQuery("#sadowl").bind('vmousemove', function(event) {
-                if (dragging) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                    jQuery("#sadowl").css({top: event.pageY});
-                    return false;
-                }
             });
         });
     </script>
 {% endblock %}
 
-{% block header %}
-    <h1 id="header">Calving Glacier</h1>
-{% endblock %}
-
-{% block content %}
-    Glaciers
-    <div class="interactive" style="height: 300px;"">
-        <img id="sadowl" src="/site_media/img/sadowl.jpg"
-            style="position: absolute; left: 100px; top: 100px; width: 100px; height: 120px"></img>
-    </div>
-{% endblock %}
