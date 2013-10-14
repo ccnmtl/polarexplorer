@@ -6,3 +6,5 @@ ve
 .pydevproject
 .coverage
 local_settings.py
+reports
+CACHE

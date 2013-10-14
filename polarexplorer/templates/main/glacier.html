@@ -6,7 +6,7 @@
 
 
 {% block content %}
-    <div data-role="page" class="glacier">
+    <div data-role="page">
         <div data-role="header" id="base-header">
             <a href="#about" data-role="button" data-rel="dialog" data-icon="info">About</a>
             <h1 id="header">Calving Glacier</h1>
@@ -20,8 +20,10 @@
                 </div>
             </div><!-- /grid-b -->
             <div class="ui-grid-solo">
-                <div class="ui-block-a microview">
-                    <div class="glacier_1"></div>
+                <div class="ui-block-a microview">                    
+                    <div class="glacier glacier_0" data-idx="0">
+                        <h5>Image 0</h5>
+                    </div>
                 </div>
             </div>
         </div>
@@ -34,15 +36,26 @@
 {% block js %}
     <script type="text/javascript">
         jQuery(document).on("pageinit", function (event) {
-            jQuery(".sadowl").swipeleft(function() {
-                jQuery("#header").html("swipe left");
-                jQuery(".sadowl").animate({left: 50}, 200, function() {
-                    jQuery(".sadowl").css({left: 50});
-                });
+            jQuery(".glacier").swipeleft(function(event) {
+                event.stopImmediatePropagation();
+                var imageCount = 7;
+                var imgIdx = parseInt(jQuery(this).data("idx"), 10);
+                jQuery(this).removeClass("glacier_" + imgIdx);
+
+                imgIdx = (imgIdx + 1) % imageCount;
+                jQuery(this).data("idx", imgIdx);
+                jQuery(this).addClass("glacier_" + imgIdx);
+                jQuery(this).find("h5").html("Image " + imgIdx);
+                return false;
             });
             jQuery("#reset").click(function() {
-                jQuery("#water").attr("value", defaultWaterLevel);
-                jQuery("#water").trigger("change");
+                var imgIdx = jQuery(this).data("idx");
+                jQuery(this).removeClass("glacier_" + imgIdx);
+                
+                imgIdx = 0;
+                jQuery(this).data("idx", imgIdx);
+                jQuery(this).addClass("glacier_" + imgIdx);
+                jQuery(this).find("h5").html("Image " + imgIdx);
             });
         });
     </script>
