@@ -8,3 +8,4 @@ ve
 local_settings.py
 reports
 CACHE
+.settings

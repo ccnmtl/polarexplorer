@@ -1,3 +1,4 @@
+# flake8: noqa
 # -*- coding: utf-8 -*-
 from lettuce.django import django_url
 from lettuce import before, after, world, step
@@ -15,6 +16,7 @@ try:
     import selenium
 except:
     pass
+
 
 def skip_selenium():
     return (os.environ.get('LETTUCE_SKIP_SELENIUM', False)
