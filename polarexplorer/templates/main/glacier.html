@@ -50,8 +50,8 @@
                 return false;
             });
             jQuery("#reset").click(function() {
-                var imgIdx = jQuery(this).data("idx");
                 var elt = jQuery(".glacier")
+                var imgIdx = jQuery(elt).data("idx");
                 jQuery(elt).removeClass("glacier_" + imgIdx);
                 
                 imgIdx = 0;
