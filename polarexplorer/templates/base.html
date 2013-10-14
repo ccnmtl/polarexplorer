@@ -17,10 +17,10 @@
         
         <link rel="stylesheet" href="/site_media/jquery.mobile/jquery.mobile-1.3.2.min.css" media="screen" />
         
-        {% compress css %}
-            <link href="/site_media/css/main.css" rel="stylesheet">
-            <link href="/site_media/css/vslider.css" rel="stylesheet">
-            {% block css %}{% endblock %}
+        {% compress css %}            
+            {% block css %}
+                <link href="/site_media/css/main.css" rel="stylesheet">            
+            {% endblock %}
         {% endcompress %}
     	
         <link rel="shortcut icon" href="/site_media/img/favicon.ico" type="image/x-icon" />

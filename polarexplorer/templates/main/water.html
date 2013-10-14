@@ -4,6 +4,11 @@
     Rising water levels
 {% endblock %}
 
+{% block css %}
+    {{ block.super }}
+    <link href="/site_media/css/vslider.css" rel="stylesheet">
+{% endblock %}
+
 {% block content %}
     <div data-role="page" class="water">
         <div data-role="header" id="base-header">

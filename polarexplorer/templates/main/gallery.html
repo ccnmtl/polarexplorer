@@ -5,7 +5,8 @@
 {% endblock %}
 
 {% block css %}
-<link rel="stylesheet" href="/site_media/photoswipe/photoswipe.css" media="screen" />
+    {{ block.super }}
+    <link rel="stylesheet" href="/site_media/photoswipe/photoswipe.css" media="screen" />
 {% endblock %}
 
 {% block content %}
@@ -14,12 +15,9 @@
             <a href="#about" data-role="button" data-rel="dialog" data-icon="info">About</a>
             <h1 id="header">Photo Gallery</h1>
         </div>
-
-        <div data-role="content">
-            <div class="macroview" id="photogallery"></div>
+        <div data-role="content">        
+            <div id="photogallery"></div>
         </div>
-        
-        <div data-role="footer"></div>
     </div>
     
 {% endblock %}
@@ -57,13 +55,19 @@
                     }
                 );
                 instance.show(0);
+                jQuery(window).trigger("resize");
             });
         }(window, window.Code.Util, window.Code.PhotoSwipe));
     
         window.onresize=function() {
+            var height = window.innerHeight - 
+               jQuery("div.ui-header").height();
+            jQuery("#photogallery").css("height", height + "px");
+            
             if (window.Code.PhotoSwipe.activeInstances.length > 0) {
                 window.Code.PhotoSwipe.activeInstances[0].instance.carousel.resetPosition();
             }
+            
         };
         
         jQuery(document).on("pageinit", function (event) {
