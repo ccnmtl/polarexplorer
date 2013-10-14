@@ -50,12 +50,13 @@
             });
             jQuery("#reset").click(function() {
                 var imgIdx = jQuery(this).data("idx");
-                jQuery(this).removeClass("glacier_" + imgIdx);
+                var elt = jQuery(".glacier")
+                jQuery(elt).removeClass("glacier_" + imgIdx);
                 
                 imgIdx = 0;
-                jQuery(this).data("idx", imgIdx);
-                jQuery(this).addClass("glacier_" + imgIdx);
-                jQuery(this).find("h5").html("Image " + imgIdx);
+                jQuery(elt).data("idx", imgIdx);
+                jQuery(elt).addClass("glacier_" + imgIdx);
+                jQuery(elt).find("h5").html("Image " + imgIdx);
             });
         });
     </script>
