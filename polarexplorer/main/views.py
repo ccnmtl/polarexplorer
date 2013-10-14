@@ -14,3 +14,8 @@ def glacier(request):
 @render_to('main/water.html')
 def water(request):
     return dict()
+
+
+@render_to('main/gallery.html')
+def gallery(request):
+    return dict()

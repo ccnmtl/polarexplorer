@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Photo Gallery
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="/site_media/photoswipe/photoswipe.css" media="screen" />
+{% endblock %}
+
+{% block content %}
+    <div data-role="page" class="gallery">
+        <div data-role="header" id="base-header">
+            <a href="#about" data-role="button" data-rel="dialog" data-icon="info">About</a>
+            <h1 id="header">Photo Gallery</h1>
+        </div>
+
+        <div data-role="content">
+            <div class="macroview" id="photogallery"></div>
+        </div>
+        
+        <div data-role="footer"></div>
+    </div>
+    
+{% endblock %}
+
+{% block extrajs %}
+    <script type="text/javascript" src="/site_media/photoswipe/lib/klass.min.js"></script>
+    <script type="text/javascript" src="/site_media/photoswipe/code.photoswipe-3.0.5.min.js"></script>
+{% endblock %}
+
+
+{% block js %}    
+    <script type="text/javascript" src="/site_media/js/jquerymobile-swipeupdown.js"></script>
+    <script type="text/javascript">
+        (function(window, Util, PhotoSwipe) {
+        
+            Util.Events.domReady(function(e){
+            
+                var instance;
+            
+                instance = PhotoSwipe.attach(
+                    [
+                        { url: 'http://lensbaby.com/sites/default/files/galleryphoto/305.jpg', caption: 'Image 001'},
+                        { url: 'http://lensbaby.com/sites/default/files/galleryphoto/1381.jpg', caption: 'Image 002'},
+                        { url: 'http://lensbaby.com/sites/default/files/galleryphoto/368.jpg', caption: 'Image 003'},
+                    ],
+                    {
+                        target: window.document.querySelectorAll('#photogallery')[0],
+                        preventHide: true,
+                        getImageSource: function(obj){
+                            return obj.url;
+                        },
+                        getImageCaption: function(obj){
+                            return obj.caption;
+                        }
+                    }
+                );
+                instance.show(0);
+            });
+        }(window, window.Code.Util, window.Code.PhotoSwipe));
+    
+        window.onresize=function() {
+            if (window.Code.PhotoSwipe.activeInstances.length > 0) {
+                window.Code.PhotoSwipe.activeInstances[0].instance.carousel.resetPosition();
+            }
+        };
+        
+        jQuery(document).on("pageinit", function (event) {
+            jQuery("#reset").click(function() {
+                jQuery("#water").attr("value", defaultWaterLevel);
+                jQuery("#water").trigger("change");
+            });
+        });        
+    </script>
+{% endblock %}
+
+

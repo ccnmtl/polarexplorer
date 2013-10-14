@@ -28,6 +28,7 @@ urlpatterns = patterns(
     (r'^$', 'polarexplorer.main.views.index'),
     (r'^glacier/$', 'polarexplorer.main.views.glacier'),
     (r'^water/$', 'polarexplorer.main.views.water'),
+    (r'^gallery/$', 'polarexplorer.main.views.gallery'),
     (r'^admin/', include(admin.site.urls)),
     url(r'^_impersonate/', include('impersonate.urls')),
     (r'^munin/', include('munin.urls')),

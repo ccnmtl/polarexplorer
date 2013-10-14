@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 
+{% block title %}
+    Polar Explorer Interactives
+{% endblock %}
+
 {% block content %}
    <div data-role="page" data-url="portrait" id="portrait">
         <div data-role="header" id="base-header">
@@ -11,6 +15,7 @@
             <ul data-role="listview" data-inset="true">
                 <li><a href="/water/" data-ajax="false">Rising Water Levels</a></li>
                 <li><a href="/glacier/" data-ajax="false">Calving Glacier</a></li>
+                <li><a href="/gallery/" data-ajax="false">Image Gallery</a></li>
             </ul>
         </div>
         

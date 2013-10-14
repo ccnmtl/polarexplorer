@@ -1,44 +1,48 @@
 {% extends "base.html" %}
 
-{% block header %}
+{% block title %}
     Calving Glacier
 {% endblock %}
 
-{% block portrait %}
-    Glaciers Portrait
-    <div class="interactive" style="height: 300px;">
-        <img class="sadowl" src="/site_media/img/sadowl.jpg"
-            style="position: absolute; left: 100px; top: 100px; width: 100px; height: 120px"></img>
-    </div>
-{% endblock %}
 
-{% block landscape %} 
-    Glaciers Landscape
-    <div class="interactive" style="height: 300px;">
-        <img class="sadowl" src="/site_media/img/sadowl.jpg"
-            style="position: absolute; left: 100px; top: 100px; width: 100px; height: 120px"></img>
-    </div>    
+{% block content %}
+    <div data-role="page" class="glacier">
+        <div data-role="header" id="base-header">
+            <a href="#about" data-role="button" data-rel="dialog" data-icon="info">About</a>
+            <h1 id="header">Calving Glacier</h1>
+            <a id="reset" href="#" data-role="button" data-icon="refresh">Reset</a>
+        </div>
+
+        <div data-role="content">
+            <div class="ui-grid-solo">
+                <div class="ui-block-a macroview" style="text-align: center;">
+                    Macroview
+                </div>
+            </div><!-- /grid-b -->
+            <div class="ui-grid-solo">
+                <div class="ui-block-a microview">
+                    Microview
+                </div>
+            </div>
+        </div>
+        
+        <div data-role="footer"></div>
+    </div>
+
 {% endblock %}
 
 {% block js %}
     <script type="text/javascript">
         jQuery(document).on("pageinit", function (event) {
-            console.log("pageinit");
-            jQuery(".sadowl").tap(function() {
-                console.log("tap");
-               jQuery("#header").html("tap");
-            });
             jQuery(".sadowl").swipeleft(function() {
                 jQuery("#header").html("swipe left");
                 jQuery(".sadowl").animate({left: 50}, 200, function() {
                     jQuery(".sadowl").css({left: 50});
                 });
             });
-            jQuery(".sadowl").swiperight(function() {
-                jQuery("#header").html("swipe right");
-                jQuery(".sadowl").animate({left: 150}, 200, function() {
-                    jQuery(".sadowl").css({left: 150});
-                });
+            jQuery("#reset").click(function() {
+                jQuery("#water").attr("value", defaultWaterLevel);
+                jQuery("#water").trigger("change");
             });
         });
     </script>

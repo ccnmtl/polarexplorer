@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 
-{% block header %}
+{% block title %}
     Rising water levels
 {% endblock %}
 
 {% block content %}
-    <div data-role="page">
+    <div data-role="page" class="water">
         <div data-role="header" id="base-header">
             <a href="#about" data-role="button" data-rel="dialog" data-icon="info">About</a>
             <h1 id="header">Rising Water Levels</h1>
@@ -27,7 +27,9 @@
             </div>
         </div>
         
-        <div data-role="footer"></div>
+        <div data-role="footer">
+            
+        </div>
     </div>
     
 {% endblock %}

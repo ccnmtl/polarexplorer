@@ -22,6 +22,11 @@ div#about a.ui-shadow {
     margin-top: 25px;
 }
 
+div.gallery div.macroview {
+    background-color: black;
+    width: 100%;
+}
+
 /* iPhone non-retina 320x480 */
 
 /* iPhone retina 640x960 pixels */
@@ -43,9 +48,17 @@ div#about a.ui-shadow {
     .microview.landscape {
         height: 10em;
     }
+    
+    div.gallery div.macroview.portrait {
+        height: 26em;
+    } 
+
+    div.gallery div.macroview.landscape {
+        height: 17.5em;
+    } 
 }
 
-/* iPad non-retina & retina */
+/* iPad retina 2048px x 1536px, 264 pixes per inch */
 @media all and (min-width: 40em) {
     .macroview.portrait {
         height: 20em;
@@ -64,5 +77,13 @@ div#about a.ui-shadow {
     .microview.landscape {
         height: 26em;
     }
+    
+    div.gallery div.macroview.portrait {
+        height: 55em;
+    } 
+
+    div.gallery div.macroview.landscape {
+        height: 35em;
+    }     
 }
 
