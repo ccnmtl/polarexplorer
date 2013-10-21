@@ -61,7 +61,7 @@
                 instance = PhotoSwipe.attach(
                     [
                         {% for photo in photos %}
-                            { url: '/site_media/img/{{section}}/{{photo.year}}{{photo.extension}}/',
+                            { url: '/site_media/img/{{section}}/{{photo.year}}{{photo.extension}}',
                               caption: 
                                   {% ifequal section "antarctica" %}
                                       'Antarctic Melt Area {{photo.year}} - {{photo.year|add:"1"}}' 
