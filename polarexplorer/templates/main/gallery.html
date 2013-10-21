@@ -19,17 +19,38 @@
             <div id="photogallery"></div>
         </div>
     </div>
-    
+{% endblock %}
+
+{% block about_title %}
+    {% ifequal section "antarctica" %}
+        Antarctic Melt Area
+    {% endifequal %}{% ifequal section "greenland_a" %}
+        Greenland Melt Area
+    {% endifequal %}{% ifequal section "greenland_b" %}
+        Greenland Melt Area
+    {% endifequal %}{% ifequal section "greenland_graph" %}
+        Greenland Icesheet Melt Area
+    {% endifequal %}
+{% endblock %}
+
+{% block about_content %}
+    {% ifequal section "antarctica" %}
+        Antarctic Melt Area About Content
+    {% endifequal %}{% ifequal section "greenland_a" %}
+        Greenland Melt Area About Content
+    {% endifequal %}{% ifequal section "greenland_b" %}
+        Greenland Melt Area About Content
+    {% endifequal %}{% ifequal section "greenland_graph" %}
+        Greenland Icesheet Melt Area About Content
+    {% endifequal %}
 {% endblock %}
 
 {% block extrajs %}
     <script type="text/javascript" src="/site_media/photoswipe/lib/klass.min.js"></script>
-    <script type="text/javascript" src="/site_media/photoswipe/code.photoswipe-3.0.5.min.js"></script>
 {% endblock %}
 
-
-{% block js %}    
-    <script type="text/javascript" src="/site_media/js/jquerymobile-swipeupdown.js"></script>
+{% block js %}
+    <script type="text/javascript" src="/site_media/photoswipe/code.photoswipe-3.0.5.js"></script>
     <script type="text/javascript">
         (function(window, Util, PhotoSwipe) {
         
@@ -39,13 +60,27 @@
             
                 instance = PhotoSwipe.attach(
                     [
-                        { url: 'http://lensbaby.com/sites/default/files/galleryphoto/305.jpg', caption: 'Image 001'},
-                        { url: 'http://lensbaby.com/sites/default/files/galleryphoto/1381.jpg', caption: 'Image 002'},
-                        { url: 'http://lensbaby.com/sites/default/files/galleryphoto/368.jpg', caption: 'Image 003'},
+                        {% for photo in photos %}
+                            { url: '/site_media/img/{{section}}/{{photo.year}}{{photo.extension}}/',
+                              caption: 
+                                  {% ifequal section "antarctica" %}
+                                      'Antarctic Melt Area {{photo.year}} - {{photo.year|add:"1"}}' 
+                                  {% endifequal %}{% ifequal section "greenland_a" %}
+                                      'Greenland Melt Area {{photo.year}}'
+                                  {% endifequal %}{% ifequal section "greenland_b" %}
+                                      'Greenland Melt Area {{photo.year}}'
+                                  {% endifequal %}{% ifequal section "greenland_graph" %}
+                                      'Greenland Icesheet Melt Area'
+                                  {% endifequal %}
+                            }{% if not forloop.last %},{% endif %}
+                        {% endfor %}
                     ],
                     {
                         target: window.document.querySelectorAll('#photogallery')[0],
                         preventHide: true,
+                        slideSpeed: 0,
+                        slideshowDelay: 400,
+                        captionAndToolbarAutoHideDelay: 0,
                         getImageSource: function(obj){
                             return obj.url;
                         },
@@ -62,12 +97,10 @@
         window.onresize=function() {
             var height = window.innerHeight - 
                jQuery("div.ui-header").height();
-            jQuery("#photogallery").css("height", height + "px");
-            
+            jQuery("#photogallery").css("height", height + "px");     
             if (window.Code.PhotoSwipe.activeInstances.length > 0) {
                 window.Code.PhotoSwipe.activeInstances[0].instance.carousel.resetPosition();
             }
-            
         };
         
         jQuery(document).on("pageinit", function (event) {

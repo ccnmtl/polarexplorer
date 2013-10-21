@@ -32,10 +32,12 @@
         
         <div id="about" data-role="dialog" data-url="about">
             <div data-role="header">
-                <h1>About</h1>
+                <h1>{% block about_title %}About{% endblock %}</h1>
             </div>            
             <div data-role="content">
-                @todo Credits & Instructions
+                {% block about_content %}
+                    @todo Credits & Instructions
+                {% endblock %}                
             </div>
         </div>
     

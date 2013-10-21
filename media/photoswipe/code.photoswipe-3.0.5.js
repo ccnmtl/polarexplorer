@@ -3063,7 +3063,7 @@
 				display: 'block',
 				position: 'absolute',
 				left: 0,
-				top: 0
+				top: "40px"
 			});
 			
 			Util.DOM.appendChild(this.contentEl, this.el);
@@ -3141,7 +3141,7 @@
 			Util.DOM.setStyle(this.el, {
 				top: top,
 				width: width,
-				height: height
+				height: (height - 42)
 			});
 			
 			
@@ -5983,7 +5983,9 @@
 			
 			if (!this.settings.preventSlideshow){
 				if (!Util.isNothing(this.carousel)){
-					if (!Util.isNothing(this.toolbar) && this.toolbar.isVisible){
+					if (!Util.isNothing(this.toolbar) &&
+					        this.toolbar.isVisible &&
+					        this.settings.captionAndToolbarAutoHideDelay > 0){
 						this.toolbar.fadeOut();
 					}
 					this.carousel.startSlideshow();
@@ -6054,6 +6056,10 @@
 				return;
 			}
 			
+			if (this.settings.captionAndToolbarAutoHideDelay === 0) {
+			    return;
+			}
+			
 			if (!Util.isNothing(this.toolbar)){
 				this.toolbar.toggleVisibility(this.currentIndex);
 			}
@@ -6100,7 +6106,9 @@
 				
 				Util.Events.fire(this, PhotoSwipe.EventTypes.onZoomPanRotateShow);
 				
-				if (!Util.isNothing(this.toolbar) && this.toolbar.isVisible){
+				if (!Util.isNothing(this.toolbar) &&
+				        this.toolbar.isVisible && 
+				        this.settings.captionAndToolbarAutoHideDelay > 0){
 					this.toolbar.fadeOut();
 				}
 				
