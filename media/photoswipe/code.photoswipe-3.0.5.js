@@ -3646,6 +3646,8 @@
 			
 			this.slideshowTimeout = window.setTimeout(this.slideshowNext.bind(this), this.settings.slideshowDelay);
 			
+			jQuery("div.ps-toolbar-play").addClass("playing");
+			
 			Util.Events.fire(this, {
 				type: PhotoSwipe.Carousel.EventTypes.onSlideshowStart,
 				target: this
@@ -3665,7 +3667,7 @@
 				window.clearTimeout(this.slideshowTimeout);
 				this.slideshowTimeout = null;
 				this.isSlideshowActive = false;
-				
+				jQuery("div.ps-toolbar-play").removeClass("playing");
 				Util.Events.fire(this, {
 					type: PhotoSwipe.Carousel.EventTypes.onSlideshowStop,
 					target: this
@@ -5983,12 +5985,17 @@
 			
 			if (!this.settings.preventSlideshow){
 				if (!Util.isNothing(this.carousel)){
-					if (!Util.isNothing(this.toolbar) &&
-					        this.toolbar.isVisible &&
-					        this.settings.captionAndToolbarAutoHideDelay > 0){
-						this.toolbar.fadeOut();
-					}
-					this.carousel.startSlideshow();
+		            
+		            if (this.carousel.isSlideshowActive == true) {
+		                this.carousel.stopSlideshow();
+		            } else {
+    					if (!Util.isNothing(this.toolbar) &&
+    					        this.toolbar.isVisible &&
+    					        this.settings.captionAndToolbarAutoHideDelay > 0){
+    						this.toolbar.fadeOut();
+    					}
+    					this.carousel.startSlideshow();
+		            }
 				}
 			}
 			
