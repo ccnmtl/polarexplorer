@@ -15,15 +15,8 @@
 
         <div data-role="content">
             <div class="ui-grid-solo">
-                <div class="ui-block-a macroview" style="text-align: center;">
-                    Macroview
-                </div>
-            </div><!-- /grid-b -->
-            <div class="ui-grid-solo">
-                <div class="ui-block-a microview">                    
+                <div class="ui-block-a pageview">                    
                     <div class="glacier glacier_0" data-idx="0">
-                        <h4>Swipe left to simulate glacier calving</h4>
-                        <h5>Image 0</h5>
                     </div>
                 </div>
             </div>
@@ -36,29 +29,46 @@
 
 {% block js %}
     <script type="text/javascript">
+        var imageCount = 15;
+    
+        function swipeGlacier() {
+            var elt = jQuery(".glacier");
+            var imgIdx = parseInt(jQuery(elt).data("idx"), 10);
+            var newIdx = (imgIdx + 1) % imageCount;
+            
+            if (imgIdx < imageCount && newIdx > 0) {
+                jQuery(elt).removeClass("glacier_" + imgIdx);
+                jQuery(elt).data("idx", newIdx);
+                jQuery(elt).addClass("glacier_" + newIdx);
+            }
+        }
+        
         jQuery(document).on("pageinit", function (event) {
             jQuery(".glacier").swipeleft(function(event) {
                 event.stopImmediatePropagation();
-                var imageCount = 7;
-                var imgIdx = parseInt(jQuery(this).data("idx"), 10);
-                jQuery(this).removeClass("glacier_" + imgIdx);
-
-                imgIdx = (imgIdx + 1) % imageCount;
-                jQuery(this).data("idx", imgIdx);
-                jQuery(this).addClass("glacier_" + imgIdx);
-                jQuery(this).find("h5").html("Image " + imgIdx);
+                swipeGlacier();
+                setTimeout(function() { swipeGlacier(); }, 400);
                 return false;
             });
             jQuery("#reset").click(function() {
-                var elt = jQuery(".glacier")
+                var elt = jQuery(".glacier");
                 var imgIdx = jQuery(elt).data("idx");
                 jQuery(elt).removeClass("glacier_" + imgIdx);
                 
                 imgIdx = 0;
                 jQuery(elt).data("idx", imgIdx);
                 jQuery(elt).addClass("glacier_" + imgIdx);
-                jQuery(elt).find("h5").html("Image " + imgIdx);
+                jQuery(window).trigger("resize");
+                return false;                
             });
+            
+            window.onresize=function() {
+                var height = window.innerHeight - 
+                   (jQuery("div.ui-header").height() + 45);
+                jQuery(".pageview").css("height", height + "px");
+            };
+            
+            jQuery(window).trigger("resize");
         });
     </script>
 {% endblock %}
