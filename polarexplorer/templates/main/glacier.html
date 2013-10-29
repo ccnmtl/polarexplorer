@@ -75,7 +75,7 @@
             }
             
             var level = 80.75;
-            var increment = 1 * imgIdx;            
+            var increment = .95 * imgIdx;            
             if (getOrientationLabel() == "landscape") {
                 level = 78;
                 increment = 2 * imgIdx;
@@ -175,7 +175,8 @@
             };
             
             jQuery(window).bind("orientationchange", function (e, ui) {
-                setWaterLevel();
+                document.body.scrollTop = document.documentElement.scrollTop = 0;
+                setWaterLevel();                
             });
             
             jQuery(window).trigger("resize");
