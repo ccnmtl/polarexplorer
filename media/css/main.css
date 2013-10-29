@@ -32,12 +32,28 @@ div.gallery div.ui-content {
     border: 1px solid red;
 }
 
+.pageview img.glacier {
+    position: absolute;
+    width: 100%;
+    overflow: hidden;
+    left: 10px;
+}
 
-/* iPhone non-retina 320x480 */
-/* TODO */
+.pageview img.calving {
+    position: absolute;
+    height: auto;
+    width: 350px;
+}
 
-/* iPhone retina 640x960 pixels */
-@media all and (min-width: 20em) {
+.pageview img.water {
+    position: absolute;
+    overflow: hidden;
+}
+
+/* iPhone */
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 568px) {
     .macroview.portrait {
         height: 8em;
         background-color: red;
@@ -55,10 +71,53 @@ div.gallery div.ui-content {
     .microview.landscape {
         height: 10em;
     }
+    
+    .pageview.portrait img.calving,
+    .pageview.landscape img.calving {
+        position: absolute;
+        width: 200px;
+        height: auto;
+    }
+    
+   
+    .pageview.portrait.glacierview {
+        background: url(/site_media/img/glacier/background.png) no-repeat;
+        width: 320px;
+        height: 418px;
+        background-size: 320px 418px;
+    }
+    
+    .pageview.portrait img.glacier {
+        top: 320px;
+    }
+    
+    .pageview.portrait img.water {
+        width: 319px;
+    }
+    
+    .pageview.landscape.glacierview {
+        background: url(/site_media/img/glacier/background.png) no-repeat;
+        width: 568px;
+        height: 275px;
+        background-size: 568px 275px;
+    }   
+    
+    .pageview.landscape img.glacier {
+        top: 155px;
+        width: 425px;
+        border: 1px solid blue;
+        left: 240px !important;
+    }
+    
+    .pageview.landscape img.water {
+        width: 424px;
+    }    
 }
 
-/* iPad retina 2048px x 1536px, 264 pixes per inch */
-@media all and (min-width: 40em) {
+/* iPad  */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px)  {
     .macroview.portrait {
         height: 20em;
         background-color: green;
@@ -76,106 +135,77 @@ div.gallery div.ui-content {
     .microview.landscape {
         height: 26em;
     }
+    
+    .pageview.portrait img.calving,
+    .pageview.landscape img.calving {
+        position: absolute;
+        width: 400px;
+        height: auto;
+    }
+   
+    .pageview.portrait.glacierview {
+        background: url(/site_media/img/glacier/background_portrait.png) no-repeat;
+        width: 768px;
+        height: 884px;
+        background-size: 768px 884px;
+    }
+    
+    .pageview.portrait img.glacier {
+        top: 495px;        
+    }
+    
+    .pageview.portrait img.water {
+        width: 767px;
+        top: 80.75%;        
+    }
+    
+    .pageview.landscape.glacierview {
+        background: url(/site_media/img/glacier/background.png) no-repeat;
+        width: 1024px;
+        height: 627px;
+        background-size: 1024px 627px;
+    }   
+    
+    .pageview.landscape img.glacier {
+        top: 182px;
+    }
+    
+    .pageview.landscape img.water {
+        width: 1023px;
+        top: 78%;        
+    }     
 }
 
-
-.glacier {
-    width: 100%;
-    height: 100%;
-}
-
-body:after{
-    display:none;
-    content: url('/site_media/img/glacier/1.png') url('/site_media/img/glacier/2.png') url('/site_media/img/glacier/3.png') url('/site_media/img/glacier/4.png') url('/site_media/img/glacier/5.png') ('/site_media/img/glacier/6.png') ('/site_media/img/glacier/7.png') ('/site_media/img/glacier/8.png') ('/site_media/img/glacier/9.png') ('/site_media/img/glacier/10.png') ('/site_media/img/glacier/11.png') ('/site_media/img/glacier/12.png') ('/site_media/img/glacier/13.png') ('/site_media/img/glacier/14.png') ('/site_media/img/glacier/15.png');
-}
-
-
-.glacier_0 {    
-    background: #ffffff url('/site_media/img/glacier/1.png') no-repeat 0% 0%;
-    background-size: contain;
-}
-
-.glacier_1 {
-    background: #ffffff url('/site_media/img/glacier/2.png') no-repeat left top;
-    background-size: contain;
-    -webkit-transition:background-image .75s ease-in-out;    
-}
-
-.glacier_2 {
-    background: #ffffff url('/site_media/img/glacier/3.png') no-repeat left top;
-    background-size: contain;
-    -webkit-transition:background-image .5s ease-out;
-}
-
-.glacier_3 {
-    background: #ffffff url('/site_media/img/glacier/4.png') no-repeat left top;
-    background-size: contain;    
-    -webkit-transition:background-image .75s ease-in-out;
-}
-
-.glacier_4 {
-    background: #ffffff url('/site_media/img/glacier/5.png') no-repeat left top;
-    background-size: contain;
-    -webkit-transition:background-image .5s ease-out;
-}
-
-.glacier_5 {
-    background: #ffffff url('/site_media/img/glacier/6.png') no-repeat left top;
-    background-size: contain; 
-    -webkit-transition:background-image .75s ease-in-out;      
-}
-
-.glacier_6 {
-    background: #ffffff url('/site_media/img/glacier/7.png') no-repeat left top;
-    background-size: contain;
-    -webkit-transition:background-image .5s ease-out;    
-}
-
-.glacier_7 {
-    background: #ffffff url('/site_media/img/glacier/8.png') no-repeat left top;
-    background-size: contain;
-    -webkit-transition:background-image .75s ease-in-out;    
-}
-
-.glacier_8 {
-    background: #ffffff url('/site_media/img/glacier/9.png') no-repeat left top;
-    background-size: contain;
-    -webkit-transition:background-image .5s ease-out;    
-}
-
-.glacier_9 {
-    background: #ffffff url('/site_media/img/glacier/10.png') no-repeat left top;
-    background-size: contain;  
-    -webkit-transition:background-image .75s ease-in-out;  
-}
-
-.glacier_10 {
-    background: #ffffff url('/site_media/img/glacier/11.png') no-repeat left top;
-    background-size: contain; 
-    -webkit-transition:background-image .5s ease-out;   
-}
-
-.glacier_11 {
-    background: #ffffff url('/site_media/img/glacier/12.png') no-repeat left top;
-    background-size: contain;
-    -webkit-transition:background-image .75s ease-in-out;    
-}
-
-.glacier_12 {
-    background: #ffffff url('/site_media/img/glacier/13.png') no-repeat left top;
-    background-size: contain;
-    -webkit-transition:background-image .5s ease-out;    
-}
-
-.glacier_13 {
-    background: #ffffff url('/site_media/img/glacier/14.png') no-repeat left top;
-    background-size: contain;
-    -webkit-transition:background-image .75s ease-in-out;    
-}
-
-.glacier_14 {
-    background: #ffffff url('/site_media/img/glacier/15.png') no-repeat left top;
-    background-size: contain;
-    -webkit-transition:background-image .5s ease-out;    
+/* Computer Screen */
+@media only screen 
+and (min-device-width : 1025px) 
+and (max-device-width : 3000px) {
+   
+    .pageview.portrait.glacierview {
+        background: url(/site_media/img/glacier/background.png) no-repeat;
+        width: 1419px;
+        height: 740px;
+        background-size: 1419px 740px;
+    }
+    
+    .pageview.portrait img.glacier {
+        top: 225px;
+    }
+    
+    .pageview.landscape.glacierview {
+        background: url(/site_media/img/glacier/background.png) no-repeat;
+        width: 1024px;
+        height: 626px;
+        background-size: 1024px 626px;
+    }
+    
+    .pageview.landscape img.glacier {
+        top: 280px;
+    }
+    
+    .pageview.portrait img.water {
+        width: 100%;
+        top: 90%;        
+    }
 }
 

@@ -9,6 +9,9 @@
         <meta name="description" content="Polar Explorer">
         <meta name="author" content="CCNMTL">
         
+        {% block extrahead %}
+        {% endblock %}
+        
         <!-- Mobile IE allows us to activate ClearType technology for smoothing fonts for easy reading -->
         <meta http-equiv="cleartype" content="on">
         
@@ -55,21 +58,27 @@
             <![endif]-->
             
             <script type="text/javascript">
-                var curOrientation = undefined;
-                function orientView(orientation) {
-                    jQuery("div.macroview").removeClass(curOrientation).addClass(orientation);
-                    jQuery("div.microview").removeClass(curOrientation).addClass(orientation);
-                    curOrientation = orientation;
-                    jQuery(window).trigger("resize");                    
-                }
-                jQuery(document).on("pageinit", function (event) {
+                var gOrientation = undefined;
+                
+                function getOrientationLabel() {                    
                     var rotation = window.hasOwnProperty("orientation") ?
                         window.orientation : 180;
                     
-                    curOrientation = (rotation == 0 || rotation == 180) ?
+                    return (rotation == 0 || rotation == 180) ?
                             "portrait" : "landscape";
+                }
+                
+                function orientView(orientation) {
+                    jQuery("div.macroview").removeClass(gOrientation).addClass(orientation);
+                    jQuery("div.microview").removeClass(gOrientation).addClass(orientation);
+                    jQuery("div.pageview").removeClass(gOrientation).addClass(orientation);
+                    gOrientation = orientation;
+                    jQuery(window).trigger("resize");                    
+                }
+                jQuery(document).on("pageinit", function (event) {                    
+                    gOrientation = getOrientationLabel();
                     
-                    orientView(curOrientation)
+                    orientView(gOrientation)
                     
                     jQuery(window).bind("orientationchange", function (e, ui) {
                         orientView(e.orientation);

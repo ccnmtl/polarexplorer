@@ -9168,7 +9168,10 @@ jQuery.easing = {
 	},
 	swing: function( p ) {
 		return 0.5 - Math.cos( p*Math.PI ) / 2;
-	}
+	},
+	easeInQuad: function (x, t, b, c, d) {
+        return c*(t/=d)*t + b;
+    }
 };
 
 jQuery.timers = [];

@@ -28,6 +28,8 @@ urlpatterns = patterns(
     (r'^$', 'polarexplorer.main.views.index'),
     (r'^glacier/$', 'polarexplorer.main.views.glacier'),
     (r'^water/$', 'polarexplorer.main.views.water'),
+    (r'^test/$', 'polarexplorer.main.views.test'),
+    (r'^test2/$', 'polarexplorer.main.views.test2'),
     (r'^gallery/(?P<title>\w[^/]*)/$', 'polarexplorer.main.views.gallery'),
     (r'^admin/', include(admin.site.urls)),
     url(r'^_impersonate/', include('impersonate.urls')),

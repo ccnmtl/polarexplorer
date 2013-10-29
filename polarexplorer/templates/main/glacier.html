@@ -4,6 +4,20 @@
     Calving Glacier
 {% endblock %}
 
+{% block extrahead %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script type="text/javascript">
+        gImageCount = 8;
+        gPreloadedImages = new Array(gImageCount + 1);
+        for (var i=0; i < gImageCount; i++) {
+            gPreloadedImages[i] = new Image();
+            gPreloadedImages[i].src = '/site_media/img/glacier/' + (i+1) + '.png';    
+        }
+        gPreloadedImages[gImageCount] = new Image();
+        gPreloadedImages[gImageCount].src = '/site_media/img/glacier/water.png'
+    </script>
+{% endblock %}
+
 
 {% block content %}
     <div data-role="page">
@@ -15,9 +29,26 @@
 
         <div data-role="content">
             <div class="ui-grid-solo">
-                <div class="ui-block-a pageview">                    
-                    <div class="glacier glacier_0" data-idx="0">
-                    </div>
+                <div class="ui-block-a pageview glacierview">
+                    <img class="calving" src="/site_media/img/glacier_macro/1.png" alt="macromap" data-idx="1" />
+                    <img class="calving" src="/site_media/img/glacier_macro/2.png" alt="macromap" data-idx="2" style="display: none;"/>
+                    <img class="calving" src="/site_media/img/glacier_macro/3.png" alt="macromap" data-idx="3" style="display: none;"/>
+                    <img class="calving" src="/site_media/img/glacier_macro/4.png" alt="macromap" data-idx="4" style="display: none;"/>
+                    <img class="calving" src="/site_media/img/glacier_macro/5.png" alt="macromap" data-idx="5" style="display: none;"/>
+                    <img class="calving" src="/site_media/img/glacier_macro/6.png" alt="macromap" data-idx="6" style="display: none;"/>
+                    <img class="calving" src="/site_media/img/glacier_macro/7.png" alt="macromap" data-idx="7" style="display: none;"/>
+                    <img class="calving" src="/site_media/img/glacier_macro/8.png" alt="macromap" data-idx="8" style="display: none;"/>                    
+                    
+                    <img class="glacier active" src="/site_media/img/glacier/1.png" alt="iceberg" data-idx="1" style="left: 0px;" />
+                    <img class="glacier" src="/site_media/img/glacier/2.png" alt="iceberg" data-idx="2" style="display: none; opacity: 0;"/>
+                    <img class="glacier" src="/site_media/img/glacier/3.png" alt="iceberg" data-idx="3" style="display: none; opacity: 0;"/>
+                    <img class="glacier" src="/site_media/img/glacier/4.png" alt="iceberg" data-idx="4" style="display: none; opacity: 0;"/>
+                    <img class="glacier" src="/site_media/img/glacier/5.png" alt="iceberg" data-idx="5" style="display: none; opacity: 0;"/>
+                    <img class="glacier" src="/site_media/img/glacier/6.png" alt="iceberg" data-idx="6" style="display: none; opacity: 0;"/>
+                    <img class="glacier" src="/site_media/img/glacier/7.png" alt="iceberg" data-idx="7" style="display: none; opacity: 0;"/>
+                    <img class="glacier" src="/site_media/img/glacier/8.png" alt="iceberg" data-idx="8" style="display: none; opacity: 0;"/>
+                    
+                    <img class="water" src="/site_media/img/glacier/water.png" alt="water" />
                 </div>
             </div>
         </div>
@@ -28,45 +59,120 @@
 {% endblock %}
 
 {% block js %}
+    <script type="text/javascript" src="/site_media/js/jquery.easing.1.3.js"></script>
+
     <script type="text/javascript">
-        var imageCount = 15;
-    
-        function swipeGlacier() {
-            var elt = jQuery(".glacier");
-            var imgIdx = parseInt(jQuery(elt).data("idx"), 10);
-            var newIdx = (imgIdx + 1) % imageCount;
+        var gEaseOut = 1000;
+        var gEaseIn = 1600;
+
+        function setWaterLevel(imgIdx, duration) {
+            if (imgIdx === undefined) {            
+                var elt = jQuery("img.glacier.active")[0];
+                imgIdx = parseInt(jQuery(elt).data("idx"), 10);
+            }
+            if (duration === undefined) {
+                duration = 0;
+            }
             
-            if (imgIdx < imageCount && newIdx > 0) {
-                jQuery(elt).removeClass("glacier_" + imgIdx);
-                jQuery(elt).data("idx", newIdx);
-                jQuery(elt).addClass("glacier_" + newIdx);
+            var level = 80.75;
+            var increment = 1 * imgIdx;            
+            if (getOrientationLabel() == "landscape") {
+                level = 78;
+                increment = 2 * imgIdx;
+            }
+
+            var rise = level - increment;
+            jQuery("img.water").animate({"top": rise + "%"},
+                                        duration,
+                                        "easeInSine");
+        }
+        
+        function swipeGlacier() {
+            var elt = jQuery("img.glacier.active")[0];
+            var imgIdx = parseInt(jQuery(elt).data("idx"), 10);
+            var newIdx = (imgIdx + 1) % (gImageCount + 1);
+            
+            if (imgIdx < gImageCount && newIdx > 0) {
+                var newElt = jQuery("img.glacier[data-idx='" + newIdx + "']")[0];
+                
+                var left = parseInt(jQuery(elt).css("left"), 10);
+                var newLeft = parseInt(jQuery(newElt).css("left"), 10);
+                
+                jQuery(newElt).show();
+                jQuery(newElt).css({"left": (newLeft - 10) + "px"});
+                
+                jQuery(elt).removeClass("active");
+                jQuery(newElt).addClass("active");
+                
+                jQuery(elt).animate(
+                    {"left": (left - 10) + "px",
+                     "opacity": 0,
+                     "clip": "rect(0px,0px,0px,0px)"},
+                    gEaseOut,
+                    "easeInSine",
+                    function() {
+                        jQuery(elt).hide();
+                        
+                    });
+                jQuery(newElt).animate({
+                    "opacity": 1},
+                    gEaseIn,
+                    "easeInSine",
+                    function() {});
+                
+                var macroElt = jQuery("img.calving[data-idx='" + imgIdx + "']")[0];
+                var macroNewElt = jQuery("img.calving[data-idx='" + newIdx + "']")[0];
+                
+                jQuery(macroNewElt).fadeIn(gEaseOut);
+                jQuery(macroElt).fadeOut(gEaseIn);
+                setWaterLevel(imgIdx, gEaseIn);
             }
         }
         
         jQuery(document).on("pageinit", function (event) {
-            jQuery(".glacier").swipeleft(function(event) {
+            jQuery("img.glacier,img.calving,img.water").on('dragstart', function(event) {
+                event.preventDefault();
+                return false;
+            });
+
+            jQuery("img.glacier, img.calving").swipeleft(function(event) {
                 event.stopImmediatePropagation();
-                swipeGlacier();
-                setTimeout(function() { swipeGlacier(); }, 400);
+                event.preventDefault();
+                swipeGlacier();                
                 return false;
             });
             jQuery("#reset").click(function() {
-                var elt = jQuery(".glacier");
-                var imgIdx = jQuery(elt).data("idx");
-                jQuery(elt).removeClass("glacier_" + imgIdx);
-                
-                imgIdx = 0;
-                jQuery(elt).data("idx", imgIdx);
-                jQuery(elt).addClass("glacier_" + imgIdx);
-                jQuery(window).trigger("resize");
-                return false;                
+                jQuery("img.glacier.active").animate({'opacity': 0},
+                    function() {
+                        // deactivate active
+                        jQuery(this).removeClass("active").hide();
+                        
+                        // all glacier's should have left: 10px;
+                        jQuery("img.glacier").css({"left": "10px"});
+                        
+                        // except glacier with data-idx='1'
+                        jQuery("img.glacier[data-idx='1']") 
+                           .addClass("active")
+                           .show()
+                           .css({"left": "0px", "opacity": 1});                           
+                        
+                        jQuery("img.calving").hide();
+                        jQuery("img.calving[data-idx='1']").show();
+                        
+                        setWaterLevel(0);
+                });
+                return false;  
             });
             
             window.onresize=function() {
                 var height = window.innerHeight - 
                    (jQuery("div.ui-header").height() + 45);
-                jQuery(".pageview").css("height", height + "px");
+                //jQuery(".pageview").css("height", height + "px");
             };
+            
+            jQuery(window).bind("orientationchange", function (e, ui) {
+                setWaterLevel();
+            });
             
             jQuery(window).trigger("resize");
         });
