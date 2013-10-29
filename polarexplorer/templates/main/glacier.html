@@ -130,6 +130,10 @@
         }
         
         jQuery(document).on("pageinit", function (event) {
+            
+            function stopScrolling( touchEvent ) { touchEvent.preventDefault(); }
+            document.addEventListener( 'touchmove' , stopScrolling , false );
+            
             jQuery("img.glacier,img.calving,img.water").on('dragstart', function(event) {
                 event.preventDefault();
                 return false;
