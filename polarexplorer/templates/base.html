@@ -62,15 +62,13 @@
                 
                 function getOrientationLabel() {                    
                     var rotation = window.hasOwnProperty("orientation") ?
-                        window.orientation : 180;
+                        window.orientation : 90;
                     
                     return (rotation == 0 || rotation == 180) ?
                             "portrait" : "landscape";
                 }
                 
                 function orientView(orientation) {
-                    jQuery("div.macroview").removeClass(gOrientation).addClass(orientation);
-                    jQuery("div.microview").removeClass(gOrientation).addClass(orientation);
                     jQuery("div.pageview").removeClass(gOrientation).addClass(orientation);
                     gOrientation = orientation;
                     jQuery(window).trigger("resize");                    
@@ -78,7 +76,7 @@
                 
                 jQuery(document).on("pageinit", function (event) {                    
                     gOrientation = getOrientationLabel();
-                    
+                    console.log(gOrientation);
                     orientView(gOrientation)
                     
                     jQuery(window).bind("orientationchange", function (e, ui) {

@@ -18,16 +18,6 @@ def water(request):
     return dict()
 
 
-@render_to('main/test.html')
-def test(request):
-    return dict()
-
-
-@render_to('main/test2.html')
-def test2(request):
-    return dict()
-
-
 @render_to('main/gallery.html')
 def gallery(request, title):
     path = os.path.dirname(os.path.abspath(__file__))

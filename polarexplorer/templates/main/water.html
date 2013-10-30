@@ -9,6 +9,16 @@
     <link href="/site_media/css/vslider.css" rel="stylesheet">
 {% endblock %}
 
+{% block extrahead %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <script type="text/javascript">
+        gImageCount = 4;
+        /* Preload Images */
+    </script>
+{% endblock %}
+
+
 {% block content %}
     <div data-role="page" class="water">
         <div data-role="header" id="base-header">
@@ -19,46 +29,132 @@
 
         <div data-role="content">
             <div class="ui-grid-solo">
-                <div class="ui-block-a macroview" style="text-align: center;">
-                    Macroview
-                </div>
-            </div><!-- /grid-b -->
-            <div class="ui-grid-solo">
-                <div class="ui-block-a microview">
+                <div class="ui-block-a pageview waterview">
+                    <img class="inset active" src="/site_media/img/water/1.png" alt="macromap" data-idx="1" />
+                    <img class="inset" src="/site_media/img/water/2.png" alt="macromap" data-idx="2" style="display: none;"/>
+                    <img class="inset" src="/site_media/img/water/3.png" alt="macromap" data-idx="3" style="display: none;"/>
+                    <img class="inset" src="/site_media/img/water/4.png" alt="macromap" data-idx="4" style="display: none;"/>
+                
                     <input type="vrange" name="water" id="water"
-                        data-highlight="true"
-                        value="30" min="0" max="100" style="display: none;" />
+                        data-highlight="true" min="0" max="100"
+                        style="display: none;" />
                 </div>
             </div>
         </div>
         
-        <div data-role="footer">
-            
-        </div>
+        <div data-role="footer"></div>
     </div>
     
 {% endblock %}
 
 {% block js %}    
     <script type="text/javascript">
-        jQuery(document).on("pageinit", function (event) {
-            var defaultWaterLevel = 60;
-            var waterLevel = 60;
-            jQuery("#water").verticalslider();
-            jQuery(".ui-slider-vertical-track");
+        var gEaseOut = 1000;
+        var gEaseIn = 1600;
+        var ignoreChange = false;
+        
+        function getWaterLevel(imgIdx) {
+            if (imgIdx === undefined) {       
+                var elt = jQuery("img.inset.active")[0];
+                imgIdx = parseInt(jQuery(elt).data("idx"), 10);
+            }
             
-            jQuery(".macroview").swipeleft(function() {
-               waterLevel += 10;
-               if (waterLevel === 110) {
-                   waterLevel = 0;
-               }
-               jQuery("#water").attr("value", waterLevel);
-               jQuery("#water").trigger("change");               
+            var defaultLevel = 75;
+            var rise = defaultLevel - ((imgIdx - 1) * 6);
+            if (getOrientationLabel() == "landscape") {
+                defaultLevel = 85;
+                rise = defaultLevel - ((imgIdx - 1) * 8);
+            }
+            return rise;          
+        }
+
+        function setWaterLevel(imgIdx, duration) {
+            console.log("setWaterLevel");
+            ignoreChange = true;
+            jQuery("#water").attr("value", getWaterLevel(imgIdx));
+            jQuery("#water").trigger("change");
+            console.log("~setWaterLevel");
+            ignoreChange = false;
+        }
+        
+        function swapImages(elt, newIdx) {
+            var newElt = jQuery("img.inset[data-idx='" + newIdx + "']")[0];
+            jQuery(newElt).addClass("active").fadeIn(gEaseOut);
+            jQuery(elt).removeClass("active").fadeOut(gEaseIn);
+        }
+        
+        function adjustMacroMap() {
+            var value = jQuery("#water").attr("value");
+            
+            var elt = jQuery("img.inset.active")[0];
+            imgIdx = parseInt(jQuery(elt).data("idx"), 10);
+            var currentRise = getWaterLevel(imgIdx);
+            
+            if (value < currentRise && imgIdx > 1) {
+                var newIdx = imgIdx - 1;
+                swapImages(elt, newIdx);
+            } else if (value > currentRise) {
+                var newIdx = (imgIdx + 1) % (gImageCount + 1);
+                if (imgIdx < gImageCount && newIdx > 0) {
+                    var nextRise = getWaterLevel(newIdx);
+                    if (value >= nextRise) {
+                        swapImages(elt, newIdx);
+                    }
+                }
+            }
+        }
+    
+        jQuery(document).on("pageinit", function (event) {
+            function stopScrolling(evt) {
+                if (evt.target.className !== "inset active" &&
+                        evt.target.parentElement.className !== "ui-btn-inner") {
+                    evt.preventDefault();
+                }
+            }
+            document.addEventListener('touchstart', stopScrolling, false);
+            document.addEventListener('touchmove', stopScrolling, false);
+            
+            jQuery("#water").verticalslider();
+            setWaterLevel(1);
+            jQuery("#water").on("beforechange", function(evt, val) {
+                if (val <= 42) {
+                    return false;
+                } else {
+                    return true;
+                }
+            });
+            jQuery("#water").bind("change", function() {
+                if (!ignoreChange) {
+                    adjustMacroMap();
+                }
+            });
+            
+            jQuery("img.inset").click(function(event) {
+                event.preventDefault();
+                var elt = jQuery("img.inset.active")[0];
+                imgIdx = parseInt(jQuery(elt).data("idx"), 10);
+                
+                var newIdx = (imgIdx + 1) % (gImageCount + 1);
+                
+                if (imgIdx < gImageCount && newIdx > 0) {
+                    var newElt = jQuery("img.inset[data-idx='" + newIdx + "']")[0];
+                    jQuery(newElt).addClass("active").fadeIn(gEaseOut, function() {
+                        setWaterLevel(newIdx, gEaseIn);    
+                    });
+                    jQuery(elt).removeClass("active").fadeOut(gEaseIn);
+                }
+                return false;
+            });
+            
+            jQuery(window).bind("orientationchange", function (e, ui) {
+                document.body.scrollTop = document.documentElement.scrollTop = 0;
+                setWaterLevel();               
             });
             
             jQuery("#reset").click(function() {
-                jQuery("#water").attr("value", defaultWaterLevel);
-                jQuery("#water").trigger("change");
+                jQuery("img.inset").hide().removeClass("active");
+                jQuery("img.inset[data-idx='1']").addClass("active").show();
+                setWaterLevel(1);
             });
         });
     </script>

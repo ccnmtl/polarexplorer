@@ -55,7 +55,9 @@ input.ui-input-text.ui-slider-vertical-input {
 }
 
 .ui-slider-vertical-track {
-    background: url("/site_media/img/iphone.retina.jpeg") no-repeat 0 0;
+    background-image: none;
+    background: none;
+    opacity: .85;
 }
 
 .ui-slider-vertical-track,

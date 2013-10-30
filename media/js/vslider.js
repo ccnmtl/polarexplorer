@@ -476,7 +476,7 @@ $.widget( "mobile.verticalslider", $.mobile.widget, $.extend( {
 
         if ( !preventInputUpdate ) {
             var valueChanged = false;
-
+            
             // update control"s value
             if ( isInput ) {
                 valueChanged = control.val() !== newval;

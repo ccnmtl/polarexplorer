@@ -30,14 +30,14 @@
         <div data-role="content">
             <div class="ui-grid-solo">
                 <div class="ui-block-a pageview glacierview">
-                    <img class="calving" src="/site_media/img/glacier_macro/1.png" alt="macromap" data-idx="1" />
-                    <img class="calving" src="/site_media/img/glacier_macro/2.png" alt="macromap" data-idx="2" style="display: none;"/>
-                    <img class="calving" src="/site_media/img/glacier_macro/3.png" alt="macromap" data-idx="3" style="display: none;"/>
-                    <img class="calving" src="/site_media/img/glacier_macro/4.png" alt="macromap" data-idx="4" style="display: none;"/>
-                    <img class="calving" src="/site_media/img/glacier_macro/5.png" alt="macromap" data-idx="5" style="display: none;"/>
-                    <img class="calving" src="/site_media/img/glacier_macro/6.png" alt="macromap" data-idx="6" style="display: none;"/>
-                    <img class="calving" src="/site_media/img/glacier_macro/7.png" alt="macromap" data-idx="7" style="display: none;"/>
-                    <img class="calving" src="/site_media/img/glacier_macro/8.png" alt="macromap" data-idx="8" style="display: none;"/>                    
+                    <img class="inset" src="/site_media/img/glacier_macro/1.png" alt="macromap" data-idx="1" />
+                    <img class="inset" src="/site_media/img/glacier_macro/2.png" alt="macromap" data-idx="2" style="display: none;"/>
+                    <img class="inset" src="/site_media/img/glacier_macro/3.png" alt="macromap" data-idx="3" style="display: none;"/>
+                    <img class="inset" src="/site_media/img/glacier_macro/4.png" alt="macromap" data-idx="4" style="display: none;"/>
+                    <img class="inset" src="/site_media/img/glacier_macro/5.png" alt="macromap" data-idx="5" style="display: none;"/>
+                    <img class="inset" src="/site_media/img/glacier_macro/6.png" alt="macromap" data-idx="6" style="display: none;"/>
+                    <img class="inset" src="/site_media/img/glacier_macro/7.png" alt="macromap" data-idx="7" style="display: none;"/>
+                    <img class="inset" src="/site_media/img/glacier_macro/8.png" alt="macromap" data-idx="8" style="display: none;"/>                    
                     
                     <img class="glacier active" src="/site_media/img/glacier/1.png" alt="iceberg" data-idx="1" style="left: 0px;" />
                     <img class="glacier" src="/site_media/img/glacier/2.png" alt="iceberg" data-idx="2" style="display: none; opacity: 0;"/>
@@ -120,8 +120,8 @@
                     "easeInSine",
                     function() {});
                 
-                var macroElt = jQuery("img.calving[data-idx='" + imgIdx + "']")[0];
-                var macroNewElt = jQuery("img.calving[data-idx='" + newIdx + "']")[0];
+                var macroElt = jQuery("img.inset[data-idx='" + imgIdx + "']")[0];
+                var macroNewElt = jQuery("img.inset[data-idx='" + newIdx + "']")[0];
                 
                 jQuery(macroNewElt).fadeIn(gEaseOut);
                 jQuery(macroElt).fadeOut(gEaseIn);
@@ -130,7 +130,6 @@
         }
         
         jQuery(document).on("pageinit", function (event) {
-            
             function stopScrolling(evt) {
                 if (evt.target.parentElement.className !== "ui-btn-inner") {
                     evt.preventDefault();
@@ -144,7 +143,7 @@
                 return false;
             });
 
-            jQuery("img.glacier, img.calving").swipeleft(function(event) {
+            jQuery("img.glacier, img.inset").swipeleft(function(event) {
                 event.stopImmediatePropagation();
                 event.preventDefault();
                 swipeGlacier();                
@@ -165,8 +164,8 @@
                            .show()
                            .css({"left": "0px", "opacity": 1});                           
                         
-                        jQuery("img.calving").hide();
-                        jQuery("img.calving[data-idx='1']").show();
+                        jQuery("img.inset").hide();
+                        jQuery("img.inset[data-idx='1']").show();
                         
                         setWaterLevel(0);
                 });

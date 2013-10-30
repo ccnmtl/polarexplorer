@@ -16,103 +16,89 @@ div.gallery div.ui-content {
     padding: 0;
 }
 
-.macroview {
-    background-color: black;
-    width: 60%;
-    margin: 0 auto;
-}
-
-.microview {
-    margin-top: 25px;
-}
-
 .pageview {
     width: 100%;
     margin-top: 0px;
 }
 
-.pageview img.glacier {
+.pageview img.inset {
+    position: absolute;
+    height: auto;
+    width: 350px;
+    z-index: 998;
+}
+
+
+.glacierview.portrait {
+    background: url(/site_media/img/glacier/background_portrait.png) no-repeat;    
+}
+
+.glacierview.landscape {
+    background: url(/site_media/img/glacier/background.png) no-repeat;        
+}
+
+.waterview.portrait {
+    background: url(/site_media/img/water/background_portrait.png) no-repeat;
+}
+
+.waterview.landscape {    
+    background: url(/site_media/img/water/background_landscape.png) no-repeat;        
+}
+
+.glacierview img.glacier {
     position: absolute;
     width: 100%;
     overflow: hidden;
     left: 10px;
 }
 
-.pageview img.calving {
-    position: absolute;
-    height: auto;
-    width: 350px;
-}
 
-.pageview img.water {
+.glacierview img.water {
     position: absolute;
     overflow: hidden;
 }
 
-.pageview.portrait img.water {
+.glacierview.portrait img.water {
     top: 80.75%;
 }
 
-.pageview.landscape img.water {
+.glacierview.landscape img.water {
     top: 78%;    
 }
 
 /* iPhone */
 @media only screen 
 and (min-device-width : 320px) 
-and (max-device-width : 568px) {
-    .macroview.portrait {
-        height: 8em;
-        background-color: red;
+and (max-device-width : 568px) {  
+    .pageview.landscape {
+        width: 568px;
+        height: 275px;
+        background-size: 568px 275px;
     }
-    
-    .microview.portrait {
-        height: 16.5em;
-    }
-    
-    .macroview.landscape {
-        height: 5em;
-        background-color: red;
-    }
-    
-    .microview.landscape {
-        height: 10em;
-    }
-    
-    .pageview.portrait img.calving,
-    .pageview.landscape img.calving {
-        position: absolute;
-        width: 200px;
-        height: auto;
-    }    
-   
-    .pageview.portrait.glacierview {
-        background: url(/site_media/img/glacier/background_portrait.png) no-repeat;
+
+    .pageview.portrait {
         width: 320px;
         height: 416px;
         background-size: 320px 416px;
     }
-    
-    .pageview.portrait img.glacier {
+      
+    .pageview img.inset {
+        width: 175px;
+    }    
+       
+    .glacierview.portrait img.glacier {
         top: 269px;
     }
     
-    .pageview.portrait img.water {
+    .glacierview.portrait img.water {
         width: 319px;
     }
     
-    .pageview.landscape.glacierview {
-        background: url(/site_media/img/glacier/background.png) no-repeat;
-        width: 568px;
-        height: 275px;
-        background-size: 568px 275px;
-    }   
-    
-    .pageview.landscape img.glacier {
+    .glacierview.landscape img.glacier {
         top: 70px;
     }
     
-    .pageview.landscape img.water {
+    .glacierview.landscape img.water {
         width: 567px; 
     }    
 }
@@ -121,58 +107,35 @@ and (max-device-width : 568px) {
 @media only screen 
 and (min-device-width : 768px) 
 and (max-device-width : 1024px)  {
-    .macroview.portrait {
-        height: 20em;
-        background-color: green;
-    }
-    
-    .microview.portrait {
-        height: 35em;
-    }
-    
-    .macroview.landscape {
-        height: 12em;
-        background-color: green;
-    }
-    
-    .microview.landscape {
-        height: 26em;
-    }
-    
-    .pageview.portrait img.calving,
-    .pageview.landscape img.calving {
-        position: absolute;
-        width: 400px;
-        height: auto;
-    }
-   
-    .pageview.portrait.glacierview {
-        background: url(/site_media/img/glacier/background_portrait.png) no-repeat;
-        width: 768px;
-        height: 884px;
-        background-size: 768px 884px;
-    }
-    
-    .pageview.portrait img.glacier {
-        top: 505px;        
-    }
-    
-    .pageview.portrait img.water {
-        width: 767px;        
-    }
-    
-    .pageview.landscape.glacierview {
-        background: url(/site_media/img/glacier/background.png) no-repeat;
+    .pageview.landscape {
         width: 1024px;
         height: 627px;
         background-size: 1024px 627px;
     }   
+
+    .pageview.portrait {
+        width: 768px;
+        height: 884px;
+        background-size: 768px 884px;
+    }
+
+    .pageview img.inset {
+        width: 400px;
+    }
+   
+    .glacierview.portrait img.glacier {
+        top: 505px;        
+    }
     
-    .pageview.landscape img.glacier {
+    .glacierview.portrait img.water {
+        width: 767px;        
+    }
+    
+    .glacierview.landscape img.glacier {
         top: 185px;
     }
     
-    .pageview.landscape img.water {
+    .glacierview.landscape img.water {
         width: 1023px;        
     }     
 }
@@ -180,31 +143,28 @@ and (max-device-width : 1024px)  {
 /* Computer Screen */
 @media only screen 
 and (min-device-width : 1025px) 
-and (max-device-width : 3000px) {
-   
-    .pageview.portrait.glacierview {
-        background: url(/site_media/img/glacier/background.png) no-repeat;
+and (max-device-width : 5000px) {   
+    .pageview.portrait {
         width: 1419px;
         height: 740px;
         background-size: 1419px 740px;
     }
     
-    .pageview.portrait img.glacier {
-        top: 225px;
-    }
-    
-    .pageview.landscape.glacierview {
-        background: url(/site_media/img/glacier/background.png) no-repeat;
+    .pageview.landscape {
         width: 1024px;
         height: 626px;
         background-size: 1024px 626px;
     }
     
-    .pageview.landscape img.glacier {
+    .glacierview.portrait img.glacier {
+        top: 225px;
+    }
+    
+    .glacierview.landscape img.glacier {
         top: 280px;
     }
     
-    .pageview.portrait img.water {
+    .glacierview.portrait img.water {
         width: 100%;
         top: 90%;        
     }
