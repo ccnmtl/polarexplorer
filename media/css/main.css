@@ -6,10 +6,6 @@ html, body {
     padding: 0px;
 }
 
-.ui-mobile .ui-page { 
-    width: 1024px;
-}
-
 div#about a.ui-shadow {
     -moz-box-shadow: none;
     -webkit-box-shadow: none;
@@ -178,6 +174,10 @@ and (max-device-width : 1024px)  {
 @media only screen 
 and (min-device-width : 1025px) 
 and (max-device-width : 5000px) {   
+    .ui-mobile .ui-page { 
+        width: 1024px;
+    }
+
     .pageview {
         width: 1024px;
         height: 768px;
