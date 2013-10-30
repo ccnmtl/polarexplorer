@@ -69,9 +69,14 @@
                 }
                 
                 function orientView(orientation) {
-                    jQuery("div.pageview").removeClass(gOrientation).addClass(orientation);
-                    gOrientation = orientation;
-                    jQuery(window).trigger("resize");                    
+                    jQuery("#base-content").fadeOut(100, function() {
+                        jQuery.mobile.showPageLoadingMsg();                                            
+                        jQuery("div.pageview").removeClass(gOrientation).addClass(orientation);                    
+                        gOrientation = orientation;
+                        jQuery("#base-content").fadeIn(function() {
+                            jQuery.mobile.hidePageLoadingMsg();    
+                        });                        
+                    });
                 }
                 
                 jQuery(document).on("pageinit", function (event) {                    
