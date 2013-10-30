@@ -22,9 +22,9 @@
 {% block content %}
     <div data-role="page">
         <div data-role="header" id="base-header">
-            <a href="#about" data-role="button" data-rel="dialog" data-icon="info">About</a>
+            <a id="about-button" href="#about" data-role="button" data-rel="dialog" data-icon="info">About</a>
             <h1 id="header">Calving Glacier</h1>
-            <a id="reset" href="#" data-role="button" data-icon="refresh">Reset</a>
+            <a id="reset-button" href="#" data-role="button" data-icon="refresh">Reset</a>
         </div>
 
         <div data-role="content">
@@ -131,10 +131,15 @@
         
         jQuery(document).on("pageinit", function (event) {
             
-            function stopScrolling( touchEvent ) { touchEvent.preventDefault(); }
-            document.addEventListener( 'touchmove' , stopScrolling , false );
+            function stopScrolling(evt) {
+                if (evt.target.parentElement.className !== "ui-btn-inner") {
+                    evt.preventDefault();
+                }
+            }
+            document.addEventListener('touchstart', stopScrolling, false);
+            document.addEventListener('touchmove', stopScrolling, false);
             
-            jQuery("img.glacier,img.calving,img.water").on('dragstart', function(event) {
+            jQuery("img").on('dragstart', function(event) {
                 event.preventDefault();
                 return false;
             });
@@ -145,7 +150,7 @@
                 swipeGlacier();                
                 return false;
             });
-            jQuery("#reset").click(function() {
+            jQuery("#reset-button").click(function() {
                 jQuery("img.glacier.active").animate({'opacity': 0},
                     function() {
                         // deactivate active
@@ -168,15 +173,9 @@
                 return false;  
             });
             
-            window.onresize=function() {
-                var height = window.innerHeight - 
-                   (jQuery("div.ui-header").height() + 45);
-                //jQuery(".pageview").css("height", height + "px");
-            };
-            
             jQuery(window).bind("orientationchange", function (e, ui) {
                 document.body.scrollTop = document.documentElement.scrollTop = 0;
-                setWaterLevel();                
+                setWaterLevel();               
             });
             
             jQuery(window).trigger("resize");
