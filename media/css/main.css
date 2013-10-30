@@ -6,6 +6,10 @@ html, body {
     padding: 0px;
 }
 
+.ui-mobile .ui-page { 
+    width: 1024px;
+}
+
 div#about a.ui-shadow {
     -moz-box-shadow: none;
     -webkit-box-shadow: none;
@@ -17,7 +21,6 @@ div.gallery div.ui-content {
 }
 
 .pageview {
-    width: 100%;
     margin-top: 0px;
 }
 
@@ -177,17 +180,17 @@ and (min-device-width : 1025px)
 and (max-device-width : 5000px) {   
     .pageview {
         width: 1024px;
-        height: 718px;
-        background-size: 1024px 718px !important;
+        height: 768px;
+        background-size: 1024px 768px !important;
     }
     
     .glacierview img.glacier {
-        top: 225px;
+        top: 290px;
+        width: 1024px;
     }
     
     .glacierview img.water {
-        width: 100%;
-        top: 90%;        
+        width: 1023px;
     }
     
     .waterview div.ui-slider-vertical {
