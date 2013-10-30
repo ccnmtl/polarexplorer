@@ -59,21 +59,19 @@
                 imgIdx = parseInt(jQuery(elt).data("idx"), 10);
             }
             
-            var defaultLevel = 75;
+            var defaultLevel = 45;
             var rise = defaultLevel - ((imgIdx - 1) * 6);
             if (getOrientationLabel() == "landscape") {
-                defaultLevel = 85;
+                defaultLevel = 68;
                 rise = defaultLevel - ((imgIdx - 1) * 8);
             }
             return rise;          
         }
 
         function setWaterLevel(imgIdx, duration) {
-            console.log("setWaterLevel");
             ignoreChange = true;
             jQuery("#water").attr("value", getWaterLevel(imgIdx));
             jQuery("#water").trigger("change");
-            console.log("~setWaterLevel");
             ignoreChange = false;
         }
         
@@ -111,8 +109,8 @@
                     evt.preventDefault();
                 }
             }
-            document.addEventListener('touchstart', stopScrolling, false);
-            document.addEventListener('touchmove', stopScrolling, false);
+            //document.addEventListener('touchstart', stopScrolling, false);
+            //document.addEventListener('touchmove', stopScrolling, false);
             
             jQuery("#water").verticalslider();
             setWaterLevel(1);
@@ -148,7 +146,7 @@
             
             jQuery(window).bind("orientationchange", function (e, ui) {
                 document.body.scrollTop = document.documentElement.scrollTop = 0;
-                setWaterLevel();               
+                setWaterLevel();             
             });
             
             jQuery("#reset").click(function() {

@@ -66,14 +66,20 @@ div.gallery div.ui-content {
     top: 78%;    
 }
 
+.waterview div.ui-slider-vertical {
+    zoom: 1;
+    width: 100%;
+    position: absolute;
+}
+
 /* iPhone */
 @media only screen 
 and (min-device-width : 320px) 
 and (max-device-width : 568px) {  
     .pageview.landscape {
         width: 568px;
-        height: 275px;
-        background-size: 568px 275px;
+        height: 270px;
+        background-size: 568px 270px;
     }
 
     .pageview.portrait {
@@ -100,7 +106,20 @@ and (max-device-width : 568px) {
     
     .glacierview.landscape img.water {
         width: 567px; 
-    }    
+    }
+
+    .waterview.landscape div.ui-slider-vertical {
+        top: 100px;
+        height: 75px;
+        width: 568px;
+    }
+    
+    .waterview.portrait div.ui-slider-vertical {
+        top: 290px;
+        height: 170px;
+        width: 320px;
+    }
+    
 }
 
 /* iPad  */
@@ -137,36 +156,44 @@ and (max-device-width : 1024px)  {
     
     .glacierview.landscape img.water {
         width: 1023px;        
-    }     
+    }
+    
+    .waterview.landscape div.ui-slider-vertical {
+        top: 440px;
+        height: 234px;
+        width: 1024px;
+    }
+    
+    .waterview.portrait div.ui-slider-vertical {
+        top: 588px;
+        height: 340px;
+        width: 768px;
+    }
 }
 
 /* Computer Screen */
 @media only screen 
 and (min-device-width : 1025px) 
 and (max-device-width : 5000px) {   
-    .pageview.portrait {
-        width: 1419px;
-        height: 740px;
-        background-size: 1419px 740px;
-    }
-    
-    .pageview.landscape {
+    .pageview {
         width: 1024px;
-        height: 626px;
-        background-size: 1024px 626px;
+        height: 718px;
+        background-size: 1024px 718px !important;
     }
     
-    .glacierview.portrait img.glacier {
+    .glacierview img.glacier {
         top: 225px;
     }
     
-    .glacierview.landscape img.glacier {
-        top: 280px;
-    }
-    
-    .glacierview.portrait img.water {
+    .glacierview img.water {
         width: 100%;
         top: 90%;        
+    }
+    
+    .waterview div.ui-slider-vertical {
+        top: 495px;
+        height: 264px;
+        width: 1024px;
     }
 }
 
