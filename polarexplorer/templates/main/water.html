@@ -136,10 +136,9 @@
                 
                 if (imgIdx < gImageCount && newIdx > 0) {
                     var newElt = jQuery("img.inset[data-idx='" + newIdx + "']")[0];
-                    jQuery(newElt).addClass("active").fadeIn(gEaseOut, function() {
-                        setWaterLevel(newIdx, gEaseIn);    
-                    });
+                    jQuery(newElt).addClass("active").fadeIn(gEaseOut);
                     jQuery(elt).removeClass("active").fadeOut(gEaseIn);
+                    setWaterLevel(newIdx, gEaseIn);
                 }
                 return false;
             });
