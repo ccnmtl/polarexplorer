@@ -1,0 +1,176 @@
+var source;
+var draw;
+var cycle;
+
+var MAX_CYCLES = 22;
+var TILE_WIDTH = 5;
+var TILE_HEIGHT = 5;
+var TILE_CENTER_WIDTH = 2;
+var TILE_CENTER_HEIGHT = 2;
+var SOURCERECT = {x:0, y:0, width:200, height:200};
+var PAINTRECT = {x:0, y:0, width:200, height:200};
+var SPEED = 100;
+
+function initExplosion(sourceImage, outputcanvas) {
+    draw = outputcanvas.getContext('2d');
+    source = sourceImage;
+    createTiles();
+}
+
+function createTiles() {
+    tiles = [];
+    var offsetX = TILE_CENTER_WIDTH+(PAINTRECT.width-SOURCERECT.width)/2;
+    var offsetY = TILE_CENTER_HEIGHT+(PAINTRECT.height-SOURCERECT.height)/2;
+    var y=0;
+    while(y < SOURCERECT.height){
+        var x=0;
+        while(x < SOURCERECT.width){
+            var tile = new Tile();
+            tile.videoX = x;
+            tile.videoY = y;
+            tile.originX = offsetX+x;
+            tile.originY = offsetY+y;
+            tile.currentX = tile.originX;
+            tile.currentY = tile.originY;
+            tiles.push(tile);
+            x+=TILE_WIDTH;
+        }
+        y+=TILE_HEIGHT;
+    }
+}
+
+var RAD = Math.PI/180;
+var randomJump = false;
+var tiles = [];
+function processFrame(){
+    draw.clearRect(PAINTRECT.x, PAINTRECT.y,PAINTRECT.width,PAINTRECT.height);
+    
+    cycle++;
+    if (cycle > MAX_CYCLES) {
+        return;
+    }
+    for(var i=0; i<tiles.length; i++){
+        var tile = tiles[i];
+        if (tile.force > 0.0001){
+            //expand
+            tile.moveX *= tile.force;
+            tile.moveY *= tile.force;
+            tile.moveRotation *= tile.force;
+            tile.currentX += tile.moveX;
+            tile.currentY += tile.moveY;
+            tile.rotation += tile.moveRotation;
+            tile.rotation %= 360;
+            tile.force *= .9;
+            if (tile.currentX <= 0 || tile.currentX >= PAINTRECT.width){
+                tile.moveX *= -1;
+            }
+            if(tile.currentY <= 0 || tile.currentY >= PAINTRECT.height){
+                tile.moveY *= -1;
+            }
+        } else {
+            tile.force = 0;
+        }
+        draw.save();
+        draw.translate(tile.currentX, tile.currentY);
+        draw.rotate(tile.rotation*RAD);
+        draw.drawImage(source, tile.videoX, tile.videoY, TILE_WIDTH, TILE_HEIGHT, -TILE_CENTER_WIDTH, -TILE_CENTER_HEIGHT, TILE_WIDTH, TILE_HEIGHT);
+        draw.restore();
+    }
+    setTimeout(processFrame, SPEED + (cycle * 100));
+}
+
+function dropBomb(evt, obj){
+    var posx = 0;
+    var posy = 0;
+    var e = evt || window.event;
+    if (e.pageX || e.pageY){
+        posx = e.pageX;
+        posy = e.pageY;
+    }else if (e.clientX || e.clientY) {
+        posx = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+        posy = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
+    }
+    var canvasX = posx-obj.offsetLeft;
+    var canvasY = posy-obj.offsetTop;
+    explode(canvasX, canvasY);
+}
+
+function explode(x, y){
+    cycle = 0;
+    createTiles();
+
+    for(var i=0; i<tiles.length; i++){
+        var tile = tiles[i];
+        
+        var xdiff = tile.currentX-x;
+        var ydiff = tile.currentY-y;
+        var dist = Math.sqrt(xdiff*xdiff + ydiff*ydiff);
+        
+        var randRange = 220+(Math.random()*30);
+        var range = randRange-dist;
+        var force = 3*(range/randRange);
+        if(force > tile.force){
+            tile.force = force;
+            var radians = Math.atan2(ydiff, xdiff);
+            tile.moveX = Math.cos(radians);
+            tile.moveY = Math.sin(radians);
+            tile.moveRotation = 0.5-Math.random();
+        }
+    }
+    tiles.sort(zindexSort);
+    setInterval(processFrame, SPEED);
+}
+function zindexSort(a, b){
+    return (a.force-b.force);
+}
+
+function Tile(){
+    this.originX = 0;
+    this.originY = 0;
+    this.currentX = 0;
+    this.currentY = 0;
+    this.rotation = 0;
+    this.force = 0;
+    this.z = 0;
+    this.moveX= 0;
+    this.moveY= 0;
+    this.moveRotation = 0;
+    
+    this.videoX = 0;
+    this.videoY = 0;
+}
+
+
+/*
+    getPixel
+    return pixel object {r,g,b,a}
+*/
+function getPixel(imageData, x, y){
+    var data = imageData.data;
+    var pos = (x + y * imageData.width) * 4;
+    return {r:data[pos], g:data[pos+1], b:data[pos+2], a:data[pos+3]}
+}
+/*
+    setPixel
+    set pixel object {r,g,b,a}
+*/
+function setPixel(imageData, x, y, pixel){
+    var data = imageData.data;
+    var pos = (x + y * imageData.width) * 4;
+    data[pos] = pixel.r;
+    data[pos+1] = pixel.g;
+    data[pos+2] = pixel.b;
+    data[pos+3] = pixel.a;
+}
+/*
+    copyPixel
+    faster then using getPixel/setPixel combo
+*/
+function copyPixel(sImageData, sx, sy, dImageData, dx, dy){
+    var spos = (sx + sy * sImageData.width) * 4;
+    var dpos = (dx + dy * dImageData.width) * 4;
+    dImageData.data[dpos] = sImageData.data[spos];     //R
+    dImageData.data[dpos+1] = sImageData.data[spos+1]; //G
+    dImageData.data[dpos+2] = sImageData.data[spos+2]; //B
+    dImageData.data[dpos+3] = sImageData.data[spos+3]; //A
+}

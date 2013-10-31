@@ -30,6 +30,12 @@
         <div id="base-content" data-role="content" style="display: none">
             <div class="ui-grid-solo">
                 <div class="ui-block-a pageview glacierview">
+                    <div class="ui-overlay"></div>                    
+                    <img id="glacier-chunk" src="/site_media/img/glacier/chunk.png" style="display: none;"/>
+                    <canvas class="explosion" width="200" height="200"
+                        onmousedown="dropBomb(event, this)"></canvas>
+                
+                    <!-- canvas class="macromap helptext"></canvas-->
                     <img class="inset" src="/site_media/img/glacier_macro/1.png" alt="macromap" data-idx="1" />
                     <img class="inset" src="/site_media/img/glacier_macro/2.png" alt="macromap" data-idx="2" style="display: none;"/>
                     <img class="inset" src="/site_media/img/glacier_macro/3.png" alt="macromap" data-idx="3" style="display: none;"/>
@@ -39,6 +45,7 @@
                     <img class="inset" src="/site_media/img/glacier_macro/7.png" alt="macromap" data-idx="7" style="display: none;"/>
                     <img class="inset" src="/site_media/img/glacier_macro/8.png" alt="macromap" data-idx="8" style="display: none;"/>                    
                     
+                    <!-- canvas class="pageview helptext"></canvas-->
                     <img class="glacier active" src="/site_media/img/glacier/1.png" alt="iceberg" data-idx="1" style="left: 0px;" />
                     <img class="glacier" src="/site_media/img/glacier/2.png" alt="iceberg" data-idx="2" style="display: none; opacity: 0;"/>
                     <img class="glacier" src="/site_media/img/glacier/3.png" alt="iceberg" data-idx="3" style="display: none; opacity: 0;"/>
@@ -60,10 +67,22 @@
 
 {% block js %}
     <script type="text/javascript" src="/site_media/js/jquery.easing.1.3.js"></script>
+    <script type="text/javascript" src="/site_media/js/explode.js" /></script>>
 
     <script type="text/javascript">
+    
+        function drawText(canvas, text) {
+            var ctx = canvas.getContext("2d");
+
+            ctx.fillStyle = "black";
+            ctx.font = "24pt Helvetica";
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            ctx.fillText("Hello, world.", canvas.width / 2 , canvas.height / 2);
+        }
+
         var gEaseOut = 1000;
-        var gEaseIn = 1600;
+        var gEaseIn = 1800;
 
         function setWaterLevel(imgIdx, duration) {
             if (imgIdx === undefined) {            
@@ -88,6 +107,8 @@
         }
         
         function swipeGlacier() {
+            explode(193, 106);
+
             var elt = jQuery("img.glacier.active")[0];
             var imgIdx = parseInt(jQuery(elt).data("idx"), 10);
             var newIdx = (imgIdx + 1) % (gImageCount + 1);
@@ -125,11 +146,27 @@
                 
                 jQuery(macroNewElt).fadeIn(gEaseOut);
                 jQuery(macroElt).fadeOut(gEaseIn);
-                setWaterLevel(imgIdx, gEaseIn);
+                setWaterLevel(imgIdx, gEaseIn)
+                
+                var left = parseInt(jQuery("canvas.explosion").css("left"), 10);
+                jQuery("canvas.explosion").css({"left": left + (imgIdx * 2)});
             }
         }
         
         jQuery(document).on("pageinit", function (event) {
+/**            
+            var canvas = jQuery("canvas.macromap.helptext")[0];
+            drawText(canvas, "Swipe left");
+            
+            canvas = jQuery("canvas.pageview.helptext")[0];
+            drawText(canvas, "Swipe left");
+**/
+            jQuery("div.ui-overlay").bind("tap", function() {
+               jQuery("div.ui-overlay").hide(); 
+            });
+            initExplosion(jQuery("#glacier-chunk")[0],
+                          jQuery("canvas.explosion")[0]);
+
             function stopScrolling(evt) {
                 if (evt.target.parentElement.className !== "ui-btn-inner") {
                     evt.preventDefault();
@@ -176,8 +213,6 @@
                 document.body.scrollTop = document.documentElement.scrollTop = 0;
                 setWaterLevel();               
             });
-            
-            jQuery(window).trigger("resize");
         });
     </script>
 {% endblock %}

@@ -6,6 +6,12 @@ html, body {
     padding: 0px;
 }
 
+.ui-overlay {
+    filter: Alpha(Opacity=75);
+    opacity: .75;
+    z-index: 999;
+}
+
 div#about a.ui-shadow {
     -moz-box-shadow: none;
     -webkit-box-shadow: none;
@@ -26,7 +32,6 @@ div.gallery div.ui-content {
     width: 350px;
     z-index: 998;
 }
-
 
 .glacierview.portrait {
     background: url(/site_media/img/glacier/background_portrait.png) no-repeat;    
@@ -69,6 +74,17 @@ div.gallery div.ui-content {
     zoom: 1;
     width: 100%;
     position: absolute;
+}
+
+canvas.explosion {
+    position: absolute;
+    z-index: 998;
+    /**border: solid 5px #666666**/;
+}
+
+canvas.helptext {
+    position: absolute;
+    z-index: 999;
 }
 
 /* iPhone */
@@ -142,19 +158,29 @@ and (max-device-width : 1024px)  {
     }
    
     .glacierview.portrait img.glacier {
-        top: 505px;        
+        top: 510px;        
     }
     
     .glacierview.portrait img.water {
         width: 767px;        
     }
     
+    .glacierview.portrait canvas.explosion {
+        top: 620px;
+        left: 40px;
+    }    
+    
     .glacierview.landscape img.glacier {
-        top: 185px;
+        top: 205px;
     }
     
     .glacierview.landscape img.water {
         width: 1023px;        
+    }
+    
+    .glacierview.landscape canvas.explosion {
+        top: 375px;
+        left: 93px;
     }
     
     .waterview.landscape div.ui-slider-vertical {
@@ -193,10 +219,17 @@ and (max-device-width : 5000px) {
         width: 1023px;
     }
     
+    .glacierview canvas.explosion {
+        top: 525px;
+        left: 93px;
+    }
+    
     .waterview div.ui-slider-vertical {
         top: 545px;
         height: 264px;
         width: 1024px;
     }
+    
+    
 }
 
