@@ -69,7 +69,7 @@
                 }
                 
                 function orientView(orientation) {
-                    jQuery("#base-content").fadeOut(100, function() {
+                    jQuery("#base-content").fadeOut(0, function() {
                         jQuery.mobile.showPageLoadingMsg();                                            
                         jQuery("div.pageview").removeClass(gOrientation).addClass(orientation);                    
                         gOrientation = orientation;
@@ -81,7 +81,6 @@
                 
                 jQuery(document).on("pageinit", function (event) {                    
                     gOrientation = getOrientationLabel();
-                    console.log(gOrientation);
                     orientView(gOrientation)
                     
                     jQuery(window).bind("orientationchange", function (e, ui) {
