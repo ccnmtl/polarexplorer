@@ -99,7 +99,7 @@
         }
         
         function swipeGlacier() {
-            explode(193, 106);
+            //explode(193, 106);
 
             var elt = jQuery("img.glacier.active")[0];
             var imgIdx = parseInt(jQuery(elt).data("idx"), 10);
@@ -154,8 +154,8 @@
                 setCookie("glacier-help-viewed", true);
              });
             
-            initExplosion(jQuery("#glacier-chunk")[0],
-                          jQuery("canvas.explosion")[0]);
+            //initExplosion(jQuery("#glacier-chunk")[0],
+            //              jQuery("canvas.explosion")[0]);
 
             function stopScrolling(evt) {
                 if (evt.target.parentElement.className !== "ui-btn-inner") {

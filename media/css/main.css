@@ -279,8 +279,8 @@ and (max-device-width : 5000px) {
     }
     
     .waterview div.ui-slider-vertical {
-        top: 545px;
-        height: 264px;
+        top: 540px;
+        height: 269px;
         width: 1024px;
     }
 }
