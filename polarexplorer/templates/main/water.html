@@ -30,6 +30,12 @@
         <div id="base-content" data-role="content">
             <div class="ui-grid-solo">
                 <div class="ui-block-a pageview waterview">
+                    <div class="ui-overlay">
+                        <img class="helptext macromap" src="/site_media/img/help/help_risingwater_map.png" />
+                        <img class="helptext pageview" src="/site_media/img/help/help_risingwater_interactive.png" />
+                    </div>
+                    
+                    
                     <img class="inset active" src="/site_media/img/water/1.png" alt="macromap" data-idx="1" />
                     <img class="inset" src="/site_media/img/water/2.png" alt="macromap" data-idx="2" style="display: none;"/>
                     <img class="inset" src="/site_media/img/water/3.png" alt="macromap" data-idx="3" style="display: none;"/>
@@ -47,7 +53,8 @@
     
 {% endblock %}
 
-{% block js %}    
+{% block js %}
+    <script type="text/javascript" src="/site_media/js/util.js" /></script>    
     <script type="text/javascript">
         var gEaseOut = 1000;
         var gEaseIn = 1600;
@@ -103,6 +110,14 @@
         }
     
         jQuery(document).on("pageinit", function (event) {
+            if (getCookie("water-help-viewed")) {
+                jQuery("div.ui-overlay").hide();
+            }
+            jQuery("div.ui-overlay").bind("tap", function() {
+                jQuery("div.ui-overlay").hide();
+                setCookie("water-help-viewed", true);
+            });
+            
             function stopScrolling(evt) {
                 if (evt.target.className !== "inset active" &&
                         evt.target.parentElement.className !== "ui-btn-inner") {

@@ -7,9 +7,16 @@ html, body {
 }
 
 .ui-overlay {
-    filter: Alpha(Opacity=75);
-    opacity: .75;
+    filter: Alpha(Opacity=85);
+    opacity: .85;
     z-index: 999;
+}
+
+img.helptext {
+    position: absolute;
+    z-index: 999;
+    width: 280px;
+    height: auto;
 }
 
 div#about a.ui-shadow {
@@ -42,11 +49,11 @@ div.gallery div.ui-content {
 }
 
 .waterview.portrait {
-    background: url(/site_media/img/water/background_portrait.png) no-repeat;
+    background: url(/site_media/img/water/background_portrait.jpg) no-repeat;
 }
 
 .waterview.landscape {    
-    background: url(/site_media/img/water/background_landscape.png) no-repeat;        
+    background: url(/site_media/img/water/background_landscape.jpg) no-repeat;        
 }
 
 .glacierview img.glacier {
@@ -80,11 +87,6 @@ canvas.explosion {
     position: absolute;
     z-index: 998;
     /**border: solid 5px #666666**/;
-}
-
-canvas.helptext {
-    position: absolute;
-    z-index: 999;
 }
 
 /* iPhone */
@@ -134,7 +136,6 @@ and (max-device-width : 568px) {
         height: 170px;
         width: 320px;
     }
-    
 }
 
 /* iPad  */
@@ -156,6 +157,37 @@ and (max-device-width : 1024px)  {
     .pageview img.inset {
         width: 400px;
     }
+    
+    .glacierview img.helptext.macromap {
+        top: 50px;
+        left: 63px;
+    }
+    
+    .glacierview.landscape img.helptext.pageview {
+        top: 373px;
+        left: 800px;
+    }        
+
+    .glacierview.portrait img.helptext.pageview {
+        top: 525px;
+        left: 525px;
+    }        
+    
+    .waterview img.helptext.macromap {
+        top: 103px;
+        left: 41px;
+    }
+    
+    .waterview.landscape img.helptext.pageview {
+        top: 450px;
+        left: 400px;
+    }      
+    
+    .waterview.portrait img.helptext.pageview {
+        top: 560px;
+        left: 300px;
+    }      
+    
    
     .glacierview.portrait img.glacier {
         top: 510px;        
@@ -168,7 +200,7 @@ and (max-device-width : 1024px)  {
     .glacierview.portrait canvas.explosion {
         top: 620px;
         left: 40px;
-    }    
+    }
     
     .glacierview.landscape img.glacier {
         top: 205px;
@@ -202,6 +234,8 @@ and (min-device-width : 1025px)
 and (max-device-width : 5000px) {   
     .ui-mobile .ui-page { 
         width: 1024px;
+        height: 768px;
+        overflow: hidden;
     }
 
     .pageview {
@@ -210,8 +244,28 @@ and (max-device-width : 5000px) {
         background-size: 1024px 768px !important;
     }
     
+    .glacierview img.helptext.macromap {
+        top: 50px;
+        left: 63px;
+    }
+    
+    .glacierview img.helptext.pageview {
+        top: 373px;
+        left: 800px;
+    }        
+
+    .waterview img.helptext.macromap {
+        top: 103px;
+        left: 41px;
+    }
+    
+    .waterview img.helptext.pageview {
+        top: 582px;
+        left: 400px;
+    }        
+    
     .glacierview img.glacier {
-        top: 290px;
+        top: 315px;
         width: 1024px;
     }
     
@@ -229,7 +283,5 @@ and (max-device-width : 5000px) {
         height: 264px;
         width: 1024px;
     }
-    
-    
 }
 
