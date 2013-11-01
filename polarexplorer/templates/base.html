@@ -80,7 +80,8 @@
                 }
                 
                 jQuery(document).on("pageinit", function (event) {                    
-                    gOrientation = getOrientationLabel();                    
+                    gOrientation = getOrientationLabel();
+                    console.log(gOrientation);
                     orientView(gOrientation);
 
                     jQuery(window).bind("orientationchange", function (e, ui) {

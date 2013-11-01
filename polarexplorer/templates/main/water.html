@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
     <script type="text/javascript">
-        gImageCount = 4;
+        gImageCount = 5;
         /* Preload Images */
     </script>
 {% endblock %}
@@ -39,6 +39,7 @@
                     <img class="inset" src="/site_media/img/water/2.png" alt="macromap" data-idx="2" style="display: none;"/>
                     <img class="inset" src="/site_media/img/water/3.png" alt="macromap" data-idx="3" style="display: none;"/>
                     <img class="inset" src="/site_media/img/water/4.png" alt="macromap" data-idx="4" style="display: none;"/>
+                    <img class="inset" src="/site_media/img/water/5.png" alt="macromap" data-idx="5" style="display: none;"/>
                 
                     <input type="vrange" name="water" id="water"
                         data-highlight="true" min="0" max="100"
@@ -65,11 +66,13 @@
                 imgIdx = parseInt(jQuery(elt).data("idx"), 10);
             }
             
-            var defaultLevel = 45;
-            var rise = defaultLevel - ((imgIdx - 1) * 6);
+            var defaultLevel, rise;
             if (getOrientationLabel() == "landscape") {
-                defaultLevel = 68;
+                defaultLevel = 50;
                 rise = defaultLevel - ((imgIdx - 1) * 8);
+            } else {
+                defaultLevel = 50;
+                var rise = defaultLevel - ((imgIdx - 1) * 20);
             }
             return rise;          
         }
@@ -128,17 +131,11 @@
             
             jQuery("#water").verticalslider();
             setWaterLevel(1);
-            jQuery("#water").on("beforechange", function(evt, val) {
-                if (val <= 42) {
-                    return false;
-                } else {
-                    return true;
-                }
-            });
+            
             jQuery("#water").bind("change", function() {
-                if (!ignoreChange) {
-                    adjustMacroMap();
-                }
+                //if (!ignoreChange) {
+                //    adjustMacroMap();
+                //}
             });
             
             jQuery("img.inset").click(function(event) {

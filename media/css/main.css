@@ -63,18 +63,17 @@ div.gallery div.ui-content {
     left: 10px;
 }
 
-
 .glacierview img.water {
     position: absolute;
     overflow: hidden;
 }
 
 .glacierview.portrait img.water {
-    top: 80.75%;
+    top: 80%;
 }
 
 .glacierview.landscape img.water {
-    top: 78%;    
+    top: 77%;    
 }
 
 .waterview div.ui-slider-vertical {
@@ -95,8 +94,8 @@ and (min-device-width : 320px)
 and (max-device-width : 568px) {  
     .pageview.landscape {
         width: 568px;
-        height: 270px;
-        background-size: 568px 270px;
+        height: 275px;
+        background-size: 568px 275px;
     }
 
     .pageview.portrait {
@@ -107,10 +106,30 @@ and (max-device-width : 568px) {
       
     .pageview img.inset {
         width: 175px;
-    }    
+    }
+    
+    .glacierview.portrait img.helptext.pageview {
+        top: 225px;
+        left: 100px;
+    }        
+    
+    .waterview img.helptext.macromap {
+        top: 103px;
+        left: 41px;
+    }
+    
+    .waterview.landscape img.helptext.pageview {
+        top: 450px;
+        left: 400px;
+    }      
+    
+    .waterview.portrait img.helptext.pageview {
+        top: 560px;
+        left: 300px;
+    }          
        
     .glacierview.portrait img.glacier {
-        top: 269px;
+        top: 259px;
     }
     
     .glacierview.portrait img.water {
@@ -118,7 +137,7 @@ and (max-device-width : 568px) {
     }
     
     .glacierview.landscape img.glacier {
-        top: 70px;
+        top: 50px;
     }
     
     .glacierview.landscape img.water {
@@ -190,7 +209,7 @@ and (max-device-width : 1024px)  {
     
    
     .glacierview.portrait img.glacier {
-        top: 510px;        
+        top: 483px;        
     }
     
     .glacierview.portrait img.water {
@@ -203,7 +222,7 @@ and (max-device-width : 1024px)  {
     }
     
     .glacierview.landscape img.glacier {
-        top: 205px;
+        top: 160px;
     }
     
     .glacierview.landscape img.water {
@@ -216,14 +235,14 @@ and (max-device-width : 1024px)  {
     }
     
     .waterview.landscape div.ui-slider-vertical {
-        top: 440px;
-        height: 234px;
+        top: 452px;
+        height: 222px;
         width: 1024px;
     }
     
     .waterview.portrait div.ui-slider-vertical {
-        top: 588px;
-        height: 340px;
+        top: 698px;
+        height: 230px;
         width: 768px;
     }
 }
@@ -241,7 +260,7 @@ and (max-device-width : 5000px) {
     .pageview {
         width: 1024px;
         height: 768px;
-        background-size: 1024px 768px !important;
+        background-size: 1024px 741px !important;
     }
     
     .glacierview img.helptext.macromap {
@@ -265,7 +284,7 @@ and (max-device-width : 5000px) {
     }        
     
     .glacierview img.glacier {
-        top: 315px;
+        top: 242px;
         width: 1024px;
     }
     
