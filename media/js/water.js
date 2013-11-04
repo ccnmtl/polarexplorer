@@ -1,15 +1,22 @@
-var gEaseOut = 1000;
-var gEaseIn = 1600;
+var gEaseOut = 100;
+var gEaseIn = 100;
 var ignoreChange = false;
+var gDefaultLevel = 52;
 
 function getWaterLevel(imgIdx) {
     if (imgIdx === undefined) {       
         var elt = jQuery("img.inset.active")[0];
         imgIdx = parseInt(jQuery(elt).data("idx"), 10);
     }
-    var defaultLevel = 52;
-    var increment = ((100 - defaultLevel) / (gImageCount - 1)) * (imgIdx - 1);            
-    return 100 - (defaultLevel + increment);
+    var increment = ((100 - gDefaultLevel) / (gImageCount - 1)) * (imgIdx - 1);            
+    return 100 - (gDefaultLevel + increment);
+}
+
+function getImageIndex(value) {
+    imgIdx = (((value - 100) * -1) - gDefaultLevel) / ((100 - gDefaultLevel) / (gImageCount - 1)) + 1;
+    console.log("Image Idx: " + imgIdx);
+    
+    return imgIdx < 1 ? 1 : imgIdx;
 }
 
 function setWaterLevel(imgIdx, duration) {
@@ -21,28 +28,20 @@ function setWaterLevel(imgIdx, duration) {
 
 function swapImages(elt, newIdx) {
     var newElt = jQuery("img.inset[data-idx='" + newIdx + "']")[0];
-    jQuery(newElt).addClass("active").fadeIn(gEaseOut);
-    jQuery(elt).removeClass("active").fadeOut(gEaseIn);
+    jQuery(newElt).addClass("active").fadeIn(gEaseOut, function() {
+        jQuery(elt).removeClass("active").fadeOut(gEaseIn);    
+    });
+    
 }
 
 function adjustMacroMap() {
-    var value = jQuery("#water").attr("value");
+    var newIdx = getImageIndex(jQuery("#water").attr("value"));
     
     var elt = jQuery("img.inset.active")[0];
     imgIdx = parseInt(jQuery(elt).data("idx"), 10);
-    var currentRise = getWaterLevel(imgIdx);
     
-    if (value < currentRise && imgIdx > 1) {
-        var newIdx = imgIdx - 1;
+    if (newIdx !== imgIdx) {
         swapImages(elt, newIdx);
-    } else if (value > currentRise) {
-        var newIdx = (imgIdx + 1) % (gImageCount + 1);
-        if (imgIdx < gImageCount && newIdx > 0) {
-            var nextRise = getWaterLevel(newIdx);
-            if (value >= nextRise) {
-                swapImages(elt, newIdx);
-            }
-        }
     }
 }
 
@@ -53,9 +52,9 @@ jQuery(document).on("pageinit", function (event) {
     setWaterLevel(1);
     
     jQuery("#water").bind("change", function() {
-        //if (!ignoreChange) {
-        //    adjustMacroMap();
-        //}
+        if (!ignoreChange) {
+            adjustMacroMap();
+        }
     });
     
     jQuery("img.inset").click(function(event) {
