@@ -73,7 +73,7 @@ div.gallery div.ui-content {
 }
 
 .glacierview.landscape img.water {
-    top: 69%;    
+    top: 78%;    
 }
 
 .waterview div.ui-slider-vertical {
@@ -229,7 +229,7 @@ and (max-device-width : 1024px)  {
     }
     
     .glacierview.landscape img.glacier {
-        top: 157px;
+        top: 225px;
     }
     
     .glacierview.landscape img.water {
@@ -291,12 +291,12 @@ and (max-device-width : 5000px) {
     }        
     
     .glacierview img.glacier {
-        top: 171px;
+        top: 244px;
         width: 1024px;
     }
     
     .glacierview img.water {
-        width: 1023px;
+        width: 1024px;
     }
     
     .glacierview canvas.explosion {

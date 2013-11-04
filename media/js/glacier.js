@@ -2,10 +2,6 @@ var gEaseOut = 1000;
 var gEaseIn = 1800;
 
 function setWaterLevel(imgIdx, duration) {
-    if (imgIdx === undefined) {            
-        var elt = jQuery("img.glacier.active")[0];
-        imgIdx = parseInt(jQuery(elt).data("idx"), 10);
-    }
     if (duration === undefined) {
         duration = 0;
     }
@@ -13,7 +9,7 @@ function setWaterLevel(imgIdx, duration) {
     var level = 80;
     var increment = .95 * imgIdx;            
     if (getOrientationLabel() == "landscape") {
-        level = 69;
+        level = 78;
         increment = 2 * imgIdx;
     }
 
@@ -114,6 +110,10 @@ jQuery(document).on("pageinit", function (event) {
     
     jQuery(window).bind("orientationchange", function (e, ui) {
         document.body.scrollTop = document.documentElement.scrollTop = 0;
-        setWaterLevel();               
+
+        var elt = jQuery("img.glacier.active")[0];
+        imgIdx = parseInt(jQuery(elt).data("idx"), 10);
+        
+        setWaterLevel(imgIdx - 1);               
     });
 });
