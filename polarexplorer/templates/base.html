@@ -57,52 +57,13 @@
             <!--[if lt IE 9]>
                 <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
             <![endif]-->
-            
-            <script type="text/javascript">
-                var gOrientation = undefined;
-                
-                function getOrientationLabel() {                    
-                    var rotation = window.hasOwnProperty("orientation") ?
-                        window.orientation : 90;
-                    
-                    return (rotation == 0 || rotation == 180) ?
-                            "portrait" : "landscape";
-                }
-                
-                function orientView(orientation) {
-                    jQuery("#base-content").fadeOut(0, function() {
-                        jQuery.mobile.showPageLoadingMsg();                                            
-                        jQuery("div.pageview").removeClass(gOrientation).addClass(orientation);                    
-                        gOrientation = orientation;
-                        jQuery("#base-content").fadeIn(function() {
-                            jQuery.mobile.hidePageLoadingMsg();    
-                        });                        
-                    });
-                }
-                
-                jQuery(document).on("pageinit", function (event) {                    
-                    gOrientation = getOrientationLabel();
-                    console.log(gOrientation);
-                    orientView(gOrientation);
-
-                    jQuery(window).bind("orientationchange", function (e, ui) {
-                        orientView(e.orientation);
-                    });
-                });
-            </script>
+            <script type="text/javascript" src="/site_media/js/interactive.js" /></script>
             {% block js %}{% endblock %}     
         {% endcompress %}
         
         {% if STAGING_ENV %}
             <div class="alert alert-error" style="position: fixed; bottom: 0px;">
             <h4>Warning: Staging Site</h4>
-            </div>
-        {% endif %}
-        
-        {% if request.user.is_impersonate %}
-            <div class="alert alert-error" style="position: fixed; left: 0px; top: 75px">
-            You are impersonating.<br />
-            <a class="btn" href="{% url impersonate-stop %}">stop</a>
             </div>
         {% endif %}
     </body>
