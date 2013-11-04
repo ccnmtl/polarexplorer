@@ -7,13 +7,7 @@ function getWaterLevel(imgIdx) {
         var elt = jQuery("img.inset.active")[0];
         imgIdx = parseInt(jQuery(elt).data("idx"), 10);
     }
-    
-    var defaultLevel;
-    if (getOrientationLabel() == "landscape") {
-        defaultLevel = 52; 
-    } else {
-        defaultLevel = 50;
-    }
+    var defaultLevel = 52;
     var increment = ((100 - defaultLevel) / (gImageCount - 1)) * (imgIdx - 1);            
     return 100 - (defaultLevel + increment);
 }

@@ -60,6 +60,8 @@ $.widget( "mobile.verticalslider", $.mobile.widget, $.extend( {
         handle.buttonMarkup({ corners: true, theme: theme, shadow: true })
                 .attr({
                     "role": "verticalslider",
+                    "data-icon": "arrow-u",
+                    "data-iconpos": "top",
                     "aria-valuemin": min,
                     "aria-valuemax": max,
                     "aria-valuenow": this._value(),

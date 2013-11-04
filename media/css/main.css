@@ -6,6 +6,10 @@ html, body {
     padding: 0px;
 }
 
+.ui-btn-icon-top .ui-icon {
+    top: 3px;
+}
+
 .ui-overlay {
     filter: Alpha(Opacity=85);
     opacity: .85;
@@ -242,14 +246,14 @@ and (max-device-width : 1024px)  {
     }
     
     .waterview.landscape div.ui-slider-vertical {
-        top: 452px;
-        height: 222px;
+        top: 504px;
+        height: 250px;
         width: 1024px;
     }
     
     .waterview.portrait div.ui-slider-vertical {
-        top: 698px;
-        height: 230px;
+        top: 754px;
+        height: 255px;
         width: 768px;
     }
 }
@@ -305,8 +309,8 @@ and (max-device-width : 5000px) {
     }
     
     .waterview div.ui-slider-vertical {
-        top: 530px;
-        height: 279px;
+        top: 527px;
+        height: 255px;
         width: 1024px;
     }
 }
