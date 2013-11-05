@@ -20,7 +20,7 @@ function setWaterLevel(imgIdx, duration) {
 }
 
 function swipeGlacier() {
-    //explode(193, 106);
+    explode(150, 150);
 
     var elt = jQuery("img.glacier.active")[0];
     var imgIdx = parseInt(jQuery(elt).data("idx"), 10);
@@ -93,8 +93,8 @@ function reset() {
 jQuery(document).on("pageinit", function (event) {
     initInteractive("glacier");
     
-    //initExplosion(jQuery("#glacier-chunk")[0],
-    //              jQuery("canvas.explosion")[0]);
+    initExplosion(jQuery("#glacier-chunk")[0],
+                  jQuery("canvas.explosion")[0]);
 
     jQuery("img.glacier, img.inset").swipeleft(function(event) {
         event.stopImmediatePropagation();
