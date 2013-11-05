@@ -6,7 +6,17 @@ html, body {
     padding: 0px;
 }
 
-.ui-btn-icon-top .ui-icon {
+div.waterview .ui-icon {
+    top: 3px;
+    position: absolute;
+    left: 45%;
+}
+
+div.waterview .ui-btn-text {
+    margin-left: 100px;
+    color: #666;
+    position: absolute;
+    left: -8%;
     top: 3px;
 }
 
@@ -89,7 +99,6 @@ div.gallery div.ui-content {
 canvas.explosion {
     position: absolute;
     z-index: 998;
-    /**border: solid 5px #666666**/;
 }
 
 /* iPhone */
