@@ -314,7 +314,7 @@ and (max-device-width : 5000px) {
     
     .glacierview canvas.explosion {
         top: 503px;
-        left: 2px;
+        left: -60px;
     }
     
     .waterview div.ui-slider-vertical {

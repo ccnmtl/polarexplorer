@@ -9,7 +9,7 @@ var TILE_CENTER_WIDTH = 5;
 var TILE_CENTER_HEIGHT = 5;
 var SOURCERECT = {x:0, y:0, width:300, height:300};
 var PAINTRECT = {x:0, y:0, width:300, height:300};
-var SPEED = 100;
+var SPEED = 50;
 var ROWS = SOURCERECT.height / TILE_HEIGHT;
 var COLS = SOURCERECT.width / TILE_WIDTH;
 var tiles;
@@ -61,7 +61,6 @@ function processFrame(){
             var tile = tiles[row][col];
             
             if (tile.force > 0.0001){
-                //expand
                 tile.moveX *= tile.force;
                 tile.moveY *= tile.force;
                 tile.moveRotation *= tile.force;
@@ -69,12 +68,13 @@ function processFrame(){
                 tile.currentY += tile.moveY;
                 tile.rotation += tile.moveRotation;
                 tile.rotation %= 360;
-                tile.force *= .9;
+                tile.force *= 1.05;
                 if (tile.currentX <= 0 || tile.currentX >= PAINTRECT.width){
                     jQuery("canvas.explosion").fadeOut();
                     tile.moveX *= -1;
                 }
-                if(tile.currentY <= 0 || tile.currentY >= PAINTRECT.height){
+                if(tile.currentY <= 0) {
+                    jQuery("canvas.explosion").fadeOut();
                     tile.moveY *= -1;
                 }
             }
@@ -91,14 +91,14 @@ function processFrame(){
 function explode(x, y) {
     cycle = 0;
     initializeTiles();
-    jQuery("canvas.explosion").fadeIn();
+    jQuery("canvas.explosion").fadeIn(); 
     
     for (var row=0; row < ROWS; row++) {
         for (var col=0; col < COLS; col++) {
             var tile = tiles[row][col];
             
             var xdiff = -(tile.currentX-x);
-            var ydiff = -(tile.currentY-y);
+            var ydiff = y;
             var dist = Math.sqrt(xdiff*xdiff + ydiff*ydiff);
             
             var randRange = 220+(Math.random()*30);

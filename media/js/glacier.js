@@ -20,13 +20,13 @@ function setWaterLevel(imgIdx, duration) {
 }
 
 function swipeGlacier() {
-    explode(150, 150);
-
     var elt = jQuery("img.glacier.active")[0];
     var imgIdx = parseInt(jQuery(elt).data("idx"), 10);
     var newIdx = (imgIdx + 1) % (gImageCount + 1);
     
     if (imgIdx < gImageCount && newIdx > 0) {
+        explode(150, 150);
+
         var newElt = jQuery("img.glacier[data-idx='" + newIdx + "']")[0];
         
         var left = parseInt(jQuery(elt).css("left"), 10);
@@ -62,7 +62,7 @@ function swipeGlacier() {
         setWaterLevel(imgIdx, gEaseIn)
         
         var left = parseInt(jQuery("canvas.explosion").css("left"), 10);
-        jQuery("canvas.explosion").css({"left": left + (imgIdx * 2)});
+        jQuery("canvas.explosion").css({"left": left + (imgIdx * 5)});
     }
 }
 
