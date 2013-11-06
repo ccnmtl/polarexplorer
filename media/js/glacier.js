@@ -1,6 +1,14 @@
 var gEaseOut = 1000;
 var gEaseIn = 1800;
 
+window.requestAnimFrame = (function(callback) {
+    return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
+    function(callback) {
+      window.setTimeout(callback, 1000 / 60);
+    };
+  })();
+
+
 function setWaterLevel(imgIdx, duration) {
     if (duration === undefined) {
         duration = 0;
@@ -66,6 +74,34 @@ function swipeGlacier() {
     }
 }
 
+function drawGlacier(imgIdx, context) {
+    var elt = jQuery("img.glacier[data-idx='" + imgIdx + "']");
+    context.drawImage(img, 0, 0);
+}
+
+function animate(imgIdx, canvas, context, startTime) {
+  // update
+  var time = (new Date()).getTime() - startTime;
+
+  var linearSpeed = 100;
+  // pixels / second
+  var newX = linearSpeed * time / 1000;
+
+  if(newX < canvas.width - myRectangle.width - myRectangle.borderWidth / 2) {
+    myRectangle.x = newX;
+  }
+
+  // clear
+  context.clearRect(0, 0, canvas.width, canvas.height);
+
+  drawRectangle(myRectangle, context);
+
+  // request new frame
+  requestAnimFrame(function() {
+    animate(myRectangle, canvas, context, startTime);
+  });
+}
+
 function reset() {
     jQuery("img.glacier.active").animate({'opacity': 0},
         function() {
@@ -93,12 +129,18 @@ function reset() {
 jQuery(document).on("pageinit", function (event) {
     initInteractive("glacier");
     
-    initExplosion(jQuery("#glacier-chunk")[0],
-                  jQuery("canvas.explosion")[0]);
+    //initExplosion(jQuery("#glacier-chunk")[0],
+    //              jQuery("canvas.explosion")[0]);
 
     jQuery("img.glacier, img.inset").swipeleft(function(event) {
         event.stopImmediatePropagation();
         swipeGlacier();                
+        return false;
+    });
+    
+    jQuery("canvas").swipeleft(function(event) {
+        event.stopImmediatePropagation();
+        animateGlacier();                
         return false;
     });
     
@@ -116,4 +158,6 @@ jQuery(document).on("pageinit", function (event) {
         
         setWaterLevel(imgIdx - 1);               
     });
+    
+    drawGlacier(1);
 });

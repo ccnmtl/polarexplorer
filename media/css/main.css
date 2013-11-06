@@ -75,6 +75,7 @@ div.gallery div.ui-content {
     width: 100%;
     overflow: hidden;
     left: 10px;
+    display: none;
 }
 
 .glacierview img.water {
@@ -88,6 +89,12 @@ div.gallery div.ui-content {
 
 .glacierview.landscape img.water {
     top: 78%;    
+}
+
+.glacierview canvas {
+    position: absolute;
+    left: 0px;
+    top: 0px;
 }
 
 .waterview div.ui-slider-vertical {
@@ -315,6 +322,12 @@ and (max-device-width : 5000px) {
     .glacierview canvas.explosion {
         top: 503px;
         left: -60px;
+    }
+    
+     {
+        width: 1024px;
+        height: 768px;
+        overflow: hidden;
     }
     
     .waterview div.ui-slider-vertical {

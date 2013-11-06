@@ -53,7 +53,7 @@ function handleOverlay(name) {
     var cookieName = name + "-help-viewed";
     var data = retrieveData(cookieName);
     if (data === "true") {
-        jQuery("div.ui-overlay").hide();
+        //jQuery("div.ui-overlay").hide();
     }
     jQuery("div.ui-overlay").bind("tap", function() {
         jQuery("div.ui-overlay").hide();
