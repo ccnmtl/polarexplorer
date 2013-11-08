@@ -44,7 +44,8 @@ function retrieveData(name) {
 
 function disableScrolling(evt) {
     if (evt.target.className !== "inset active" &&
-            evt.target.parentElement.className !== "ui-btn-inner") {
+        evt.target.parentElement.className !== "ui-btn-inner" &&
+            evt.target.nodeName !== "P") {
         evt.preventDefault();
     }
 }
@@ -53,7 +54,7 @@ function handleOverlay(name) {
     var cookieName = name + "-help-viewed";
     var data = retrieveData(cookieName);
     if (data === "true") {
-        //jQuery("div.ui-overlay").hide();
+        jQuery("div.ui-overlay").hide();
     }
     jQuery("div.ui-overlay").bind("tap", function() {
         jQuery("div.ui-overlay").hide();

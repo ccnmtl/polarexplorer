@@ -6,6 +6,12 @@ html, body {
     padding: 0px;
 }
 
+.about-content {
+    overflow-y: auto;
+    max-height: 400px;
+    padding-top: 0 !important;
+}
+
 div.waterview .ui-icon {
     top: 3px;
     position: absolute;
@@ -100,6 +106,7 @@ img.helptext.dismiss {
     position: absolute;
     left: 0px;
     top: 0px;
+    overflow: hidden;
 }
 
 .waterview div.ui-slider-vertical {
@@ -241,7 +248,9 @@ and (max-device-width : 1024px)  {
     }      
     
     .glacierview.portrait img.glacier {
-        top: 545px;        
+        top: 545px;
+        height: 288px;
+        width: 768px;
     }
     
     .glacierview.portrait img.water {
@@ -255,6 +264,8 @@ and (max-device-width : 1024px)  {
     
     .glacierview.landscape img.glacier {
         top: 225px;
+        height: 384px;
+        width: 1024px;   
     }
     
     .glacierview.landscape img.water {
@@ -318,6 +329,7 @@ and (max-device-width : 5000px) {
     .glacierview img.glacier {
         top: 244px;
         width: 1024px;
+        height: 384px;        
     }
     
     .glacierview img.water {
@@ -327,12 +339,6 @@ and (max-device-width : 5000px) {
     .glacierview canvas.explosion {
         top: 503px;
         left: -60px;
-    }
-    
-     {
-        width: 1024px;
-        height: 768px;
-        overflow: hidden;
     }
     
     .waterview div.ui-slider-vertical {

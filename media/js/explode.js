@@ -15,9 +15,8 @@ var COLS = SOURCERECT.width / TILE_WIDTH;
 var tiles;
 
 
-function initExplosion(sourceImage, outputcanvas) {
+function initExplosion(outputcanvas) {
     draw = outputcanvas.getContext('2d');
-    source = sourceImage;
     
     tiles = new Array(ROWS);    
     for (var row=0, y=0; row < ROWS; row++, y+=TILE_HEIGHT) {
@@ -70,28 +69,32 @@ function processFrame(){
                 tile.rotation %= 360;
                 tile.force *= 1.05;
                 if (tile.currentX <= 0 || tile.currentX >= PAINTRECT.width){
-                    jQuery("canvas.explosion").fadeOut();
                     tile.moveX *= -1;
                 }
                 if(tile.currentY <= 0) {
-                    jQuery("canvas.explosion").fadeOut();
                     tile.moveY *= -1;
                 }
             }
             draw.save();
+            
+            //The translate() method remaps the (0,0) position on the canvas.
             draw.translate(tile.currentX, tile.currentY);
             draw.rotate(tile.rotation*RAD);
-            draw.drawImage(source, tile.videoX, tile.videoY, TILE_WIDTH, TILE_HEIGHT, -TILE_CENTER_WIDTH, -TILE_CENTER_HEIGHT, TILE_WIDTH, TILE_HEIGHT);
+            draw.drawImage(source,
+                // where to pick up the image from the source canvas.
+                tile.videoX, tile.videoY, TILE_WIDTH, TILE_HEIGHT,
+                // where to draw it on the output canvas
+                -TILE_CENTER_WIDTH, -TILE_CENTER_HEIGHT, TILE_WIDTH, TILE_HEIGHT);
             draw.restore();
         }
     }
     setTimeout(processFrame, SPEED);
 }
 
-function explode(x, y) {
+function explode(sourceImage, x, y) {
+    source = sourceImage;
     cycle = 0;
     initializeTiles();
-    jQuery("canvas.explosion").fadeIn(); 
     
     for (var row=0; row < ROWS; row++) {
         for (var col=0; col < COLS; col++) {

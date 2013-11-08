@@ -1,13 +1,24 @@
 var gEaseOut = 1000;
 var gEaseIn = 1800;
+var gCanvas;
 
 window.requestAnimFrame = (function(callback) {
     return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
     function(callback) {
-      window.setTimeout(callback, 1000 / 60);
+        window.setTimeout(callback, 1000 / 60);
     };
   })();
 
+function setCanvasAttributes() {
+    jQuery(gCanvas).attr("width", jQuery("img.glacier").width());
+    jQuery(gCanvas).attr("height", jQuery("img.glacier").height());
+    
+    var elt = jQuery("img.glacier.active")[0];
+    jQuery(gCanvas).css({
+        "top": jQuery(elt).css("top"),
+        "left": jQuery(elt).css("left")
+    });
+}
 
 function setWaterLevel(imgIdx, duration) {
     if (duration === undefined) {
@@ -27,80 +38,100 @@ function setWaterLevel(imgIdx, duration) {
                                 "easeInSine");
 }
 
+function drawGlacier(elt, x, opacity) {
+    if (x === undefined) {
+        x = 0;
+    }
+    if (opacity === undefined) {
+        opacity = 1;
+    }
+    
+    gContext = gCanvas.getContext('2d');
+    
+    gContext.save();
+    gContext.globalAlpha = opacity;
+    gContext.drawImage(elt, x, 0, jQuery(elt).width(), jQuery(elt).height());
+    gContext.restore();
+}
+
+function animateGlaciers(glaciers) {
+    var finished = 0;
+    
+    // clear
+    gContext.clearRect(0, 0, gCanvas.width, gCanvas.height);
+    
+    for (var i=0; i < glaciers.length; i++) {
+        var glacier = glaciers[i];
+        
+        if (glacier.opacity < 0) {
+            jQuery(glacier.elt).hide();
+        }
+        
+        if (glacier.x1 > glacier.x2) {
+            glacier.x1 -= .2;
+        } else {
+            jQuery(glacier.elt).css({"left": glacier.x2 + "px"});
+        }
+        
+        glacier.opacity += glacier.changeBy;
+        if (glacier.opacity < 0) {
+            glacier.opacity = 0;
+            finished++;
+        } else if (glacier.opacity > 1) {
+            glacier.opacity = 1;
+            finished++;
+        }
+        
+        drawGlacier(glacier.elt, glacier.x1, glacier.opacity);
+    }
+    
+    if (finished === glaciers.length) {
+        return;
+    } else {    
+        // request new frame
+        requestAnimFrame(function() {
+            animateGlaciers(glaciers);
+        });
+    }
+}
+
 function swipeGlacier() {
     var elt = jQuery("img.glacier.active")[0];
     var imgIdx = parseInt(jQuery(elt).data("idx"), 10);
     var newIdx = (imgIdx + 1) % (gImageCount + 1);
     
     if (imgIdx < gImageCount && newIdx > 0) {
-        explode(150, 150);
+        crumble(elt, 200, 260);
+        setTimeout(function() {
+            var left = parseInt(jQuery(elt).css("left"), 10);
+            var newElt = jQuery("img.glacier[data-idx='" + newIdx + "']")[0];
+            var newLeft = parseInt(jQuery(newElt).css("left"), 10);
 
-        var newElt = jQuery("img.glacier[data-idx='" + newIdx + "']")[0];
-        
-        var left = parseInt(jQuery(elt).css("left"), 10);
-        var newLeft = parseInt(jQuery(newElt).css("left"), 10);
-        
-        jQuery(newElt).show();
-        jQuery(newElt).css({"left": (newLeft - 10) + "px"});
-        
-        jQuery(elt).removeClass("active");
-        jQuery(newElt).addClass("active");
-        
-        jQuery(elt).animate(
-            {"left": (left - 10) + "px",
-             "opacity": 0,
-             "clip": "rect(0px,0px,0px,0px)"},
-            gEaseOut,
-            "easeInSine",
-            function() {
-                jQuery(elt).hide();
-                
-            });
-        jQuery(newElt).animate({
-            "opacity": 1},
-            gEaseIn,
-            "easeInSine",
-            function() {});
-        
-        var macroElt = jQuery("img.inset[data-idx='" + imgIdx + "']")[0];
-        var macroNewElt = jQuery("img.inset[data-idx='" + newIdx + "']")[0];
-        
-        jQuery(macroNewElt).fadeIn(gEaseOut);
-        jQuery(macroElt).fadeOut(gEaseIn);
-        setWaterLevel(imgIdx, gEaseIn)
-        
-        var left = parseInt(jQuery("canvas.explosion").css("left"), 10);
-        jQuery("canvas.explosion").css({"left": left + (imgIdx * 5)});
-    }
+            animateGlaciers([
+                { "elt": elt,
+                  "x1": left,
+                  "x2": left - 10,
+                  "opacity": 1,
+                  "changeBy": -0.03},
+                { "elt": newElt,
+                  "x1": newLeft,
+                  "x2": newLeft - 10,
+                  "opacity": 0,
+                  "changeBy": 0.01}]);
+            
+            jQuery(elt).removeClass("active");
+            jQuery(newElt).addClass("active");
+            
+            var macroElt = jQuery("img.inset[data-idx='" + imgIdx + "']")[0];
+            var macroNewElt = jQuery("img.inset[data-idx='" + newIdx + "']")[0];
+            
+            jQuery(macroNewElt).fadeIn(gEaseOut);
+            jQuery(macroElt).fadeOut(gEaseIn);
+            setWaterLevel(imgIdx, gEaseIn);
+        }, 1200);
+    }    
 }
 
-function drawGlacier(imgIdx, context) {
-    var elt = jQuery("img.glacier[data-idx='" + imgIdx + "']");
-    context.drawImage(img, 0, 0);
-}
-
-function animate(imgIdx, canvas, context, startTime) {
-  // update
-  var time = (new Date()).getTime() - startTime;
-
-  var linearSpeed = 100;
-  // pixels / second
-  var newX = linearSpeed * time / 1000;
-
-  if(newX < canvas.width - myRectangle.width - myRectangle.borderWidth / 2) {
-    myRectangle.x = newX;
-  }
-
-  // clear
-  context.clearRect(0, 0, canvas.width, canvas.height);
-
-  drawRectangle(myRectangle, context);
-
-  // request new frame
-  requestAnimFrame(function() {
-    animate(myRectangle, canvas, context, startTime);
-  });
-}
 
 function reset() {
     jQuery("img.glacier.active").animate({'opacity': 0},
@@ -112,7 +143,7 @@ function reset() {
             jQuery("img.glacier").css({"left": "10px"});
             
             // except glacier with data-idx='1'
-            jQuery("img.glacier[data-idx='1']") 
+            jQuery("img.glacier[data-idx='1']")
                .addClass("active")
                .show()
                .css({"left": "0px", "opacity": 1});                           
@@ -123,14 +154,19 @@ function reset() {
             
             // reset water level
             setWaterLevel(0);
+            setCanvasAttributes();
+            
+            var elt = jQuery("img.glacier.active")[0];
+            drawGlacier(elt);
     });
 }
 
 jQuery(document).on("pageinit", function (event) {
     initInteractive("glacier");
     
-    //initExplosion(jQuery("#glacier-chunk")[0],
-    //              jQuery("canvas.explosion")[0]);
+    gCanvas = jQuery("div.glacierview canvas")[0];    
+    setCanvasAttributes();
+    initExplosion(gCanvas);
 
     jQuery("img.glacier, img.inset").swipeleft(function(event) {
         event.stopImmediatePropagation();
@@ -140,7 +176,7 @@ jQuery(document).on("pageinit", function (event) {
     
     jQuery("canvas").swipeleft(function(event) {
         event.stopImmediatePropagation();
-        animateGlacier();                
+        swipeGlacier();                
         return false;
     });
     
@@ -156,8 +192,14 @@ jQuery(document).on("pageinit", function (event) {
         var elt = jQuery("img.glacier.active")[0];
         imgIdx = parseInt(jQuery(elt).data("idx"), 10);
         
-        setWaterLevel(imgIdx - 1);               
+        setWaterLevel(imgIdx - 1);
+        setCanvasAttributes();
+        
+        var elt = jQuery("img.glacier.active")[0];
+        drawGlacier(elt);
+
     });
     
-    drawGlacier(1);
+    var elt = jQuery("img.glacier[data-idx='1']")[0];
+    drawGlacier(elt);
 });
