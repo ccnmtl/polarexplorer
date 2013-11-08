@@ -1,105 +1,100 @@
 var source;
 var draw;
-var cycle;
 
 var RAD = Math.PI/180;
-var MAX_CYCLES = 30;
-var TILE_WIDTH = 10;
-var TILE_HEIGHT = 10;
-var TILE_CENTER_WIDTH = 5;
-var TILE_CENTER_HEIGHT = 5;
-var SOURCERECT = {x:0, y:0, width:100, height:110};
-var PAINTRECT = {x:0, y:0, width:100, height:110};
-var SPEED = 100;
-var ROWS = SOURCERECT.height / TILE_HEIGHT;
-var COLS = SOURCERECT.width / TILE_WIDTH;
+var TILE_WIDTH = 12;
+var TILE_HEIGHT = 12;
+var TILE_CENTER_WIDTH = 6;
+var TILE_CENTER_HEIGHT = 6;
 var tiles;
+var gRows, gCols;
 
+function crumbleInit(outputcanvas, sourceWidth, sourceHeight) {
+    draw = outputcanvas.getContext('2d');       
 
-function initExplosion(outputcanvas) {
-    draw = outputcanvas.getContext('2d');
-    
-    tiles = new Array(ROWS);    
-    for (var row=0, y=0; row < ROWS; row++, y+=TILE_HEIGHT) {
-        tiles[row] = new Array(COLS);
-        for (var col=0, x=0; col < COLS; col++, x+=TILE_WIDTH) {
+    gRows = Math.round(sourceHeight / TILE_HEIGHT);
+    gCols = Math.round(sourceWidth / TILE_WIDTH);
+
+    tiles = new Array(gRows);
+    for (var row=0, y=0; row < gRows; row++, y+=TILE_HEIGHT) {
+        tiles[row] = new Array(gCols);
+        for (var col=0, x=0; col < gCols; col++, x+=TILE_WIDTH) {
             var tile = new Tile();
-            tiles[row][col] = tile;            
+            tiles[row][col] = tile;
         }
     }    
 }
 
-function processFrame(){
-    draw.clearRect(PAINTRECT.x, PAINTRECT.y,PAINTRECT.width,PAINTRECT.height);
-    
-    cycle++;
-    if (cycle > MAX_CYCLES) {
-        return;
-    }
-    for (var col=0; col < COLS; col++) {
-        for (var row=0; row < ROWS; row++) {
+
+function crumbleFrame() {
+    for (var col=0; col < gCols; col++) {
+        for (var row=0; row < gRows; row++) {
             var tile = tiles[row][col];
             
-            draw.clearRect(tile.currentX-TILE_CENTER_WIDTH-1,
-                    tile.currentY-TILE_CENTER_HEIGHT-1, TILE_WIDTH+1, TILE_HEIGHT+1);
+            draw.clearRect(tile.outputX-(TILE_CENTER_WIDTH+2),
+                           tile.outputY-(TILE_CENTER_HEIGHT+2),
+                           TILE_WIDTH+2, TILE_HEIGHT+2);
             
             
             if (tile.force > 0.0001) {
                 tile.moveX *= tile.force;
                 tile.moveY *= tile.force;
-                tile.currentX += tile.moveX;
-                tile.currentY += tile.moveY;
+                tile.outputX += tile.moveX;
+                tile.outputY += tile.moveY;
                 
                 tile.moveRotation *= tile.force;
                 tile.rotation += tile.moveRotation;
                 tile.rotation %= 360;
                 tile.force *= 1.05;
-                /**                
-                if (tile.currentX <= 0 || tile.currentX >= PAINTRECT.width){
-                    tile.moveX *= -1;
-                }
-                if(tile.currentY <= 0) {
-                    tile.moveY *= -1;
-                }
-                **/
             }
             draw.save();
             
-            //The translate() method remaps the (0,0) position on the canvas.
             draw.drawImage(source,
                 // where to pick up the image from the source canvas.
                 tile.sourceX, tile.sourceY, TILE_WIDTH, TILE_HEIGHT,
                 // where to draw it on the output canvas
-                tile.currentX-TILE_CENTER_WIDTH, tile.currentY-TILE_CENTER_HEIGHT, TILE_WIDTH, TILE_HEIGHT);
+                tile.outputX-TILE_CENTER_WIDTH, tile.outputY-TILE_CENTER_HEIGHT, TILE_WIDTH, TILE_HEIGHT);
             draw.restore();
         }
     }
-    setTimeout(processFrame, SPEED);
 }
 
-function crumble(sourceImage, sourceX, sourceY, sourceWidth, sourceHeight) {
+function crumbleStart(sourceImage, step) {
     source = sourceImage;
-    cycle = 0;
     
-    var debugSourceY = sourceY - 200; // For debugging purposes
+    var sourceX = step.x;
+    var sourceY = step.y;
+    var sourceWidth = step.w;
+    var sourceHeight = step.h;
+    var outputX = step.x1;
+    var outputY = step.y1;
+    var outputWidth = step.w1;
+    var outputHeight = step.h1;
     
-    for (var row=0, y=0; row < ROWS; row++, y+=TILE_HEIGHT) {
-        for (var col=0, x=0; col < COLS; col++, x+=TILE_WIDTH) {                
-            var tile = tiles[row][col];
+    gRows = Math.round(sourceHeight / TILE_HEIGHT);
+    gCols = Math.round(sourceWidth / TILE_WIDTH);
+    
+    var debugSourceY = sourceY - 200;
+    
+    for (var row=0, y=0; row < gRows; row++, y+=TILE_HEIGHT) {
+        for (var col=0, x=0; col < gCols; col++, x+=TILE_WIDTH) {
+            var tile = new Tile();
+            tiles[row][col] = tile;
+            
             tile.sourceX = sourceX + x;
             tile.sourceY = sourceY + y;
             
-            tile.currentX = sourceX + x; 
-            tile.currentY = debugSourceY + y;
+            tile.outputX = outputX  + x; 
+            tile.outputY = outputY + y;
             
-            var xdiff = sourceWidth - tile.currentX;
-            var ydiff = sourceHeight;
+            var xdiff = outputWidth - tile.outputX;
+            var ydiff = outputHeight;
             
             var dist = Math.sqrt(xdiff*xdiff + ydiff*ydiff);        
             var randRange = 220+(Math.random()*30);
             
             var range = randRange-dist;            
-            tile.force = 3*(range/randRange);
+            tile.force = 5*(range/randRange);
             
             var radians = Math.atan2(ydiff, xdiff);            
             tile.moveX = Math.cos(radians);
@@ -108,14 +103,12 @@ function crumble(sourceImage, sourceX, sourceY, sourceWidth, sourceHeight) {
             tile.moveRotation = 0.5-Math.random();
         }
     }
-    
-    processFrame();
 }
 
 
 function Tile(){
-    this.currentX = 0;
-    this.currentY = 0;
+    this.outputX = 0;
+    this.outputY = 0;
     this.rotation = 0;
     this.force = 0;
     this.z = 0;

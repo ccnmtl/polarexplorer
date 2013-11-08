@@ -76,7 +76,7 @@ function initInteractive(name) {
 
 var gOrientation = undefined;
 
-function getOrientationLabel() {                    
+function orientationLabel() {                    
     var rotation = window.hasOwnProperty("orientation") ?
         window.orientation : 90;
     
@@ -97,7 +97,7 @@ function orientView(orientation) {
 }
 
 jQuery(document).on("pageinit", function (event) {                    
-    gOrientation = getOrientationLabel();
+    gOrientation = orientationLabel();
     orientView(gOrientation);
 
     jQuery(window).bind("orientationchange", function (e, ui) {

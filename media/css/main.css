@@ -115,11 +115,6 @@ img.helptext.dismiss {
     position: absolute;
 }
 
-canvas.explosion {
-    position: absolute;
-    z-index: 998;
-}
-
 /* iPhone */
 @media only screen 
 and (min-device-width : 320px) 
@@ -257,11 +252,6 @@ and (max-device-width : 1024px)  {
         width: 767px;        
     }
     
-    .glacierview.portrait canvas.explosion {
-        top: 620px;
-        left: 40px;
-    }
-    
     .glacierview.landscape img.glacier {
         top: 225px;
         height: 384px;
@@ -270,11 +260,6 @@ and (max-device-width : 1024px)  {
     
     .glacierview.landscape img.water {
         width: 1024px;        
-    }
-    
-    .glacierview.landscape canvas.explosion {
-        top: 375px;
-        left: 93px;
     }
     
     .waterview.landscape div.ui-slider-vertical {
@@ -334,11 +319,6 @@ and (max-device-width : 5000px) {
     
     .glacierview img.water {
         width: 1024px;
-    }
-    
-    .glacierview canvas.explosion {
-        top: 503px;
-        left: -60px;
     }
     
     .waterview div.ui-slider-vertical {
