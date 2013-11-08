@@ -31,16 +31,16 @@ function crumbleFrame() {
         for (var row=0; row < gRows; row++) {
             var tile = tiles[row][col];
             
-            draw.clearRect(tile.outputX-(TILE_CENTER_WIDTH+2),
-                           tile.outputY-(TILE_CENTER_HEIGHT+2),
+            draw.clearRect(tile.currentX-(TILE_CENTER_WIDTH+2),
+                           tile.currentY-(TILE_CENTER_HEIGHT+2),
                            TILE_WIDTH+2, TILE_HEIGHT+2);
             
             
             if (tile.force > 0.0001) {
                 tile.moveX *= tile.force;
                 tile.moveY *= tile.force;
-                tile.outputX += tile.moveX;
-                tile.outputY += tile.moveY;
+                tile.currentX += tile.moveX;
+                tile.currentY += tile.moveY;
                 
                 tile.moveRotation *= tile.force;
                 tile.rotation += tile.moveRotation;
@@ -53,7 +53,7 @@ function crumbleFrame() {
                 // where to pick up the image from the source canvas.
                 tile.sourceX, tile.sourceY, TILE_WIDTH, TILE_HEIGHT,
                 // where to draw it on the output canvas
-                tile.outputX-TILE_CENTER_WIDTH, tile.outputY-TILE_CENTER_HEIGHT, TILE_WIDTH, TILE_HEIGHT);
+                tile.currentX-TILE_CENTER_WIDTH, tile.currentY-TILE_CENTER_HEIGHT, TILE_WIDTH, TILE_HEIGHT);
             draw.restore();
         }
     }
@@ -66,15 +66,11 @@ function crumbleStart(sourceImage, step) {
     var sourceY = step.y;
     var sourceWidth = step.w;
     var sourceHeight = step.h;
-    var outputX = step.x1;
-    var outputY = step.y1;
     var outputWidth = step.w1;
     var outputHeight = step.h1;
     
     gRows = Math.round(sourceHeight / TILE_HEIGHT);
     gCols = Math.round(sourceWidth / TILE_WIDTH);
-    
-    var debugSourceY = sourceY - 200;
     
     for (var row=0, y=0; row < gRows; row++, y+=TILE_HEIGHT) {
         for (var col=0, x=0; col < gCols; col++, x+=TILE_WIDTH) {
@@ -84,17 +80,17 @@ function crumbleStart(sourceImage, step) {
             tile.sourceX = sourceX + x;
             tile.sourceY = sourceY + y;
             
-            tile.outputX = outputX  + x; 
-            tile.outputY = outputY + y;
+            tile.currentX = sourceX  + x; 
+            tile.currentY = sourceY + y;
             
-            var xdiff = outputWidth - tile.outputX;
+            var xdiff = outputWidth - tile.currentX;
             var ydiff = outputHeight;
             
             var dist = Math.sqrt(xdiff*xdiff + ydiff*ydiff);        
             var randRange = 220+(Math.random()*30);
             
             var range = randRange-dist;            
-            tile.force = 5*(range/randRange);
+            tile.force = 4*(range/randRange);
             
             var radians = Math.atan2(ydiff, xdiff);            
             tile.moveX = Math.cos(radians);
@@ -107,8 +103,8 @@ function crumbleStart(sourceImage, step) {
 
 
 function Tile(){
-    this.outputX = 0;
-    this.outputY = 0;
+    this.currentX = 0;
+    this.currentY = 0;
     this.rotation = 0;
     this.force = 0;
     this.z = 0;
