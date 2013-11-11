@@ -1,8 +1,9 @@
 var gEaseOut = 1000;
-var gEaseIn = 1500;
+var gEaseIn = 1000;
 var gCanvas;
 var gWidth = 84;
 var gHeight = 108;
+var gSourceY = 270;
 
 window.requestAnimFrame = (function(callback) {
     return window.requestAnimationFrame ||
@@ -15,55 +16,25 @@ window.requestAnimFrame = (function(callback) {
         };
   })();
 
-var gAnimationSteps = {
-    "desktop": {
-        "landscape": [
-           {"x": 200, "y": 268, "w": gWidth, "h": gHeight, "x1": 200, "y1": 268, "w1": 120, "h1": 132}, 
-           {"x": 200, "y": 268, "w": gWidth, "h": gHeight, "x1": 200, "y1": 268, "w1": 120, "h1": 132}, /* red */
-           {"x": 200, "y": 268, "w": gWidth, "h": gHeight, "x1": 200, "y1": 268, "w1": 120, "h1": 132}, /* orange */
-           {"x": 200, "y": 268, "w": gWidth, "h": gHeight, "x1": 200, "y1": 268, "w1": 120, "h1": 132}, /* yellow */
-           {"x": 255, "y": 270, "w": gWidth, "h": gHeight, "x1": 200, "y1": 268, "w1": 192, "h1": 132}, /* green */
-           {"x": 315, "y": 270, "w": gWidth, "h": gHeight, "x1": 200, "y1": 268, "w1": 250, "h1": 132}, /* light blue */
-           {"x": 370, "y": 270, "w": gWidth, "h": gHeight, "x1": 200, "y1": 268, "w1": 275, "h1": 132}, /* dark blue */
-           {"x": 380, "y": 270, "w": gWidth, "h": gHeight, "x1": 200, "y1": 268, "w1": 340, "h1": 132}, /* pink */          
-        ]
-    },
-    "tablet":  {
-        "landscape": [                      
-           {"x": 200, "y": 268, "w": gWidth, "h": gHeight, "x1": 200, "y1": 268, "w1": 120, "h1": 132}, 
-           {"x": 200, "y": 268, "w": gWidth, "h": gHeight, "x1": 200, "y1": 268, "w1": 120, "h1": 132}, /* red */
-           {"x": 200, "y": 268, "w": gWidth, "h": gHeight, "x1": 200, "y1": 268, "w1": 120, "h1": 132}, /* orange */
-           {"x": 200, "y": 268, "w": gWidth, "h": gHeight, "x1": 200, "y1": 268, "w1": 120, "h1": 132}, /* yellow */
-           {"x": 255, "y": 270, "w": gWidth, "h": gHeight, "x1": 200, "y1": 268, "w1": 192, "h1": 132}, /* green */
-           {"x": 315, "y": 270, "w": gWidth, "h": gHeight, "x1": 200, "y1": 268, "w1": 250, "h1": 132}, /* light blue */
-           {"x": 370, "y": 270, "w": gWidth, "h": gHeight, "x1": 200, "y1": 268, "w1": 275, "h1": 132}, /* dark blue */
-           {"x": 380, "y": 270, "w": gWidth, "h": gHeight, "x1": 200, "y1": 268, "w1": 340, "h1": 132}, /* pink */          
-        ],
-        "portrait": [
-           {"x": 210, "y": 268, "w": gWidth, "h": gHeight-24, "x1": 150, "y1": 200, "w1": 80, "h1": 132}, 
-           {"x": 210, "y": 268, "w": gWidth, "h": gHeight-24, "x1": 160, "y1": 208, "w1": 80, "h1": 132}, /* red */
-           {"x": 210, "y": 268, "w": gWidth, "h": gHeight-24, "x1": 160, "y1": 208, "w1": 80, "h1": 132}, /* orange */
-           {"x": 210, "y": 268, "w": gWidth, "h": gHeight-24, "x1": 160, "y1": 208, "w1": 80, "h1": 132}, /* yellow */
-           {"x": 240, "y": 270, "w": gWidth, "h": gHeight-24, "x1": 180, "y1": 208, "w1": 90, "h1": 132}, /* green */
-           {"x": 300, "y": 270, "w": gWidth, "h": gHeight-24, "x1": 210, "y1": 208, "w1": 150, "h1": 132}, /* light blue */
-           {"x": 370, "y": 270, "w": gWidth, "h": gHeight-24, "x1": 250, "y1": 208, "w1": 210, "h1": 132}, /* dark blue */
-           {"x": 400, "y": 270, "w": gWidth, "h": gHeight-24, "x1": 375, "y1": 208, "w1": 210, "h1": 132}, /* pink */                     
-        ]
-    },
-    "phone":  {
-        "landscape": [],
-        "portrait": []
-    },
-};
+var gSourceX = [
+    200, 
+    210, /* red */
+    210, /* orange */
+    210, /* yellow */
+    255, /* green */
+    315, /* light blue */
+    370, /* dark blue */
+    390 /* pink */
+]
 
-function screenDescriptor() {
+function getForceFactor() {
     var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;    
     if (width >= 1025 && width <= 5000) {
-        return "desktop";
+        return 2.75;
     } else if (width >= 768 && width <= 1024) {
-        return "tablet";
+        return 4.25;
     } else {
-        return "phone";
+        return 4;
     }
 }
 
@@ -161,8 +132,8 @@ function swipeGlacier() {
     var newIdx = (imgIdx + 1) % (gImageCount + 1);
     
     if (imgIdx < gImageCount && newIdx > 0) {
-        var step = gAnimationSteps[screenDescriptor()][orientationLabel()][imgIdx-1];
-        crumbleStart(elt, step);
+        var sourceX = gSourceX[imgIdx-1];
+        crumbleStart(elt, sourceX, orientationLabel());
         
         var left = parseInt(jQuery(elt).css("left"), 10);
         var newElt = jQuery("img.glacier[data-idx='" + newIdx + "']")[0];
@@ -174,7 +145,7 @@ function swipeGlacier() {
               "x1": left,
               "x2": left - distance,
               "opacity": 1,
-              "changeBy": -0.02},
+              "changeBy": -0.04},
             { "elt": newElt,
               "x1": newLeft,
               "x2": newLeft - distance,
@@ -228,7 +199,7 @@ jQuery(document).on("pageinit", function (event) {
     gCanvas = jQuery("div.glacierview canvas")[0];    
     setCanvasAttributes();
     
-    crumbleInit(gCanvas, gWidth, gHeight);
+    crumbleInit(gCanvas, getForceFactor(), gSourceY, gWidth, gHeight);
 
     jQuery("img.glacier, img.inset").swipeleft(function(event) {
         event.stopImmediatePropagation();

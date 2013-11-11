@@ -6,12 +6,17 @@ var TILE_WIDTH = 12;
 var TILE_HEIGHT = 12;
 var TILE_CENTER_WIDTH = 6;
 var TILE_CENTER_HEIGHT = 6;
+
 var tiles;
 var gRows, gCols;
+var gSourceY;
+var gForceFactor;
 
-function crumbleInit(outputcanvas, sourceWidth, sourceHeight) {
+function crumbleInit(outputcanvas, forceFactor, sourceY, sourceWidth, sourceHeight) {
     draw = outputcanvas.getContext('2d');       
-
+    
+    gForceFactor = forceFactor;
+    gSourceY = sourceY;
     gRows = Math.round(sourceHeight / TILE_HEIGHT);
     gCols = Math.round(sourceWidth / TILE_WIDTH);
 
@@ -24,7 +29,6 @@ function crumbleInit(outputcanvas, sourceWidth, sourceHeight) {
         }
     }    
 }
-
 
 function crumbleFrame() {
     for (var col=0; col < gCols; col++) {
@@ -59,38 +63,37 @@ function crumbleFrame() {
     }
 }
 
-function crumbleStart(sourceImage, step) {
+function crumbleStart(sourceImage, sourceX, orientation) {
+    var outputWidth = sourceX * .1;
+    var outputHeight = gSourceY * .65;
+    var xOffset = 1;
+    var yOffset = 1;
+    
+    if (orientation === "portrait") {
+        xOffset = .75;
+        yOffset = .75;
+    }
+    
     source = sourceImage;
-    
-    var sourceX = step.x;
-    var sourceY = step.y;
-    var sourceWidth = step.w;
-    var sourceHeight = step.h;
-    var outputWidth = step.w1;
-    var outputHeight = step.h1;
-    
-    gRows = Math.round(sourceHeight / TILE_HEIGHT);
-    gCols = Math.round(sourceWidth / TILE_WIDTH);
     
     for (var row=0, y=0; row < gRows; row++, y+=TILE_HEIGHT) {
         for (var col=0, x=0; col < gCols; col++, x+=TILE_WIDTH) {
-            var tile = new Tile();
-            tiles[row][col] = tile;
+            tile = tiles[row][col];
             
             tile.sourceX = sourceX + x;
-            tile.sourceY = sourceY + y;
+            tile.sourceY = gSourceY + y;
             
-            tile.currentX = sourceX  + x; 
-            tile.currentY = sourceY + y;
+            tile.currentX = (sourceX  + x) * xOffset; 
+            tile.currentY = (gSourceY + y) * yOffset;
             
-            var xdiff = outputWidth - tile.currentX;
+            var xdiff = -(outputWidth + x);
             var ydiff = outputHeight;
             
             var dist = Math.sqrt(xdiff*xdiff + ydiff*ydiff);        
             var randRange = 220+(Math.random()*30);
             
             var range = randRange-dist;            
-            tile.force = 4*(range/randRange);
+            tile.force = gForceFactor*(range/randRange);
             
             var radians = Math.atan2(ydiff, xdiff);            
             tile.moveX = Math.cos(radians);
