@@ -65,7 +65,7 @@ function crumbleFrame() {
 
 function crumbleStart(sourceImage, sourceX, orientation) {
     var outputWidth = sourceX * .1;
-    var outputHeight = gSourceY * .65;
+    var outputHeight = gSourceY * .6;
     var xOffset = 1;
     var yOffset = 1;
     
