@@ -162,7 +162,7 @@ function swipeGlacier() {
         
         jQuery(macroNewElt).fadeIn(gEaseOut);
         jQuery(macroElt).fadeOut(gEaseIn);
-        setWaterLevel(imgIdx, gEaseIn);
+        setWaterLevel(imgIdx, 1800);
     }
 }
 
