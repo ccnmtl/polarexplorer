@@ -11,11 +11,37 @@ var tiles;
 var gRows, gCols;
 var gSourceY;
 var gForceFactor;
+var gScreenDescriptor;
 
-function crumbleInit(outputcanvas, forceFactor, sourceY, sourceWidth, sourceHeight) {
+function getForceFactor(screenDescriptor) {
+    if (screenDescriptor === "desktop") {
+        return 2.75;
+    } else if (screenDescriptor === "tablet") {
+        return 4.25;
+    } else {
+        return 4;
+    }
+}
+
+function getOffset(screenDescriptor, orientation) {
+    if (screenDescriptor === "phone") {
+        if (orientation === "portrait") {
+            return {x: .31, y: .31};
+        } else if (orientation === "landscape") {
+            return {x: .56, y: .56};
+        }
+    } else if (orientation === "portrait") {
+        return {x: .75, y: .75};
+    } else if (orientation === "landscape") {
+        return {x: 1, y: 1};
+    }
+}
+
+function crumbleInit(outputcanvas, screenDescriptor, sourceY, sourceWidth, sourceHeight) {
     draw = outputcanvas.getContext('2d');       
     
-    gForceFactor = forceFactor;
+    gScreenDescriptor = screenDescriptor;
+    gForceFactor = getForceFactor(screenDescriptor);
     gSourceY = sourceY;
     gRows = Math.round(sourceHeight / TILE_HEIGHT);
     gCols = Math.round(sourceWidth / TILE_WIDTH);
@@ -66,13 +92,7 @@ function crumbleFrame() {
 function crumbleStart(sourceImage, sourceX, orientation) {
     var outputWidth = sourceX * .1;
     var outputHeight = gSourceY * .6;
-    var xOffset = 1;
-    var yOffset = 1;
-    
-    if (orientation === "portrait") {
-        xOffset = .75;
-        yOffset = .75;
-    }
+    var offset = getOffset(gScreenDescriptor, orientation);
     
     source = sourceImage;
     
@@ -83,8 +103,8 @@ function crumbleStart(sourceImage, sourceX, orientation) {
             tile.sourceX = sourceX + x;
             tile.sourceY = gSourceY + y;
             
-            tile.currentX = (sourceX  + x) * xOffset; 
-            tile.currentY = (gSourceY + y) * yOffset;
+            tile.currentX = (sourceX  + x) * offset.x; 
+            tile.currentY = (gSourceY + y) * offset.y;
             
             var xdiff = -(outputWidth + x);
             var ydiff = outputHeight;

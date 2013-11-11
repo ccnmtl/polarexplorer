@@ -27,17 +27,6 @@ var gSourceX = [
     390 /* pink */
 ]
 
-function getForceFactor() {
-    var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;    
-    if (width >= 1025 && width <= 5000) {
-        return 2.75;
-    } else if (width >= 768 && width <= 1024) {
-        return 4.25;
-    } else {
-        return 4;
-    }
-}
-
 function setCanvasAttributes() {
     jQuery(gCanvas).attr("width", jQuery("img.glacier").width());
     jQuery(gCanvas).attr("height", jQuery("img.glacier").height() + 50);
@@ -145,7 +134,7 @@ function swipeGlacier() {
               "x1": left,
               "x2": left - distance,
               "opacity": 1,
-              "changeBy": -0.04},
+              "changeBy": -0.05},
             { "elt": newElt,
               "x1": newLeft,
               "x2": newLeft - distance,
@@ -199,7 +188,7 @@ jQuery(document).on("pageinit", function (event) {
     gCanvas = jQuery("div.glacierview canvas")[0];    
     setCanvasAttributes();
     
-    crumbleInit(gCanvas, getForceFactor(), gSourceY, gWidth, gHeight);
+    crumbleInit(gCanvas, screenDescriptor(), gSourceY, gWidth, gHeight);
 
     jQuery("img.glacier, img.inset").swipeleft(function(event) {
         event.stopImmediatePropagation();

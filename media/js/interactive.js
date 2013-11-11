@@ -42,6 +42,17 @@ function retrieveData(name) {
     }
 }
 
+function screenDescriptor () {
+    var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;    
+    if (width >= 1025 && width <= 5000) {
+        return "desktop"
+    } else if (width >= 768 && width <= 1024) {
+        return "tablet";
+    } else {
+        return "phone";
+    }
+}
+
 function disableScrolling(evt) {
     if (evt.target.className !== "inset active" &&
         evt.target.parentElement.className !== "ui-btn-inner" &&
@@ -63,8 +74,11 @@ function handleOverlay(name) {
 }
 
 function initInteractive(name) {
-    document.addEventListener('touchstart', disableScrolling, false);
-    document.addEventListener('touchmove', disableScrolling, false);
+    
+    if (screenDescriptor() !== "phone") {
+        document.addEventListener('touchstart', disableScrolling, false);        
+        document.addEventListener('touchmove', disableScrolling, false);
+    }
     
     jQuery("img").on('dragstart', function(event) {
         event.preventDefault();
@@ -89,6 +103,7 @@ function orientView(orientation) {
         jQuery.mobile.showPageLoadingMsg();                                            
         jQuery("div.pageview").removeClass(gOrientation).addClass(orientation);
         jQuery("div.ui-content").removeClass(gOrientation).addClass(orientation);
+        
         gOrientation = orientation;
         jQuery("#base-content").fadeIn(function() {
             jQuery.mobile.hidePageLoadingMsg();    

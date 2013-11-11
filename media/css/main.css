@@ -66,11 +66,12 @@ img.helptext.dismiss {
 }
     
 .glacierview.portrait {
-    background: url(/site_media/img/glacier/background_portrait.png) no-repeat;    
+    background: url(/site_media/img/glacier/background_portrait.png) no-repeat;
 }
 
 .glacierview.landscape {
-    background: url(/site_media/img/glacier/background.png) no-repeat;        
+    background: url(/site_media/img/glacier/background.png) no-repeat;
+            
 }
 
 .waterview.portrait {
@@ -119,17 +120,26 @@ img.helptext.dismiss {
 @media only screen 
 and (min-device-width : 320px) 
 and (max-device-width : 568px) {  
+    div.ui-content.landscape {
+        height: 276px;
+    }
+    
     .pageview.landscape {
         width: 568px;
-        height: 275px;
-        background-size: 568px 275px;
+        height: 276px;
+        background-size: 568px 276px;
+        overflow: hidden;
     }
-
+    
+    div.ui-content.portrait {
+        height: 504px;
+    }
+    
     .pageview.portrait {
         width: 320px;
-        height: 416px;
-        background-size: 320px 416px;
-    }
+        height: 504px;
+        background-size: 320px 504px;
+    }    
       
     .pageview img.inset {
         width: 175px;
@@ -156,21 +166,26 @@ and (max-device-width : 568px) {
     }          
        
     .glacierview.portrait img.glacier {
-        top: 259px;
+        top: 330px;
+        height: 120px;
+        width: 320px;
     }
     
     .glacierview.portrait img.water {
         width: 319px;
+        height: 200px;
     }
     
     .glacierview.landscape img.glacier {
         top: 50px;
+        height: 213px;
+        width: 568px;        
     }
     
     .glacierview.landscape img.water {
         width: 567px; 
     }
-
+    
     .waterview.landscape div.ui-slider-vertical {
         top: 100px;
         height: 75px;
