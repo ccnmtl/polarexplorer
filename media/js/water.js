@@ -59,6 +59,16 @@ jQuery(document).on("pageinit", function (event) {
     initInteractive("water");
     jQuery("#water").verticalslider();
     
+    var screen = screenDescriptor();
+    var orientation = orientationLabel();
+    if (screen === "phone") {
+        if (orientation === "portrait") {
+            gDefaultLevel = 68;
+        } else if (orientation === "landscape") {
+            gDefaultLevel = 60;
+        }
+    }
+
     setWaterLevel(1);
 
     jQuery("a.ui-slider-vertical-handle").html(sliderLabel);

@@ -71,7 +71,6 @@ img.helptext.dismiss {
 
 .glacierview.landscape {
     background: url(/site_media/img/glacier/background.png) no-repeat;
-            
 }
 
 .waterview.portrait {
@@ -134,7 +133,6 @@ and (max-device-width : 568px) {
         width: 568px;
         height: 276px;
         background-size: 568px 276px;
-        overflow: hidden;
     }
     
     div.ui-content.portrait {
@@ -197,15 +195,23 @@ and (max-device-width : 568px) {
         width: 567px; 
     }
     
+    .waterview.portrait {
+        background-image: url(/site_media/img/water/iphone_background_portrait.jpg);
+    }
+    
+    .waterview.landscape {
+        background-image: url(/site_media/img/water/iphone_background_landscape.jpg);
+    }
+    
     .waterview.landscape div.ui-slider-vertical {
-        top: 100px;
-        height: 75px;
+        top: 189px;
+        height: 120px;
         width: 568px;
     }
     
     .waterview.portrait div.ui-slider-vertical {
-        top: 290px;
-        height: 170px;
+        top: 342px;
+        height: 204px;
         width: 320px;
     }
 }
