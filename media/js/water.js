@@ -99,6 +99,7 @@ jQuery(document).on("pageinit", function (event) {
     });
     
     jQuery("#reset").click(function(event) {
+        jQuery.mobile.showPageLoadingMsg(); 
         var eltButton = this;
         event.preventDefault();
         jQuery(this).addClass("ui-btn-active");
@@ -107,6 +108,7 @@ jQuery(document).on("pageinit", function (event) {
         setWaterLevel(1);
         setTimeout(function() {
             jQuery(eltButton).removeClass("ui-btn-active");
+            jQuery.mobile.hidePageLoadingMsg();
         }, 300);
     });
 });

@@ -181,6 +181,7 @@ function reset(eltButton) {
             drawGlacier(elt);
             
             jQuery(eltButton).removeClass("ui-btn-active");
+            jQuery.mobile.hidePageLoadingMsg(); 
     });
 }
 
@@ -205,6 +206,7 @@ jQuery(document).on("pageinit", function (event) {
     });
     
     jQuery("#reset-button").click(function(event) {
+        jQuery.mobile.showPageLoadingMsg();     
         jQuery(this).addClass("ui-btn-active");
         event.preventDefault();
         reset(this);
