@@ -36,9 +36,10 @@
         
         <div id="about" data-role="dialog" data-url="about">
             <div data-role="header">
-                <h1>{% block about_title %}About{% endblock %}</h1>
+                <h1>About</h1>
             </div>            
             <div class="about-content" data-role="content">
+                <h4 style="text-align: center">{% block about_title %}{% endblock %}</h4>
                 {% block about_content %}
                     @todo Credits & Instructions
                 {% endblock %}                
