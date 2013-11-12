@@ -155,7 +155,7 @@ function swipeGlacier() {
     }
 }
 
-function reset() {
+function reset(eltButton) {
     jQuery("img.glacier.active").animate({'opacity': 0},
         function() {
             // deactivate active
@@ -179,6 +179,8 @@ function reset() {
             
             var elt = jQuery("img.glacier.active")[0];
             drawGlacier(elt);
+            
+            jQuery(eltButton).removeClass("ui-btn-active");
     });
 }
 
@@ -203,8 +205,9 @@ jQuery(document).on("pageinit", function (event) {
     });
     
     jQuery("#reset-button").click(function(event) {
+        jQuery(this).addClass("ui-btn-active");
         event.preventDefault();
-        reset();
+        reset(this);
         return false;
     });
     

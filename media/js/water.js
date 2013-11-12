@@ -98,9 +98,15 @@ jQuery(document).on("pageinit", function (event) {
         setWaterLevel();             
     });
     
-    jQuery("#reset").click(function() {
+    jQuery("#reset").click(function(event) {
+        var eltButton = this;
+        event.preventDefault();
+        jQuery(this).addClass("ui-btn-active");
         jQuery("img.inset").hide().removeClass("active");
         jQuery("img.inset[data-idx='1']").addClass("active").show();
         setWaterLevel(1);
+        setTimeout(function() {
+            jQuery(eltButton).removeClass("ui-btn-active");
+        }, 300);
     });
 });
