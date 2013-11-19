@@ -43,11 +43,11 @@ function setWaterLevel(imgIdx, duration) {
         duration = 0;
     }
     
-    var level = 80;
-    var increment = .95 * imgIdx;            
+    var level = 77;
+    var increment = .6 * imgIdx;            
     if (orientationLabel() == "landscape") {
-        level = 78;
-        increment = 2 * imgIdx;
+        level = 70.5;
+        increment = 1.1 * imgIdx;
     }
 
     var rise = level - increment;
@@ -151,7 +151,7 @@ function swipeGlacier() {
         
         jQuery(macroNewElt).fadeIn(gEaseOut);
         jQuery(macroElt).fadeOut(gEaseIn);
-        setWaterLevel(imgIdx, 1800);
+        setWaterLevel(imgIdx, 1500);
     }
 }
 

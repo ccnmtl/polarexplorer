@@ -85,6 +85,8 @@ function initInteractive(name) {
         return false;
     });
     
+    jQuery("body").show();
+    
     handleOverlay(name);
 }
 

@@ -105,11 +105,8 @@
         };
         
         jQuery(document).on("pageinit", function (event) {
-            jQuery("#reset").click(function() {
-                jQuery("#water").attr("value", defaultWaterLevel);
-                jQuery("#water").trigger("change");
-            });
-        });        
+            jQuery("body").show();
+        });
     </script>
 {% endblock %}
 
