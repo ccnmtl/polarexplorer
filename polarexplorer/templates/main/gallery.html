@@ -6,7 +6,7 @@
 
 {% block css %}
     {{ block.super }}
-    <link rel="stylesheet" href="/site_media/photoswipe/photoswipe.css" media="screen" />
+    <link rel="stylesheet" href="{{STATIC_URL}}photoswipe/photoswipe.css" media="screen" />
 {% endblock %}
 
 {% block content %}
@@ -46,11 +46,11 @@
 {% endblock %}
 
 {% block extrajs %}
-    <script type="text/javascript" src="/site_media/photoswipe/lib/klass.min.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}photoswipe/lib/klass.min.js"></script>
 {% endblock %}
 
 {% block js %}
-    <script type="text/javascript" src="/site_media/photoswipe/code.photoswipe-3.0.5.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}photoswipe/code.photoswipe-3.0.5.js"></script>
     <script type="text/javascript">
         (function(window, Util, PhotoSwipe) {
         
@@ -61,7 +61,7 @@
                 instance = PhotoSwipe.attach(
                     [
                         {% for photo in photos %}
-                            { url: '/site_media/img/{{section}}/{{photo.year}}{{photo.extension}}',
+                            { url: '{{STATIC_URL}}img/{{section}}/{{photo.year}}{{photo.extension}}',
                               caption: 
                                   {% ifequal section "antarctica" %}
                                       'Antarctic Melt Area {{photo.year}} - {{photo.year|add:"1"}}' 

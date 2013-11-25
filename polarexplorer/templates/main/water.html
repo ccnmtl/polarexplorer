@@ -6,7 +6,7 @@
 
 {% block css %}
     {{ block.super }}
-    <link href="/site_media/css/vslider.css" rel="stylesheet">
+    <link href="{{STATIC_URL}}css/vslider.css" rel="stylesheet">
 {% endblock %}
 
 {% block extrahead %}
@@ -58,16 +58,16 @@ Bell, R. E., 2008a. "The Unquiet Ice." Scientific American 298 (2): 60-67.
             <div class="ui-grid-solo">
                 <div class="ui-block-a pageview waterview">
                     <div class="ui-overlay">
-                        <img class="helptext macromap" src="/site_media/img/help/help_risingwater_map.png" />
-                        <img class="helptext pageview" src="/site_media/img/help/help_risingwater_interactive.png" />
-                        <img class="helptext dismiss" src="/site_media/img/help/help_dismiss.png" />                        
+                        <img class="helptext macromap" src="{{STATIC_URL}}img/help/help_risingwater_map.png" />
+                        <img class="helptext pageview" src="{{STATIC_URL}}img/help/help_risingwater_interactive.png" />
+                        <img class="helptext dismiss" src="{{STATIC_URL}}img/help/help_dismiss.png" />                        
                     </div>
                     
-                    <img class="inset active" src="/site_media/img/water/1.png" alt="macromap" data-idx="1" />
-                    <img class="inset" src="/site_media/img/water/2.png" alt="macromap" data-idx="2" style="display: none;"/>
-                    <img class="inset" src="/site_media/img/water/3.png" alt="macromap" data-idx="3" style="display: none;"/>
-                    <img class="inset" src="/site_media/img/water/4.png" alt="macromap" data-idx="4" style="display: none;"/>
-                    <img class="inset" src="/site_media/img/water/5.png" alt="macromap" data-idx="5" style="display: none;"/>
+                    <img class="inset active" src="{{STATIC_URL}}img/water/1.png" alt="macromap" data-idx="1" />
+                    <img class="inset" src="{{STATIC_URL}}img/water/2.png" alt="macromap" data-idx="2" style="display: none;"/>
+                    <img class="inset" src="{{STATIC_URL}}img/water/3.png" alt="macromap" data-idx="3" style="display: none;"/>
+                    <img class="inset" src="{{STATIC_URL}}img/water/4.png" alt="macromap" data-idx="4" style="display: none;"/>
+                    <img class="inset" src="{{STATIC_URL}}img/water/5.png" alt="macromap" data-idx="5" style="display: none;"/>
                 
                     <input type="vrange" name="water" id="water"
                         data-highlight="true" min="0" max="100"
@@ -82,7 +82,7 @@ Bell, R. E., 2008a. "The Unquiet Ice." Scientific American 298 (2): 60-67.
 {% endblock %}
 
 {% block js %}
-    <script type="text/javascript" src="/site_media/js/water.js" /></script>    
+    <script type="text/javascript" src="{{STATIC_URL}}js/water.js" /></script>    
 {% endblock %}
 
 

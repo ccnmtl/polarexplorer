@@ -66,19 +66,19 @@ img.helptext.dismiss {
 }
     
 .glacierview.portrait {
-    background: url(/site_media/img/glacier/background_portrait.png) no-repeat;
+    background: url(/media/img/glacier/background_portrait.png) no-repeat;
 }
 
 .glacierview.landscape {
-    background: url(/site_media/img/glacier/background.png) no-repeat;
+    background: url(/media/img/glacier/background.png) no-repeat;
 }
 
 .waterview.portrait {
-    background: url(/site_media/img/water/background_portrait.jpg) no-repeat;
+    background: url(/media/img/water/background_portrait.jpg) no-repeat;
 }
 
 .waterview.landscape {    
-    background: url(/site_media/img/water/background_landscape.jpg) no-repeat;        
+    background: url(/media/img/water/background_landscape.jpg) no-repeat;        
 }
 
 .glacierview img.glacier {
@@ -260,11 +260,11 @@ and (max-device-width : 568px) {
     }
     
     .waterview.portrait {
-        background-image: url(/site_media/img/water/iphone_background_portrait.jpg);
+        background-image: url(/media/img/water/iphone_background_portrait.jpg);
     }
     
     .waterview.landscape {
-        background-image: url(/site_media/img/water/iphone_background_landscape.jpg);
+        background-image: url(/media/img/water/iphone_background_landscape.jpg);
     }
     
     .waterview.landscape div.ui-slider-vertical {

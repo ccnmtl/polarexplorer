@@ -12,10 +12,10 @@
         gPreloadedImages = new Array(gImageCount + 1);
         for (var i=0; i < gImageCount; i++) {
             gPreloadedImages[i] = new Image();
-            gPreloadedImages[i].src = '/site_media/img/glacier/' + (i+1) + '.png';    
+            gPreloadedImages[i].src = '{{STATIC_URL}}img/glacier/' + (i+1) + '.png';    
         }
         gPreloadedImages[gImageCount] = new Image();
-        gPreloadedImages[gImageCount].src = '/site_media/img/glacier/water.png'
+        gPreloadedImages[gImageCount].src = '{{STATIC_URL}}img/glacier/water.png'
     </script>
 {% endblock %}
 
@@ -39,7 +39,7 @@
     ice contributes to sea level rise.</p>
     
     <p>
-        <img src="/site_media/img/Jakobshavn_2009_sm2.21911.png" alt="Jacobshavn's retreat" style="width: 300px" />
+        <img src="{{STATIC_URL}}img/Jakobshavn_2009_sm2.21911.png" alt="Jacobshavn's retreat" style="width: 300px" />
         <div style="text-align: right">Jackobshavn Glacier, Greenland</div>
     </p>
 
@@ -63,32 +63,32 @@
             <div class="ui-grid-solo">
                 <div class="ui-block-a pageview glacierview">
                     <div class="ui-overlay">
-                        <img class="helptext macromap" src="/site_media/img/help/help_calving_map.png" />
-                        <img class="helptext pageview" src="/site_media/img/help/help_calving_interactive.png" />
-                        <img class="helptext dismiss" src="/site_media/img/help/help_dismiss.png" />
+                        <img class="helptext macromap" src="{{STATIC_URL}}img/help/help_calving_map.png" />
+                        <img class="helptext pageview" src="{{STATIC_URL}}img/help/help_calving_interactive.png" />
+                        <img class="helptext dismiss" src="{{STATIC_URL}}img/help/help_dismiss.png" />
                     </div>
                     
-                    <img class="inset" src="/site_media/img/glacier_macro/1.png" alt="macromap" data-idx="1" />
-                    <img class="inset" src="/site_media/img/glacier_macro/2.png" alt="macromap" data-idx="2" style="display: none;"/>
-                    <img class="inset" src="/site_media/img/glacier_macro/3.png" alt="macromap" data-idx="3" style="display: none;"/>
-                    <img class="inset" src="/site_media/img/glacier_macro/4.png" alt="macromap" data-idx="4" style="display: none;"/>
-                    <img class="inset" src="/site_media/img/glacier_macro/5.png" alt="macromap" data-idx="5" style="display: none;"/>
-                    <img class="inset" src="/site_media/img/glacier_macro/6.png" alt="macromap" data-idx="6" style="display: none;"/>
-                    <img class="inset" src="/site_media/img/glacier_macro/7.png" alt="macromap" data-idx="7" style="display: none;"/>
-                    <img class="inset" src="/site_media/img/glacier_macro/8.png" alt="macromap" data-idx="8" style="display: none;"/>                    
+                    <img class="inset" src="{{STATIC_URL}}img/glacier_macro/1.png" alt="macromap" data-idx="1" />
+                    <img class="inset" src="{{STATIC_URL}}img/glacier_macro/2.png" alt="macromap" data-idx="2" style="display: none;"/>
+                    <img class="inset" src="{{STATIC_URL}}img/glacier_macro/3.png" alt="macromap" data-idx="3" style="display: none;"/>
+                    <img class="inset" src="{{STATIC_URL}}img/glacier_macro/4.png" alt="macromap" data-idx="4" style="display: none;"/>
+                    <img class="inset" src="{{STATIC_URL}}img/glacier_macro/5.png" alt="macromap" data-idx="5" style="display: none;"/>
+                    <img class="inset" src="{{STATIC_URL}}img/glacier_macro/6.png" alt="macromap" data-idx="6" style="display: none;"/>
+                    <img class="inset" src="{{STATIC_URL}}img/glacier_macro/7.png" alt="macromap" data-idx="7" style="display: none;"/>
+                    <img class="inset" src="{{STATIC_URL}}img/glacier_macro/8.png" alt="macromap" data-idx="8" style="display: none;"/>                    
                     
                     <canvas></canvas>
                     
-                    <img class="glacier active" src="/site_media/img/glacier/1.png" alt="iceberg" data-idx="1" style="left: 0px;" style="display: none" />
-                    <img class="glacier" src="/site_media/img/glacier/2.png" alt="iceberg" data-idx="2" style="display: none; opacity: 0;"/>
-                    <img class="glacier" src="/site_media/img/glacier/3.png" alt="iceberg" data-idx="3" style="display: none; opacity: 0;"/>
-                    <img class="glacier" src="/site_media/img/glacier/4.png" alt="iceberg" data-idx="4" style="display: none; opacity: 0;"/>
-                    <img class="glacier" src="/site_media/img/glacier/5.png" alt="iceberg" data-idx="5" style="display: none; opacity: 0;"/>
-                    <img class="glacier" src="/site_media/img/glacier/6.png" alt="iceberg" data-idx="6" style="display: none; opacity: 0;"/>
-                    <img class="glacier" src="/site_media/img/glacier/7.png" alt="iceberg" data-idx="7" style="display: none; opacity: 0;"/>
-                    <img class="glacier" src="/site_media/img/glacier/8.png" alt="iceberg" data-idx="8" style="display: none; opacity: 0;"/>
+                    <img class="glacier active" src="{{STATIC_URL}}img/glacier/1.png" alt="iceberg" data-idx="1" style="left: 0px;" style="display: none" />
+                    <img class="glacier" src="{{STATIC_URL}}img/glacier/2.png" alt="iceberg" data-idx="2" style="display: none; opacity: 0;"/>
+                    <img class="glacier" src="{{STATIC_URL}}img/glacier/3.png" alt="iceberg" data-idx="3" style="display: none; opacity: 0;"/>
+                    <img class="glacier" src="{{STATIC_URL}}img/glacier/4.png" alt="iceberg" data-idx="4" style="display: none; opacity: 0;"/>
+                    <img class="glacier" src="{{STATIC_URL}}img/glacier/5.png" alt="iceberg" data-idx="5" style="display: none; opacity: 0;"/>
+                    <img class="glacier" src="{{STATIC_URL}}img/glacier/6.png" alt="iceberg" data-idx="6" style="display: none; opacity: 0;"/>
+                    <img class="glacier" src="{{STATIC_URL}}img/glacier/7.png" alt="iceberg" data-idx="7" style="display: none; opacity: 0;"/>
+                    <img class="glacier" src="{{STATIC_URL}}img/glacier/8.png" alt="iceberg" data-idx="8" style="display: none; opacity: 0;"/>
                     
-                    <img class="water" src="/site_media/img/glacier/water.png" alt="water" />
+                    <img class="water" src="{{STATIC_URL}}img/glacier/water.png" alt="water" />
                 </div>
             </div>
         </div>
@@ -99,8 +99,8 @@
 {% endblock %}
 
 {% block js %}
-    <script type="text/javascript" src="/site_media/js/jquery.easing.1.3.js"></script>
-    <script type="text/javascript" src="/site_media/js/crumble.js" /></script>
-    <script type="text/javascript" src="/site_media/js/glacier.js" /></script>
+    <script type="text/javascript" src="{{STATIC_URL}}js/jquery.easing.1.3.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}js/crumble.js" /></script>
+    <script type="text/javascript" src="{{STATIC_URL}}js/glacier.js" /></script>
 {% endblock %}
 

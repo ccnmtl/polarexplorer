@@ -1,5 +1,6 @@
 # flake8: noqa
 from settings_shared import *
+import sys
 
 TEMPLATE_DIRS = (
     "/var/www/polarexplorer/polarexplorer/polarexplorer/templates",

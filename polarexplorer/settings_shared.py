@@ -72,6 +72,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.debug',
     'django.core.context_processors.request',
     'stagingcontext.staging_processor',
+    'django.core.context_processors.static',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -100,7 +101,8 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.flatpages',
     'django.contrib.markup',
-    'staticmedia',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
     'sorl.thumbnail',
     'django.contrib.admin',
     'tagging',
@@ -141,8 +143,15 @@ DEFAULT_FROM_EMAIL = SERVER_EMAIL
 STATICMEDIA_MOUNTS = (
     ('/sitemedia', 'sitemedia'),
 )
+STATIC_ROOT = os.path.join(os.path.dirname(__file__), "../media")
+STATICFILES_DIRS = ()
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
+)
 
-COMPRESS_URL = "/site_media/"
+COMPRESS_URL = "/media/"
 COMPRESS_ROOT = "media/"
 
 # WIND settings
@@ -164,3 +173,9 @@ SESSION_COOKIE_HTTPONLY = True
 LOGIN_REDIRECT_URL = "/"
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTOCOL', 'https')
+SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': True,
+}
