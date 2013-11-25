@@ -32,6 +32,7 @@ class BasicViewTest(TestCase):
         self.assertEquals(response.status_code, 200)
         self.assertTrue('main/gallery.html'
                         in [t.name for t in response.templates])
+        self.assertTrue('Gallery' in response.content)
 
     def test_gallery_nonexistant(self):
         response = self.c.get("/gallery/doesnotexist/")

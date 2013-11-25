@@ -25,8 +25,7 @@ def gallery(request, title):
 
     photos = []
     try:
-        os.chdir(directory)
-        for image in os.listdir("."):
+        for image in os.listdir(directory):
             base, extension = os.path.splitext(image)
             if extension in [".png", ".jpg"]:
                 photo = {
