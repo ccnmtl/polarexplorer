@@ -43,7 +43,6 @@ NOSE_ARGS = [
 JENKINS_TASKS = (
     'django_jenkins.tasks.run_pylint',
     'django_jenkins.tasks.with_coverage',
-    'django_jenkins.tasks.django_tests',
     'django_jenkins.tasks.run_pep8',
     'django_jenkins.tasks.run_pyflakes',
 )
@@ -100,14 +99,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.flatpages',
-    'django.contrib.markup',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'sorl.thumbnail',
     'django.contrib.admin',
     'tagging',
     'typogrify',
-    'munin',
     'south',
     'django_nose',
     'compressor',
@@ -119,6 +116,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'impersonate',
     'polarexplorer.main',
+    'django_markwhat',
 ]
 
 LETTUCE_APPS = (
@@ -131,7 +129,6 @@ STATSD_CLIENT = 'statsd.client'
 STATSD_PREFIX = 'polarexplorer'
 STATSD_HOST = '127.0.0.1'
 STATSD_PORT = 8125
-STATSD_PATCHES = ['django_statsd.patches.db', ]
 
 THUMBNAIL_SUBDIR = "thumbs"
 EMAIL_SUBJECT_PREFIX = "[polarexplorer] "
