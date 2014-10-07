@@ -43,10 +43,10 @@ function setWaterLevel(imgIdx, duration) {
         duration = 0;
     }
     
-    var level = 77;
+    var level = 80.5;
     var increment = .6 * imgIdx;            
     if (orientationLabel() == "landscape") {
-        level = 70.5;
+        level = 77.5;
         increment = 1.1 * imgIdx;
     }
 
@@ -104,10 +104,7 @@ function animateGlaciers(glaciers) {
     }
     crumbleFrame();
     
-    if (finished === glaciers.length) {
-        
-        return;
-    } else {    
+    if (finished !== glaciers.length) {
         // request new frame
         requestAnimFrame(function() {
             animateGlaciers(glaciers);
@@ -180,7 +177,9 @@ function reset(eltButton) {
             var elt = jQuery("img.glacier.active")[0];
             drawGlacier(elt);
             
-            jQuery(eltButton).removeClass("ui-btn-active");
+            if (eltButton) {
+                jQuery(eltButton).removeClass("ui-btn-active");
+            }
             jQuery.mobile.hidePageLoadingMsg(); 
     });
 }
@@ -192,7 +191,7 @@ jQuery(document).on("pageinit", function (event) {
     setCanvasAttributes();
     
     crumbleInit(gCanvas, screenDescriptor(), gSourceY, gWidth, gHeight);
-
+    
     jQuery("img.glacier, img.inset").swipeleft(function(event) {
         event.stopImmediatePropagation();
         swipeGlacier();                
@@ -206,7 +205,7 @@ jQuery(document).on("pageinit", function (event) {
     });
     
     jQuery("#reset-button").click(function(event) {
-        jQuery.mobile.showPageLoadingMsg();     
+        jQuery.mobile.showPageLoadingMsg();
         jQuery(this).addClass("ui-btn-active");
         event.preventDefault();
         reset(this);
@@ -214,19 +213,18 @@ jQuery(document).on("pageinit", function (event) {
     });
     
     jQuery(window).bind("orientationchange", function (e, ui) {
+        jQuery.mobile.showPageLoadingMsg();
         document.body.scrollTop = document.documentElement.scrollTop = 0;
 
         var elt = jQuery("img.glacier.active")[0];
-        imgIdx = parseInt(jQuery(elt).data("idx"), 10);
+        var imgIdx = parseInt(jQuery(elt).data("idx"), 10);
         
         setWaterLevel(imgIdx - 1);
         setCanvasAttributes();
-        
-        var elt = jQuery("img.glacier.active")[0];
         drawGlacier(elt);
-
+        
+        jQuery.mobile.hidePageLoadingMsg(); 
     });
     
-    var elt = jQuery("img.glacier[data-idx='1']")[0];
-    drawGlacier(elt);
+    reset();
 });
