@@ -71,6 +71,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.debug',
     'django.core.context_processors.request',
     'stagingcontext.staging_processor',
+    'djangowind.context.context_processor',
     'django.core.context_processors.static',
 )
 
@@ -153,17 +154,17 @@ COMPRESS_ROOT = "media/"
 
 # WIND settings
 
-AUTHENTICATION_BACKENDS = ('djangowind.auth.WindAuthBackend',
+AUTHENTICATION_BACKENDS = ('djangowind.auth.SAMLAuthBackend',
                            'django.contrib.auth.backends.ModelBackend', )
-WIND_BASE = "https://wind.columbia.edu/"
-WIND_SERVICE = "cnmtl_full_np"
+CAS_BASE = "https://cas.columbia.edu/"
 WIND_PROFILE_HANDLERS = ['djangowind.auth.CDAPProfileHandler']
 WIND_AFFIL_HANDLERS = ['djangowind.auth.AffilGroupMapper',
                        'djangowind.auth.StaffMapper',
                        'djangowind.auth.SuperuserMapper']
 WIND_STAFF_MAPPER_GROUPS = ['tlc.cunix.local:columbia.edu']
 WIND_SUPERUSER_MAPPER_GROUPS = ['anp8', 'jb2410', 'zm4', 'egr2107', 'cld2156',
-                                'sld2131', 'amm8', 'mar227', 'jed2161']
+                                'sld2131', 'amm8', 'mar227', 'jed2161',
+                                'njn2118']
 
 SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
 SESSION_COOKIE_HTTPONLY = True
