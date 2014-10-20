@@ -25,9 +25,9 @@ if hasattr(settings, 'CAS_BASE'):
 
 urlpatterns = patterns(
     '',
-    auth_urls,
     logout_page,
     admin_logout_page,
+    auth_urls,
     (r'^$', 'polarexplorer.main.views.index'),
     (r'^glacier/$', 'polarexplorer.main.views.glacier'),
     (r'^water/$', 'polarexplorer.main.views.water'),
