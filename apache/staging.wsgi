@@ -9,5 +9,7 @@ sys.path.append('/var/www/polarexplorer/polarexplorer/')
 os.environ['DJANGO_SETTINGS_MODULE'] = 'polarexplorer.settings_staging'
 
 import django.core.handlers.wsgi
+import django
+django.setup()
 
 application = django.core.handlers.wsgi.WSGIHandler()
