@@ -24,6 +24,8 @@ DATABASES = {
 }
 
 COMPRESS_ROOT = "/var/www/polarexplorer/polarexplorer/media/"
+COMPRESS_ENABLED = True
+COMPRESS_OFFLINE = True
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 STAGING_ENV = True
