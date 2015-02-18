@@ -130,12 +130,8 @@ EMAIL_HOST = 'localhost'
 SERVER_EMAIL = "polarexplorer@ccnmtl.columbia.edu"
 DEFAULT_FROM_EMAIL = SERVER_EMAIL
 
-# put any static media here to override app served static media
-STATICMEDIA_MOUNTS = (
-    ('/sitemedia', 'sitemedia'),
-)
-STATIC_ROOT = os.path.join(os.path.dirname(__file__), "../media")
-STATICFILES_DIRS = ()
+STATICFILES_DIRS = ("media/",)
+STATIC_ROOT = "/tmp/polarexplorer/static"
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
