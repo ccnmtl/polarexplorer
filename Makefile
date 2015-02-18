@@ -29,8 +29,8 @@ clean:
 	rm -rf ve
 	rm -rf media/CACHE
 	rm -rf reports
-	rm celerybeat-schedule
-	rm .coverage
+	rm -f celerybeat-schedule
+	rm -f .coverage
 	find . -name '*.pyc' -exec rm {} \;
 
 pull:
