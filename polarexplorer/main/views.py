@@ -8,6 +8,11 @@ def index(request):
     return dict()
 
 
+@render_to('main/isostatic_rebound.html')
+def isostatic_rebound(request):
+    return dict()
+
+
 @render_to('main/glacier.html')
 def glacier(request):
     return dict()
