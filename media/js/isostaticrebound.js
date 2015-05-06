@@ -4,7 +4,7 @@ function orientationLabel() {
     var rotation = window.hasOwnProperty("orientation") ?
         window.orientation : 90;
     
-    return (rotation == 0 || rotation == 180) ?
+    return (rotation === 0 || rotation === 180) ?
             "portrait" : "landscape";
 }
 
@@ -18,7 +18,7 @@ function orientView(orientation) {
             jQuery.mobile.hidePageLoadingMsg();    
         });                        
     });
-    if (orientation == 'landscape') {
+    if (orientation === 'landscape') {
         jQuery("div.isostaticrebound-content").show();
         jQuery("div.irview-padding").show();
         jQuery("div.ui-overlay").hide();
