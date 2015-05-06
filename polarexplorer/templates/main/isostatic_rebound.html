@@ -1,0 +1,100 @@
+{% load compress %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Polar Explorer: Isostatic rebound</title>
+    <meta name="viewport" content="width=1024, user-scalable=no">
+    <meta name="description" content="Polar Explorer">
+    <meta name="apple-mobile-web-app-title" content="Isostatic Rebound" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="author" content="CCNMTL">
+    
+    
+    <!-- Mobile IE allows us to activate ClearType technology for smoothing fonts for easy reading -->
+    <meta http-equiv="cleartype" content="on">
+    
+    <!-- For mobile browsers that do not recognize the viewport tag -->
+    <meta name="MobileOptimized" content="320" />
+    
+    <link rel="stylesheet" href="{{STATIC_URL}}jquery.mobile/jquery.mobile-1.3.2.min.css" media="screen" />
+    
+    {% compress css %}            
+    <link href="{{STATIC_URL}}css/main.css" rel="stylesheet">            
+    {% endcompress %}
+    
+    <link rel="shortcut icon" href="{{STATIC_URL}}img/favicon.ico" type="image/x-icon" />
+    
+</head>
+<body>
+
+    <div class="ir-loading"></div>
+    
+    <div class="ui-overlay">
+        <div class="ui-dialog-contain ui-overlay-shadow ui-corner-all">
+            <div class="orientation-error ui-content ui-body-c">
+                <h4 style="text-align: center">Oops, someting is wrong...</h4>
+                <p style="text-align: center;">This Isostatic Rebound interactive features is best viewed in landscape mode.</p>
+                <div class="device-orientation"></div>
+            </div>
+        </div>
+    </div>
+
+    <div data-role="page" class="isostaticrebound">
+        <div data-role="header" id="base-header">
+            <a href="#about" data-role="button" data-rel="dialog" data-icon="info">About</a>
+            <h1 id="header">Isostatic Rebound</h1>
+        </div>
+        
+        <div id="base-content" data-role="content">
+            <div class="ui-grid-solo">
+                <div class="ui-block-a pageview irview">
+                    <div class="isostaticrebound-content" id="final_hype_container" style="margin:auto;position:relative;width:1024px;height:630px;overflow:hidden;" aria-live="polite"></div><div class="irview-padding"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div data-role="footer"></div>
+    </div>
+    
+    <div id="about" data-role="dialog" data-url="about">
+        <div data-role="header">
+            <h1>About</h1>
+        </div>            
+        <div class="about-content" data-role="content">
+            <h4 style="text-align: center">Isostatic Rebound</h4>
+            <p>More information</p>
+            <p>More information</p>
+        </div>
+    </div>
+    {% if STAGING_ENV %}
+        <div class="alert alert-error" style="position: fixed; bottom: 0px;">
+        <h4>Warning: Staging Site</h4>
+        </div>
+    {% endif %}
+    
+    
+    <script src="{{STATIC_URL}}js/jquery-1.8.3.min.js"></script>
+    <script src="{{STATIC_URL}}jquery.mobile/jquery.mobile-1.3.2.min.js"></script>
+    <script src="{{STATIC_URL}}js/vslider.js"></script>
+
+    {% compress js %}
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+        <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        <script type="text/javascript" src="{{STATIC_URL}}js/isostaticrebound.js"></script>
+    {% endcompress %}
+    <script type="text/javascript" charset="utf-8" src="{{STATIC_URL}}final.hyperesources/final_hype_generated_script.js?36743"></script>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-311226-46', 'columbia.edu');
+      ga('send', 'pageview');
+    </script>
+</body>
+</html>

@@ -9,3 +9,4 @@ local_settings.py
 reports
 CACHE
 .settings
+.DS_Store
