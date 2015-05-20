@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>Polar Explorer: Isostatic rebound</title>
+    <title>Polar Explorer: Sea Level and Glacial Rebound</title>
     <meta name="viewport" content="width=1024, user-scalable=no">
     <meta name="description" content="Polar Explorer">
     <meta name="apple-mobile-web-app-title" content="Isostatic Rebound" />
@@ -34,7 +34,7 @@
         <div class="ui-dialog-contain ui-overlay-shadow ui-corner-all">
             <div class="orientation-error ui-content ui-body-c">
                 <h4 style="text-align: center">Oops, someting is wrong...</h4>
-                <p style="text-align: center;">This Isostatic Rebound interactive features is best viewed in landscape mode.</p>
+                <p style="text-align: center;">This Sea Level and Glacial Rebound interactive features is best viewed in landscape mode.</p>
                 <div class="device-orientation"></div>
             </div>
         </div>
@@ -43,7 +43,7 @@
     <div data-role="page" class="isostaticrebound">
         <div data-role="header" id="base-header">
             <a href="#about" data-role="button" data-rel="dialog" data-icon="info">About</a>
-            <h1 id="header">Isostatic Rebound</h1>
+            <h1 id="header">Sea Level and Glacial Rebound</h1>
         </div>
         
         <div id="base-content" data-role="content">
@@ -62,9 +62,32 @@
             <h1>About</h1>
         </div>            
         <div class="about-content" data-role="content">
-            <h4 style="text-align: center">Isostatic Rebound</h4>
-            <p>More information</p>
-            <p>More information</p>
+            <h4 style="text-align: center">Sea Level and Glacial Rebound</h4>
+            <p style="text-align: center; margin-top: -15px; font-style: italic;">The Earth&#8217;s Response to the Loading and Unloading of Ice</p>
+            <p>This interactive explores what happens to the Earth and sea level when an ice sheet forms. Massive ice sheets provide enough downward force on the land to depress the area underneath. Squeezing the deformable or elastic layer (the asthenosphere) lying under the more rigid outer crust (lithosphere), they cause it to flow out from under the ice. Simultaneously adjacent areas of land are pushed up, referred to as the ice sheet ‘peripheral bulge’. The end result is like putting a weight on a waterbed; the area under the weight depresses and areas surrounding the weight bulge up.</p>
+            
+            <p>How does the sinking and bulging of the Earth under and around the ice relate to sea level? Consider Earth’s most recent glacial period, which began approximately 110,000 years ago, reaching its maximum extent approximately 21,000 years ago. As snow and ice collected over much of the northern regions of North America and Europe the added weight pushed down the land below the ice, and bulged up the land around the edges of the ice sheet. The surfaces of much of North America and of northern Europe were pushed down while areas south, such as southern New Jersey, Delaware and Maryland, bulged up. Sea level bordering these southern areas dropped from both<br />
+            (1) the loss of water in the oceans as it moved into the ice sheets, and<br />
+            (2) the bulging up of the shoreline.</p>
+            
+            <p>Over the last ~19,000 years the process has been reversing. Water has been moving back into the ocean from melting ice, land freed from the ice is ‘rebounding’ or rising back up, and bordering land that once bulged is settling back down.</p>
+            
+            <p>Coastal land that is rising or falling will affect local sea level. This process is referred to as isostatic rebound or post-glacial rebound. You can see this in the Polar Explorer app on the “<b>related sections...</b>” noted below.</p>
+            
+            <div style="padding: 10px 0; margin: auto; text-align: center;">
+            <img src="{{STATIC_URL}}img/isostaticrebound/cbn-uplift.jpg" width="440" height="299" alt="" /><br />
+            <span style="font-size: 12px; font-style: italic">Image: Post-Glacial rebound measured at the Canadian Base Network stations. Hudson Bay is shown surrounded by land that is uplifting at 8-14 mm/yr.</span>
+            </div>
+            
+            <p>The Earth responds to this loading and unloading over thousands of years. We are still measuring the effects of the last glacial period. This can be seen in Canada’s Hudson Bay (above image), an area depressed (pushed down) by the Laurentide ice sheet during the last glacial period that has not yet completely returned to its original position above sea level. Over the next several thousand years it will continue to rebound and the bay will disappear as the land rises above sea level.</p>
+            
+            <p><b>Related sections of the Polar Explorer app to explore:</b><br />
+            “What Else Influences Sea Level”<br />
+            “Where is sea level changing now?”</p>
+            
+            <p><b>Image reference:</b><br />
+            <a href="http://www.nrcan.gc.ca/earth-sciences/geomatics/geodetic-reference-systems/tools-applications/3d-networks/9082" target="_blank">Government of Canada Natural Resources</a><br />
+            </p>
         </div>
     </div>
     {% if STAGING_ENV %}
