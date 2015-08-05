@@ -185,6 +185,10 @@ and (max-device-width : 568px) {
         height: 276px;
     }
     
+    .isostaticrebound div.ui-content.landscape {
+        height: 660px;
+    }
+    
     .pageview.landscape {
         width: 568px;
         height: 276px;
