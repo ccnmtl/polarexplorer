@@ -4,7 +4,7 @@ var sliderLabel =
     '<span class="ui-btn-inner">' + 
     '    <span class="ui-icon ui-icon-arrow-u ui-icon-shadow">&nbsp;</span>' +
     '    <span class="ui-btn-text">Sea Level</span>' +
-    '</span>'
+    '</span>';
 
 function getWaterLevel(imgIdx) {
     if (imgIdx === undefined) {       
@@ -16,7 +16,7 @@ function getWaterLevel(imgIdx) {
 }
 
 function getImageIndex(value) {
-    imgIdx = (((value - 100) * -1) - gDefaultLevel) / ((100 - gDefaultLevel) / (gImageCount - 1)) + 1;
+    var imgIdx = (((value - 100) * -1) - gDefaultLevel) / ((100 - gDefaultLevel) / (gImageCount - 1)) + 1;
     imgIdx = parseInt(imgIdx, 10);
     return imgIdx < 1 ? 1 : imgIdx;
 }
@@ -37,7 +37,7 @@ function swapImages(elt, newIdx) {
     var textElt = jQuery("div.waterview span.ui-btn-text")[0];
     if (newIdx === 1) {
         jQuery(textElt).html("Sea Level");
-    } else if (newIdx == gImageCount) {
+    } else if (newIdx === gImageCount) {
         jQuery(textElt).html("24 Feet");
     } else {
         jQuery(textElt).html("");
@@ -48,7 +48,7 @@ function adjustMacroMap() {
     var newIdx = getImageIndex(jQuery("#water").attr("value"));
     
     var elt = jQuery("img.inset.active")[0];
-    imgIdx = parseInt(jQuery(elt).data("idx"), 10);
+    var imgIdx = parseInt(jQuery(elt).data("idx"), 10);
     
     if (newIdx !== imgIdx) {
         swapImages(elt, newIdx);
@@ -82,12 +82,12 @@ jQuery(document).on("pageinit", function (event) {
     jQuery("img.inset").click(function(event) {
         event.preventDefault();
         var elt = jQuery("img.inset.active")[0];
-        imgIdx = parseInt(jQuery(elt).data("idx"), 10);
+        var imgIdx = parseInt(jQuery(elt).data("idx"), 10);
         
         var newIdx = (imgIdx + 1) % (gImageCount + 1);
         
         if (imgIdx < gImageCount && newIdx > 0) {
-            swapImages(elt, newIdx)
+            swapImages(elt, newIdx);
             setWaterLevel(newIdx);
         }
         return false;

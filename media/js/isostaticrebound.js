@@ -1,4 +1,4 @@
-var gOrientation = undefined;
+var gOrientation;
 
 function orientationLabel() {                    
     var rotation = window.hasOwnProperty("orientation") ?

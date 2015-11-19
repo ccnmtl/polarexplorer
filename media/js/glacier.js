@@ -25,7 +25,7 @@ var gSourceX = [
     315, /* light blue */
     370, /* dark blue */
     390 /* pink */
-]
+];
 
 function setCanvasAttributes() {
     jQuery(gCanvas).attr("width", jQuery("img.glacier").width());
@@ -44,8 +44,8 @@ function setWaterLevel(imgIdx, duration) {
     }
     
     var level = 80.5;
-    var increment = .6 * imgIdx;            
-    if (orientationLabel() == "landscape") {
+    var increment = 0.6 * imgIdx;
+    if (orientationLabel() === "landscape") {
         level = 77.5;
         increment = 1.1 * imgIdx;
     }
@@ -55,6 +55,8 @@ function setWaterLevel(imgIdx, duration) {
                                 duration,
                                 "easeInSine");
 }
+
+var gContext;
 
 function drawGlacier(elt, x, opacity) {
     if (x === undefined) {
@@ -86,7 +88,7 @@ function animateGlaciers(glaciers) {
         }
         
         if (glacier.x1 > glacier.x2) {
-            glacier.x1 -= .3;
+            glacier.x1 -= 0.3;
         }
         
         glacier.opacity += glacier.changeBy;

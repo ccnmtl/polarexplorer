@@ -26,12 +26,12 @@ function getForceFactor(screenDescriptor) {
 function getOffset(screenDescriptor, orientation) {
     if (screenDescriptor === "phone") {
         if (orientation === "portrait") {
-            return {x: .31, y: .31};
+            return {x: 0.31, y: 0.31};
         } else if (orientation === "landscape") {
-            return {x: .56, y: .56};
+            return {x: 0.56, y: 0.56};
         }
     } else if (orientation === "portrait") {
-        return {x: .75, y: .75};
+        return {x: 0.75, y: 0.75};
     } else if (orientation === "landscape") {
         return {x: 1, y: 1};
     }
@@ -90,15 +90,15 @@ function crumbleFrame() {
 }
 
 function crumbleStart(sourceImage, sourceX, orientation) {
-    var outputWidth = sourceX * .1;
-    var outputHeight = gSourceY * .6;
+    var outputWidth = sourceX * 0.1;
+    var outputHeight = gSourceY * 0.6;
     var offset = getOffset(gScreenDescriptor, orientation);
     
     source = sourceImage;
     
     for (var row=0, y=0; row < gRows; row++, y+=TILE_HEIGHT) {
         for (var col=0, x=0; col < gCols; col++, x+=TILE_WIDTH) {
-            tile = tiles[row][col];
+            var tile = tiles[row][col];
             
             tile.sourceX = sourceX + x;
             tile.sourceY = gSourceY + y;

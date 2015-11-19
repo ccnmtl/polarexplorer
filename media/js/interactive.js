@@ -45,7 +45,7 @@ function retrieveData(name) {
 function screenDescriptor () {
     var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;    
     if (width >= 1025 && width <= 5000) {
-        return "desktop"
+        return "desktop";
     } else if (width >= 768 && width <= 1024) {
         return "tablet";
     } else {
@@ -90,13 +90,13 @@ function initInteractive(name) {
     handleOverlay(name);
 }
 
-var gOrientation = undefined;
+var gOrientation;
 
 function orientationLabel() {                    
     var rotation = window.hasOwnProperty("orientation") ?
         window.orientation : 90;
     
-    return (rotation == 0 || rotation == 180) ?
+    return (rotation === 0 || rotation === 180) ?
             "portrait" : "landscape";
 }
 

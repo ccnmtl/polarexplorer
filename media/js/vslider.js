@@ -400,7 +400,7 @@ $.widget( "mobile.verticalslider", $.mobile.widget, $.extend( {
                 percent = Math.round( ( ( data.pageY - top ) / height ) * 100 );
             }
         } else {
-            if ( val == null ) {
+            if ( val === null ) {
                 val = isInput ? parseFloat( control.val() || 0 ) : control[0].selectedIndex;
             }
             percent = ( parseFloat( val ) - min ) / ( max - min ) * 100;
@@ -459,7 +459,7 @@ $.widget( "mobile.verticalslider", $.mobile.widget, $.extend( {
             this.valuebg.css( "height",  (100 - percent) + "%" );
         }
         if ( this.fillbg ) {
-            this.fillbg.css( "height", percent + "%")
+            this.fillbg.css( "height", percent + "%");
         }
 
         // drag the label heights
