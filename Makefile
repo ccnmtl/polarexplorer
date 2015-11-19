@@ -2,7 +2,7 @@ MANAGE=./manage.py
 APP=polarexplorer
 FLAKE8=./ve/bin/flake8
 
-jenkins: ./ve/bin/python check test flake8
+jenkins: ./ve/bin/python check test flake8 jshint jscs
 
 ./ve/bin/python: requirements.txt bootstrap.py virtualenv.py
 	./bootstrap.py
