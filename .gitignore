@@ -10,3 +10,4 @@ reports
 CACHE
 .settings
 .DS_Store
+node_modules
