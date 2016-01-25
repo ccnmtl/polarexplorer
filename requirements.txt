@@ -54,6 +54,7 @@ six==1.10.0
 sqlparse==0.1.18
 boto==2.38.0
 python-dateutil==2.4.2
+contextlib2==0.5.1
 
 sorl==3.1
 tagging==0.3-pre
