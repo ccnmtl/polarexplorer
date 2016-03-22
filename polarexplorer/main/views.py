@@ -1,29 +1,24 @@
-from annoying.decorators import render_to
+from django.shortcuts import render
 import os
 from operator import itemgetter
 
 
-@render_to('main/index.html')
 def index(request):
-    return dict()
+    return render(request, 'main/index.html', dict())
 
 
-@render_to('main/isostatic_rebound.html')
 def isostatic_rebound(request):
-    return dict()
+    return render(request, 'main/isostatic_rebound.html', dict())
 
 
-@render_to('main/glacier.html')
 def glacier(request):
-    return dict()
+    return render(request, 'main/glacier.html', dict())
 
 
-@render_to('main/water.html')
 def water(request):
-    return dict()
+    return render(request, 'main/water.html', dict())
 
 
-@render_to('main/gallery.html')
 def gallery(request, title):
     path = os.path.dirname(os.path.abspath(__file__))
     directory = os.path.join(path, '../../media/img/%s' % title)
@@ -41,7 +36,7 @@ def gallery(request, title):
     except:
         pass
 
-    return dict({
+    return render(request, 'main/gallery.html', {
         "section": title,
         "photos": sorted(photos, key=itemgetter('year'))
     })
