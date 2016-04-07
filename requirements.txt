@@ -53,7 +53,7 @@ pylint==1.5.5
 six==1.10.0
 sqlparse==0.1.19
 boto==2.38.0
-python-dateutil==2.5.1
+python-dateutil==2.5.2
 contextlib2==0.5.1
 
 sorl==3.1
