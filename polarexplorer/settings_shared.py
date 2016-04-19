@@ -14,7 +14,6 @@ USE_TZ = True
 
 INSTALLED_APPS += [  # noqa
     'sorl.thumbnail',
-    'tagging',
     'typogrify',
     'bootstrapform',
     'django_extensions',

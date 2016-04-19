@@ -57,7 +57,6 @@ python-dateutil==2.5.2
 contextlib2==0.5.1
 
 sorl==3.1
-tagging==0.3-pre
 typogrify==2.0.7
 django-staticmedia==0.2.2
 django-indexer==0.3.0
