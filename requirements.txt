@@ -1,5 +1,5 @@
 --index-url https://pypi.ccnmtl.columbia.edu/
-Django==1.8.12
+Django==1.9.5
 resolver==0.2.1
 wsgiref==0.1.2
 selector==0.10.1
@@ -55,6 +55,8 @@ sqlparse==0.1.19
 boto==2.38.0
 python-dateutil==2.5.2
 contextlib2==0.5.1
+Jinja2==2.8
+Markupsafe==0.23
 
 sorl==3.1
 typogrify==2.0.7
