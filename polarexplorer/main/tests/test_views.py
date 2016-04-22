@@ -13,7 +13,7 @@ class BasicViewTest(TestCase):
     def test_smoketest(self):
         response = self.c.get("/smoketest/")
         self.assertEquals(response.status_code, 200)
-        assert "PASS" in response.content
+        self.assertContains(response, "PASS")
 
     def test_glacier(self):
         response = self.c.get("/glacier/")
@@ -32,7 +32,7 @@ class BasicViewTest(TestCase):
         self.assertEquals(response.status_code, 200)
         self.assertTrue('main/gallery.html'
                         in [t.name for t in response.templates])
-        self.assertTrue('Gallery' in response.content)
+        self.assertContains(response, 'Gallery')
 
     def test_gallery_nonexistant(self):
         response = self.c.get("/gallery/doesnotexist/")
