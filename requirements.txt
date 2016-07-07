@@ -79,4 +79,4 @@ django-cacheds3storage==0.1.2
 gunicorn==19.6.0
 django-impersonate==1.0.1
 
-ccnmtlsettings==0.2.0
+ccnmtlsettings==0.3.0
