@@ -10,16 +10,6 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
 ]
 
-TEMPLATE_CONTEXT_PROCESSORS = [
-    'django.contrib.auth.context_processors.auth',
-    'django.template.context_processors.debug',
-    'django.template.context_processors.request',
-    'django.contrib.messages.context_processors.messages',
-    'django.template.context_processors.static',
-    'stagingcontext.staging_processor',
-    'gacontext.ga_processor',
-]
-
 INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
