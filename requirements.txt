@@ -19,7 +19,7 @@ pycodestyle==2.0.0
 enum34==1.1.6
 configparser==3.5.0
 flake8==3.0.4
-tornado==4.4.1
+tornado==4.4.2
 cssselect==0.9.2
 lxml==3.6.4
 fuzzywuzzy==0.12.0
