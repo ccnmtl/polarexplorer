@@ -83,4 +83,4 @@ django-impersonate==1.0.1
 django-smtp-ssl==1.0
 
 djangowind==0.16.0 # not used, but ccnmtlsettings expects it
-ccnmtlsettings==1.1.2
+ccnmtlsettings==1.2.0
