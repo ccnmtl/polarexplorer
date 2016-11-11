@@ -51,7 +51,7 @@ pylint==1.6.4
 six==1.10.0
 sqlparse==0.2.2
 boto==2.43.0
-python-dateutil==2.5.3
+python-dateutil==2.6.0
 contextlib2==0.5.4
 Jinja2==2.8
 Markupsafe==0.23
