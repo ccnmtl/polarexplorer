@@ -50,7 +50,7 @@ logilab-astng==0.24.3
 pylint==1.6.4
 six==1.10.0
 sqlparse==0.2.2
-boto==2.44.0
+boto==2.45.0
 python-dateutil==2.6.0
 contextlib2==0.5.4
 Jinja2==2.8
