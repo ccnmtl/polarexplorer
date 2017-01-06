@@ -1,5 +1,5 @@
 --index-url https://pypi.ccnmtl.columbia.edu/
-Django==1.10.4
+Django==1.10.5
 resolver==0.2.1
 selector==0.10.1
 Paste==2.0.3
