@@ -54,7 +54,7 @@ sqlparse==0.2.2
 boto==2.45.0
 python-dateutil==2.6.0
 contextlib2==0.5.4
-Jinja2==2.9.3
+Jinja2==2.9.4
 Markupsafe==0.23
 
 typogrify==2.0.7
