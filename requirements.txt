@@ -42,7 +42,7 @@ testscenarios==0.5.0
 python-subunit==1.2.0
 rdflib==4.2.2
 coverage==4.3.4
-pyasn1==0.1.9
+pyasn1==0.2.1
 pyOpenSSL==16.2.0
 ndg-httpsclient==0.4.2
 requests==2.13.0
