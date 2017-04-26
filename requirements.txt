@@ -54,7 +54,7 @@ six==1.10.0
 sqlparse==0.2.3
 boto==2.46.1
 python-dateutil==2.6.0
-contextlib2==0.5.4
+contextlib2==0.5.5
 Jinja2==2.9.6
 MarkupSafe==1.0
 pytz==2017.2
