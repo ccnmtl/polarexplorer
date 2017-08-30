@@ -232,42 +232,41 @@
 
             // In all cases prevent the default and mark the handle as active
             switch (event.keyCode) {
-            case $.mobile.keyCode.HOME:
-            case $.mobile.keyCode.END:
-            case $.mobile.keyCode.PAGE_UP:
-            case $.mobile.keyCode.PAGE_DOWN:
-            case $.mobile.keyCode.UP:
-            case $.mobile.keyCode.RIGHT:
-            case $.mobile.keyCode.DOWN:
-            case $.mobile.keyCode.LEFT:
-                event.preventDefault();
+                case $.mobile.keyCode.HOME:
+                case $.mobile.keyCode.END:
+                case $.mobile.keyCode.PAGE_UP:
+                case $.mobile.keyCode.PAGE_DOWN:
+                case $.mobile.keyCode.UP:
+                case $.mobile.keyCode.RIGHT:
+                case $.mobile.keyCode.DOWN:
+                case $.mobile.keyCode.LEFT:
+                    event.preventDefault();
 
-                if (!this._keySliding) {
-                    this._keySliding = true;
-                    this.handle.addClass('ui-state-active');
-                }
-
-                break;
+                    if (!this._keySliding) {
+                        this._keySliding = true;
+                        this.handle.addClass('ui-state-active');
+                    }
+                    break;
             }
 
             // move the slider according to the keypress
             switch (event.keyCode) {
-            case $.mobile.keyCode.HOME:
-                this.refresh(this.min);
-                break;
-            case $.mobile.keyCode.END:
-                this.refresh(this.max);
-                break;
-            case $.mobile.keyCode.PAGE_UP:
-            case $.mobile.keyCode.UP:
-            case $.mobile.keyCode.RIGHT:
-                this.refresh(index + this.step);
-                break;
-            case $.mobile.keyCode.PAGE_DOWN:
-            case $.mobile.keyCode.DOWN:
-            case $.mobile.keyCode.LEFT:
-                this.refresh(index - this.step);
-                break;
+                case $.mobile.keyCode.HOME:
+                    this.refresh(this.min);
+                    break;
+                case $.mobile.keyCode.END:
+                    this.refresh(this.max);
+                    break;
+                case $.mobile.keyCode.PAGE_UP:
+                case $.mobile.keyCode.UP:
+                case $.mobile.keyCode.RIGHT:
+                    this.refresh(index + this.step);
+                    break;
+                case $.mobile.keyCode.PAGE_DOWN:
+                case $.mobile.keyCode.DOWN:
+                case $.mobile.keyCode.LEFT:
+                    this.refresh(index - this.step);
+                    break;
             }
         }, // remove active mark
 
@@ -404,8 +403,11 @@
                     return $(bg).prependTo(self.slider);
                 })();
             }
-            this.handle.buttonMarkup({corners: true, theme: theme,
-                                      shadow: true});
+            this.handle.buttonMarkup({
+                corners: true,
+                theme: theme,
+                shadow: true
+            });
 
             var pxStep;
             var percent;
