@@ -1,3 +1,5 @@
+/* exported initInteractive */
+
 function getCookie(name) {
     var dc = document.cookie;
     var prefix = name + '=';
@@ -25,6 +27,8 @@ function setCookie(name, value, expires, path, domain, secure) {
         ((secure) ? '; secure' : '');
 }
 
+/* eslint-disable scanjs-rules/property_localStorage */
+/* eslint-disable scanjs-rules/identifier_localStorage */
 function storeData(name, value, expires, path, domain, secure) {
     if (window.localStorage) {
         localStorage[name] = value;
@@ -40,6 +44,9 @@ function retrieveData(name) {
         return getCookie(name);
     }
 }
+
+/* eslint-enable scanjs-rules/property_localStorage */
+/* eslint-enable scanjs-rules/identifier_localStorage */
 
 function screenDescriptor() {
     var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
@@ -74,8 +81,10 @@ function handleOverlay(name) {
 
 function initInteractive(name) {
     if (screenDescriptor() !== 'phone') {
+        /* eslint-disable scanjs-rules/call_addEventListener */
         document.addEventListener('touchstart', disableScrolling, false);
         document.addEventListener('touchmove', disableScrolling, false);
+        /* eslint-enable scanjs-rules/call_addEventListener */
     }
 
     jQuery('img').on('dragstart', function(event) {
@@ -95,7 +104,7 @@ function orientationLabel() {
         window.orientation : 90;
 
     return (rotation === 0 || rotation === 180) ?
-            'portrait' : 'landscape';
+        'portrait' : 'landscape';
 }
 
 function orientView(orientation) {
