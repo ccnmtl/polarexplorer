@@ -5,7 +5,7 @@ function orientationLabel() {
         window.orientation : 90;
 
     return (rotation === 0 || rotation === 180) ?
-            'portrait' : 'landscape';
+        'portrait' : 'landscape';
 }
 
 function orientView(orientation) {

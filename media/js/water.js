@@ -1,3 +1,6 @@
+/* globals gImageCount: true, initInteractive: true, screenDescriptor: true */
+/* globals orientationLabel: true */
+
 var ignoreChange = false;
 var gDefaultLevel = 52;
 var sliderLabel = '<span class="ui-btn-inner">' +
@@ -106,6 +109,7 @@ jQuery(document).on('pageinit', function(event) {
         jQuery('img.inset').hide().removeClass('active');
         jQuery('img.inset[data-idx="1"]').addClass('active').show();
         setWaterLevel(1);
+        // eslint-disable-next-line scanjs-rules/call_setTimeout
         setTimeout(function() {
             jQuery(eltButton).removeClass('ui-btn-active');
             jQuery.mobile.hidePageLoadingMsg();

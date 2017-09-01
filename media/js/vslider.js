@@ -22,7 +22,6 @@
             var theme = this.options.theme || parentTheme;
             var trackTheme = this.options.trackTheme || parentTheme;
             var cType = control[ 0 ].nodeName.toLowerCase();
-            var isSelect = this.isToggleSwitch = cType === 'select';
             var isRangeslider = control.parent()
                 .is(':jqmData(role="vrangeslider")');
             var selectClass = (this.isToggleSwitch) ?
@@ -100,7 +99,7 @@
                 wrapper.className = 'ui-slider-vertical-inneroffset';
 
                 for (var j = 0, length = domSlider.childNodes.length;
-                     j < length; j++) {
+                    j < length; j++) {
                     wrapper.appendChild(domSlider.childNodes[j]);
                 }
 
@@ -114,11 +113,10 @@
                 options = control.find('option');
 
                 for (var i = 0, optionsCount = options.length;
-                     i < optionsCount; i++) {
+                    i < optionsCount; i++) {
                     var side = !i ? 'b' : 'a';
                     var sliderTheme = !i ? ' ui-btn-down-' + trackTheme :
                         (' ' + $.mobile.activeBtnClass);
-                    var sliderLabel = document.createElement('div');
                     var sliderImg = document.createElement('span');
 
                     sliderImg.className = [
@@ -139,8 +137,8 @@
 
             // monitor the input for updated values
             control.addClass(this.isToggleSwitch ?
-                             'ui-slider-vertical-switch' :
-                             'ui-slider-vertical-input');
+                'ui-slider-vertical-switch' :
+                'ui-slider-vertical-input');
 
             this._on(control, {
                 'change': '_controlChange',
@@ -232,41 +230,41 @@
 
             // In all cases prevent the default and mark the handle as active
             switch (event.keyCode) {
-                case $.mobile.keyCode.HOME:
-                case $.mobile.keyCode.END:
-                case $.mobile.keyCode.PAGE_UP:
-                case $.mobile.keyCode.PAGE_DOWN:
-                case $.mobile.keyCode.UP:
-                case $.mobile.keyCode.RIGHT:
-                case $.mobile.keyCode.DOWN:
-                case $.mobile.keyCode.LEFT:
-                    event.preventDefault();
+            case $.mobile.keyCode.HOME:
+            case $.mobile.keyCode.END:
+            case $.mobile.keyCode.PAGE_UP:
+            case $.mobile.keyCode.PAGE_DOWN:
+            case $.mobile.keyCode.UP:
+            case $.mobile.keyCode.RIGHT:
+            case $.mobile.keyCode.DOWN:
+            case $.mobile.keyCode.LEFT:
+                event.preventDefault();
 
-                    if (!this._keySliding) {
-                        this._keySliding = true;
-                        this.handle.addClass('ui-state-active');
-                    }
-                    break;
+                if (!this._keySliding) {
+                    this._keySliding = true;
+                    this.handle.addClass('ui-state-active');
+                }
+                break;
             }
 
             // move the slider according to the keypress
             switch (event.keyCode) {
-                case $.mobile.keyCode.HOME:
-                    this.refresh(this.min);
-                    break;
-                case $.mobile.keyCode.END:
-                    this.refresh(this.max);
-                    break;
-                case $.mobile.keyCode.PAGE_UP:
-                case $.mobile.keyCode.UP:
-                case $.mobile.keyCode.RIGHT:
-                    this.refresh(index + this.step);
-                    break;
-                case $.mobile.keyCode.PAGE_DOWN:
-                case $.mobile.keyCode.DOWN:
-                case $.mobile.keyCode.LEFT:
-                    this.refresh(index - this.step);
-                    break;
+            case $.mobile.keyCode.HOME:
+                this.refresh(this.min);
+                break;
+            case $.mobile.keyCode.END:
+                this.refresh(this.max);
+                break;
+            case $.mobile.keyCode.PAGE_UP:
+            case $.mobile.keyCode.UP:
+            case $.mobile.keyCode.RIGHT:
+                this.refresh(index + this.step);
+                break;
+            case $.mobile.keyCode.PAGE_DOWN:
+            case $.mobile.keyCode.DOWN:
+            case $.mobile.keyCode.LEFT:
+                this.refresh(index - this.step);
+                break;
             }
         }, // remove active mark
 

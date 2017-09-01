@@ -1,3 +1,7 @@
+/* global orientationLabel: true, crumbleFrame: true, requestAnimFrame: true */
+/* global gImageCount: true, crumbleStart: true, initInteractive: true */
+/* global crumbleInit: true, screenDescriptor: true */
+
 var gEaseOut = 1000;
 var gEaseIn = 1000;
 var gCanvas;
@@ -12,6 +16,7 @@ window.requestAnimFrame = (function(callback) {
         window.oRequestAnimationFrame ||
         window.msRequestAnimationFrame ||
         function(callback) {
+            // eslint-disable-next-line scanjs-rules/call_setTimeout
             window.setTimeout(callback, 0);
         };
 })();
@@ -52,8 +57,8 @@ function setWaterLevel(imgIdx, duration) {
 
     var rise = level - increment;
     jQuery('img.water').animate({'top': rise + '%'},
-                                duration,
-                                'easeInSine');
+        duration,
+        'easeInSine');
 }
 
 var gContext;
@@ -169,7 +174,7 @@ function reset(eltButton) {
 
             // except glacier with data-idx='1'
             jQuery('img.glacier[data-idx="1"]')
-               .addClass('active')
+                .addClass('active')
                 .css({'left': '0px', 'opacity': 1});
 
             // hide all the insets & show the first one

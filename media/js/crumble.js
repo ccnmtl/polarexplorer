@@ -1,7 +1,8 @@
+/* exported crumbleInit, crumbleFrame, crumbleStart */
+
 var source;
 var draw;
 
-var RAD = Math.PI / 180;
 var TILE_WIDTH = 12;
 var TILE_HEIGHT = 12;
 var TILE_CENTER_WIDTH = 6;
@@ -39,7 +40,7 @@ function getOffset(screenDescriptor, orientation) {
 }
 
 function crumbleInit(outputcanvas, screenDescriptor, sourceY,
-                     sourceWidth, sourceHeight) {
+    sourceWidth, sourceHeight) {
     draw = outputcanvas.getContext('2d');
 
     gScreenDescriptor = screenDescriptor;
@@ -64,8 +65,8 @@ function crumbleFrame() {
             var tile = tiles[row][col];
 
             draw.clearRect(tile.currentX - (TILE_CENTER_WIDTH + 2),
-                           tile.currentY - (TILE_CENTER_HEIGHT + 2),
-                           TILE_WIDTH + 2, TILE_HEIGHT + 2);
+                tile.currentY - (TILE_CENTER_HEIGHT + 2),
+                TILE_WIDTH + 2, TILE_HEIGHT + 2);
 
             if (tile.force > 0.0001) {
                 tile.moveX *= tile.force;
@@ -82,9 +83,9 @@ function crumbleFrame() {
                 // where to pick up the image from the source canvas.
                 tile.sourceX, tile.sourceY, TILE_WIDTH, TILE_HEIGHT,
                 // where to draw it on the output canvas
-                           tile.currentX - TILE_CENTER_WIDTH,
-                           tile.currentY - TILE_CENTER_HEIGHT,
-                           TILE_WIDTH, TILE_HEIGHT);
+                tile.currentX - TILE_CENTER_WIDTH,
+                tile.currentY - TILE_CENTER_HEIGHT,
+                TILE_WIDTH, TILE_HEIGHT);
             draw.restore();
         }
     }
