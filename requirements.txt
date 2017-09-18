@@ -55,7 +55,7 @@ logilab-common==1.4.1
 logilab-astng==0.24.3
 editdistance==0.3.1
 pylint==1.7.2
-six==1.10.0
+six==1.11.0
 sqlparse==0.2.3
 boto==2.48.0
 python-dateutil==2.6.1
