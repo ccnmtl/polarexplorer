@@ -33,7 +33,7 @@ def gallery(request, title):
                     "extension": extension
                 }
                 photos.append(photo)
-    except:
+    except (OSError, ValueError):
         pass
 
     return render(request, 'main/gallery.html', {
