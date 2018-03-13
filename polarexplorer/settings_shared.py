@@ -1,3 +1,4 @@
+# flake8: noqa
 # Django settings for polarexplorer project.
 import os.path
 from ccnmtlsettings.shared import common
