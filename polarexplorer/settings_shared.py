@@ -1,3 +1,4 @@
+# flake8: noqa
 # Django settings for polarexplorer project.
 import os.path
 from ccnmtlsettings.shared import common
@@ -9,6 +10,9 @@ locals().update(common(project=project, base=base))
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
 ]
+
+MIDDLEWARE = MIDDLEWARE_CLASSES
+MIDDLEWARE += ['django.middleware.csrf.CsrfViewMiddleware']
 
 INSTALLED_APPS = [
     'django.contrib.auth',
