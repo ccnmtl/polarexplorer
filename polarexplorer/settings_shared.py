@@ -10,6 +10,9 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
 ]
 
+MIDDLEWARE = MIDDLEWARE_CLASSES
+MIDDLEWARE += ['django.middleware.csrf.CsrfViewMiddleware']
+
 INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',

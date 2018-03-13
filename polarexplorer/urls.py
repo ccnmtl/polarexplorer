@@ -1,4 +1,5 @@
 import django.views.static
+import debug_toolbar
 
 from django.conf.urls import include, url
 from django.conf import settings
@@ -18,3 +19,6 @@ urlpatterns = [
     url(r'^uploads/(?P<path>.*)$', django.views.static.serve,
         {'document_root': settings.MEDIA_ROOT}),
 ]
+
+if settings.DEBUG:
+        urlpatterns += [url(r'^__debug__/', include(debug_toolbar.urls))]

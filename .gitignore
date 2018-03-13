@@ -11,3 +11,4 @@ CACHE
 .settings
 .DS_Store
 node_modules
+local.mk
