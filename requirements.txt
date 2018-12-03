@@ -1,7 +1,7 @@
 Django==1.11.16 # pyup: <2.0
 resolver==0.2.1
 selector==0.10.1
-Paste==3.0.4
+Paste==3.0.5
 PasteDeploy==2.0.0
 PasteScript==3.0.0
 feedparser==5.2.1
@@ -47,7 +47,7 @@ ndg-httpsclient==0.5.1
 chardet==3.0.4
 idna==2.7
 urllib3==1.24.1
-certifi==2018.10.15
+certifi==2018.11.29
 
 requests==2.20.1
 logilab-common==1.4.2
