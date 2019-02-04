@@ -21,4 +21,4 @@ urlpatterns = [
 ]
 
 if settings.DEBUG:
-        urlpatterns += [url(r'^__debug__/', include(debug_toolbar.urls))]
+    urlpatterns += [url(r'^__debug__/', include(debug_toolbar.urls))]
