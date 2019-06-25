@@ -100,8 +100,9 @@ function initInteractive(name) {
 var gOrientation;
 
 function orientationLabel() {
-    var rotation = window.hasOwnProperty('orientation') ?
-        window.orientation : 90;
+    var rotation =
+        Object.prototype.hasOwnProperty.call(window, 'orientation') ?
+            window.orientation : 90;
 
     return (rotation === 0 || rotation === 180) ?
         'portrait' : 'landscape';
