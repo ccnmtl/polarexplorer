@@ -6,7 +6,7 @@ module.exports = {
     "plugins": [
         "security",
         "scanjs-rules",
-        "no-unsafe-innerhtml"
+        "no-unsanitized"
     ],
     "extends": [
         "eslint:recommended",
@@ -34,8 +34,9 @@ module.exports = {
             "always"
         ],
 
-        /** no-unsafe-innerhtml rule **/
-        "no-unsafe-innerhtml/no-unsafe-innerhtml" : 2,
+        /** no-unsanitized rule **/
+        "no-unsanitized/method" : 2,
+        "no-unsanitized/property" : 2,
 
         /** ScanJS rules **/
         "scanjs-rules/assign_to_hostname": 1,
