@@ -7,9 +7,9 @@ PasteScript==3.1.0
 feedparser==5.2.1
 Markdown==2.6.11 # pyup: < 3
 smartypants==2.0.1
-psycopg2==2.8.2
+psycopg2==2.8.3
 olefile==0.46
-Pillow==6.0.0
+Pillow==6.1.0
 versiontools==1.9.1
 statsd==3.3.0
 pep8==1.7.1
@@ -20,7 +20,7 @@ configparser==3.7.4
 flake8==3.7.7
 tornado==4.5.3 # pyup: <5.0 
 cssselect==1.0.3
-lxml==4.3.3
+lxml==4.3.4
 fuzzywuzzy==0.17.0
 sure==1.4.11
 ipdb==0.12
@@ -45,10 +45,10 @@ ndg-httpsclient==0.5.1
 
 chardet==3.0.4
 idna==2.8
-urllib3==1.25
+urllib3==1.25.3
 certifi==2019.3.9
 
-requests==2.21.0
+requests==2.22.0
 logilab-common==1.4.2
 logilab-astng==0.24.3
 editdistance==0.5.3
@@ -70,11 +70,11 @@ django-paging==0.2.5
 django-appconf==1.0.3
 rcssmin==1.0.6  # django-compressor
 rjsmin==1.0.12  # django-compressor
-django-compressor==2.2
+django-compressor==2.3
 django-statsd-mozilla==0.4.0
 raven==6.10.0
 django-bootstrap-form==3.4
-django-debug-toolbar==1.11
+django-debug-toolbar==2.0
 django-waffle==0.17.0
 django-jenkins==0.110.0
 django-smoketest==1.1.0
