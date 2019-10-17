@@ -92,7 +92,7 @@ django-cacheds3storage==0.2.1
 gunicorn==19.9.0
 django-impersonate==1.4.1
 django-smtp-ssl==1.0
-cryptography==2.7  # pyOpenSSL
+cryptography==2.8  # pyOpenSSL
 
 djangowind==1.2.2 # not used, but ccnmtlsettings expects it
 ccnmtlsettings==1.5.0
