@@ -28,7 +28,6 @@ INSTALLED_APPS = [
     'django_statsd',
     'smoketest',
     'debug_toolbar',
-    'django_jenkins',
     'gunicorn',
     'compressor',
     'impersonate',
