@@ -29,7 +29,7 @@ fixtures==3.0.0
 testtools==2.3.0
 testscenarios==0.5.0
 python-subunit==1.4.0
-coverage==5.0.3
+coverage==5.0.4
 pyasn1==0.4.8
 pyOpenSSL==19.1.0
 ndg-httpsclient==0.5.1
@@ -69,7 +69,7 @@ rjsmin==1.1.0  # django-compressor
 django-compressor==2.4
 django-statsd-mozilla==0.4.0
 raven==6.10.0
-sentry-sdk==0.14.2
+sentry-sdk==0.14.3
 django-bootstrap-form==3.4
 django-debug-toolbar==2.2
 django-waffle==0.20.0
@@ -84,7 +84,7 @@ django-markwhat==1.6.2
 django-storages==1.8 # pyup: <1.9
 django-cacheds3storage==0.2.1
 gunicorn==20.0.4
-django-impersonate==1.4.1
+django-impersonate==1.5
 django-smtp-ssl==1.0
 cryptography==2.8  # pyOpenSSL
 
