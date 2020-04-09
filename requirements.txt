@@ -1,4 +1,4 @@
-Django==2.2.11 # pyup: < 3
+Django==2.2.12 # pyup: < 3
 resolver==0.2.1
 selector==0.10.1
 Paste==3.4.0
@@ -16,7 +16,7 @@ pep8==1.7.1
 pyflakes==2.1.1
 mccabe==0.6.1
 pycodestyle==2.5.0
-configparser==5.0.0
+configparser==4.0.2 # pyup: <5.0.0
 flake8==3.7.9
 tornado==6.0.4
 cssselect==1.1.0
@@ -63,7 +63,7 @@ django-staticmedia==0.2.2
 django-indexer==0.3.0
 django-templatetag-sugar==1.0
 django-paging==0.2.5
-django-appconf==1.0.3
+django-appconf==1.0.4
 rcssmin==1.0.6  # django-compressor
 rjsmin==1.1.0  # django-compressor
 django-compressor==2.4
