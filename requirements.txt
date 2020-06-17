@@ -86,7 +86,7 @@ django-markwhat==1.6.2
 django-storages==1.9.1
 django-cacheds3storage==0.2.1
 gunicorn==20.0.4
-django-impersonate==1.5
+django-impersonate==1.5.1
 django-smtp-ssl==1.0
 cryptography==2.9.2  # pyOpenSSL
 
