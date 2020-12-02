@@ -33,7 +33,7 @@ testscenarios==0.5.0
 python-subunit==1.4.0
 coverage==5.3
 pyasn1==0.4.8
-pyOpenSSL==19.1.0
+pyOpenSSL==20.0.0
 ndg-httpsclient==0.5.1
 
 chardet==3.0.4
