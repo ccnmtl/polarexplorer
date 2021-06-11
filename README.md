@@ -1,4 +1,6 @@
-Polar Explorer [![Build Status](https://travis-ci.org/ccnmtl/polarexplorer.svg?branch=master)](https://travis-ci.org/ccnmtl/polarexplorer)
+[![Actions Status](https://github.com/ccnmtl/polarexplorer/workflows/build-and-test/badge.svg)](https://github.com/ccnmtl/polarexplorer/actions)
+
+Polar Explorer
 ==============
 
 The Polar Explorer app is designed as a data exploration and data visualization tool, which includes a wide range of data from ocean and atmospheric temperatures to depth of ice layers.
