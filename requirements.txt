@@ -4,7 +4,7 @@ selector==0.10.1
 Paste==3.5.0
 PasteDeploy==2.1.1
 PasteScript==3.2.1
-feedparser==6.0.0
+feedparser==6.0.4
 Markdown==3.2.2
 smartypants==2.0.1
 psycopg2==2.8.6
