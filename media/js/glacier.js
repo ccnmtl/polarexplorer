@@ -16,7 +16,6 @@ window.requestAnimFrame = (function(callback) {
         window.oRequestAnimationFrame ||
         window.msRequestAnimationFrame ||
         function(callback) {
-            // eslint-disable-next-line scanjs-rules/call_setTimeout
             window.setTimeout(callback, 0);
         };
 })();
