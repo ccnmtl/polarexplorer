@@ -51,3 +51,5 @@ INSTALLED_APPS += [  # noqa
 THUMBNAIL_SUBDIR = "thumbs"
 
 LOGIN_REDIRECT_URL = "/"
+
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
