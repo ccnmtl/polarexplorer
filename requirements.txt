@@ -32,7 +32,7 @@ testtools==2.6.0
 testscenarios==0.5.0
 python-subunit==1.4.0
 coverage==7.2.0
-pyasn1==0.4.8
+pyasn1==0.5.0
 pyOpenSSL==23.1.0
 ndg-httpsclient==0.5.1
 
