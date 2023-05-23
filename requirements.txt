@@ -41,7 +41,7 @@ idna==3.4
 urllib3==1.26.7  # sentry-sdk
 certifi==2023.5.7  # sentry-sdk
 
-requests==2.30.0
+requests==2.31.0
 logilab-common==1.9.2
 astroid==2.15.0
 editdistance==0.6.0
