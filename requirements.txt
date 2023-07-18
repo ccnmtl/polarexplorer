@@ -83,7 +83,7 @@ django-ga-context==0.1.0
 django-markwhat==1.6.2
 django-storages==1.13.1
 django-cacheds3storage==0.3.0
-gunicorn==20.1.0
+gunicorn==21.0.1
 django-impersonate==1.9.1
 django-smtp-ssl==1.0
 cffi==1.15.1 # cryptography
