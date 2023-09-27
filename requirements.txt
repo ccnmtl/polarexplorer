@@ -90,7 +90,7 @@ cffi==1.15.1 # cryptography
 cryptography==41.0.4  # pyOpenSSL
 
 djangowind==1.2.4 # not used, but ccnmtlsettings expects it
-ccnmtlsettings==1.9.0
+ccnmtlsettings==1.9.5
 
 pbr==5.11.0
 PyYAML>=3.10.0 # MIT
