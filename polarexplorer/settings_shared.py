@@ -1,7 +1,7 @@
 # flake8: noqa
 # Django settings for polarexplorer project.
 import os.path
-from ccnmtlsettings.shared import common
+from ctlsettings.shared import common
 
 project = 'polarexplorer'
 base = os.path.dirname(__file__)
@@ -11,6 +11,7 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
 ]
 
+MIDDLEWARE.remove('django_cas_ng.middleware.CASMiddleware')
 MIDDLEWARE += [
     'django.middleware.csrf.CsrfViewMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware'
@@ -29,9 +30,7 @@ INSTALLED_APPS = [
     'smoketest',
     'debug_toolbar',
     'gunicorn',
-    'compressor',
     'impersonate',
-    'waffle',
     'django_markwhat',
 ]
 
