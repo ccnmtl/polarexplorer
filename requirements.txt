@@ -83,7 +83,7 @@ gunicorn==21.2.0
 django-impersonate==1.9.1
 django-smtp-ssl==1.0
 cffi==1.16.0 # cryptography
-cryptography==41.0.4  # pyOpenSSL
+cryptography==41.0.6  # pyOpenSSL
 
 ctlsettings==0.2.0
 
