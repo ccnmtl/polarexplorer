@@ -5,7 +5,7 @@ Paste==3.7.1
 PasteDeploy==3.1.0
 PasteScript==3.4.0
 feedparser==6.0.8
-Markdown==3.5.1
+Markdown==3.6
 smartypants==2.0.1
 psycopg2==2.9.9
 olefile==0.47
