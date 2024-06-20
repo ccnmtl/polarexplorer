@@ -22,27 +22,27 @@
 {% endblock %}
 
 {% block about_title %}
-    {% ifequal section "antarctica" %}
+    {% if section == "antarctica" %}
         Antarctic Melt Area
-    {% endifequal %}{% ifequal section "greenland_a" %}
+    {% endif %}{% if section == "greenland_a" %}
         Greenland Melt Area
-    {% endifequal %}{% ifequal section "greenland_b" %}
+    {% endif %}{% if section == "greenland_b" %}
         Greenland Melt Area
-    {% endifequal %}{% ifequal section "greenland_graph" %}
+    {% endif %}{% if section == "greenland_graph" %}
         Greenland Icesheet Melt Area
-    {% endifequal %}
+    {% endif %}
 {% endblock %}
 
 {% block about_content %}
-    {% ifequal section "antarctica" %}
+    {% if section == "antarctica" %}
         Antarctic Melt Area About Content
-    {% endifequal %}{% ifequal section "greenland_a" %}
+    {% endif %}{% if section == "greenland_a" %}
         Greenland Melt Area About Content
-    {% endifequal %}{% ifequal section "greenland_b" %}
+    {% endif %}{% if section == "greenland_b" %}
         Greenland Melt Area About Content
-    {% endifequal %}{% ifequal section "greenland_graph" %}
+    {% endif %}{% if section == "greenland_graph" %}
         Greenland Icesheet Melt Area About Content
-    {% endifequal %}
+    {% endif %}
 {% endblock %}
 
 {% block extrajs %}
@@ -63,15 +63,15 @@
                         {% for photo in photos %}
                             { url: '{{STATIC_URL}}img/{{section}}/{{photo.year}}{{photo.extension}}',
                               caption: 
-                                  {% ifequal section "antarctica" %}
+                                  {% if section == "antarctica" %}
                                       'Antarctic Melt Area {{photo.year}} - {{photo.year|add:"1"}}' 
-                                  {% endifequal %}{% ifequal section "greenland_a" %}
+                                  {% endif %}{% if section == "greenland_a" %}
                                       'Greenland Melt Area {{photo.year}}'
-                                  {% endifequal %}{% ifequal section "greenland_b" %}
+                                  {% endif %}{% if section == "greenland_b" %}
                                       'Greenland Melt Area {{photo.year}}'
-                                  {% endifequal %}{% ifequal section "greenland_graph" %}
+                                  {% endif %}{% if section == "greenland_graph" %}
                                       'Greenland Icesheet Melt Area'
-                                  {% endifequal %}
+                                  {% endif %}
                             }{% if not forloop.last %},{% endif %}
                         {% endfor %}
                     ],
