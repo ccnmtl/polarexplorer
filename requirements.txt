@@ -81,7 +81,7 @@ django-storages==1.14.4
 gunicorn==22.0.0
 django-impersonate==1.9.4
 django-smtp-ssl==1.0
-cffi==1.16.0 # cryptography
+cffi==1.17.0 # cryptography
 cryptography==43.0.0  # pyOpenSSL
 
 ctlsettings==0.3.2
