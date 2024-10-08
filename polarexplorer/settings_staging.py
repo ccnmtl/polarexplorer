@@ -1,8 +1,6 @@
 from django.conf import settings
 from polarexplorer.settings_shared import *  # noqa: F403
-from ctlsettings.staging import common
-import sentry_sdk
-from sentry_sdk.integrations.django import DjangoIntegration
+from ctlsettings.staging import common, init_sentry
 
 
 locals().update(
@@ -20,8 +18,4 @@ except ImportError:
     pass
 
 if hasattr(settings, 'SENTRY_DSN'):
-    sentry_sdk.init(
-        dsn=SENTRY_DSN,  # noqa: F405
-        integrations=[DjangoIntegration()],
-        debug=True,
-    )
+    init_sentry(SENTRY_DSN)  # noqa F405
