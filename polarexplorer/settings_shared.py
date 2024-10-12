@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'gunicorn',
     'impersonate',
+    'ctlsettings',
 ]
 
 PROJECT_APPS = [
