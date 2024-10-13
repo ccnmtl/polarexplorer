@@ -68,7 +68,6 @@ django-templatetag-sugar==1.0
 django-paging==0.2.5
 django-appconf==1.0.5
 django-statsd-mozilla==0.4.0
-raven==6.10.0
 sentry-sdk==2.16.0
 django-bootstrap-form==3.4
 django-debug-toolbar==4.4.6
@@ -84,7 +83,7 @@ django-smtp-ssl==1.0
 cffi==1.17.0 # cryptography
 cryptography==43.0.1  # pyOpenSSL
 
-ctlsettings==0.3.4
+ctlsettings==0.4.1
 
 pbr==6.1.0
 PyYAML==6.0.1 # MIT
