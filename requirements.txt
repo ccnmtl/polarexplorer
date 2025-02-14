@@ -88,6 +88,7 @@ ctlsettings==0.4.1
 pbr==6.1.0
 PyYAML==6.0.1 # MIT
 stevedore>=1.20.0 # Apache-2.0
+rich==13.9.4
 bandit==1.8.2
 
 entrypoints==0.4
