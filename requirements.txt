@@ -59,7 +59,7 @@ python-dateutil==2.9.0
 contextlib2==21.6.0
 Jinja2==3.1.6
 MarkupSafe==3.0.2
-pytz==2025.1
+pytz==2025.2
 
 typogrify==2.1.0
 django-staticmedia==0.2.2
