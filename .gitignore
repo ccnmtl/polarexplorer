@@ -4,7 +4,6 @@
 ve
 .project
 .pydevproject
-.coverage
 local_settings.py
 reports
 CACHE
