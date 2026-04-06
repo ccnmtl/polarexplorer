@@ -82,7 +82,7 @@ django-smtp-ssl==1.0
 cffi==2.0.0 # cryptography
 cryptography==46.0.6  # pyOpenSSL
 
-ctlsettings==0.4.1
+ctlsettings==0.4.3
 
 pbr==7.0.0
 PyYAML==6.0.1 # MIT

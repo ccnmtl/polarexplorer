@@ -46,12 +46,12 @@
 {% endblock %}
 
 {% block extrajs %}
-    <script type="text/javascript" src="{{STATIC_URL}}photoswipe/lib/klass.min.js"></script>
+    <script crossorigin="anonymous" src="{{STATIC_URL}}photoswipe/lib/klass.min.js"></script>
 {% endblock %}
 
 {% block js %}
-    <script type="text/javascript" src="{{STATIC_URL}}photoswipe/code.photoswipe-3.0.5.js"></script>
-    <script type="text/javascript">
+    <script crossorigin="anonymous" src="{{STATIC_URL}}photoswipe/code.photoswipe-3.0.5.js"></script>
+    <script>
         (function(window, Util, PhotoSwipe) {
         
             Util.Events.domReady(function(e){
