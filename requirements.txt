@@ -31,7 +31,7 @@ fixtures==4.3.0
 testtools==2.9.0
 testscenarios==0.6
 python-subunit==1.4.0
-pyasn1==0.6.3
+pyasn1==0.6.4
 pyOpenSSL==26.3.0
 ndg-httpsclient==0.5.1
 
